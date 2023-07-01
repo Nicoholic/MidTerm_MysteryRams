@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.AI;
 
 
-public class enemyScript : MonoBehaviour//, damage script implementation
+public class enemyScript : MonoBehaviour, IDamage//, damage script implementation
 {
     public NavMeshAgent agent;
     public Transform player;

@@ -5,64 +5,65 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour {
 
-    [Header("Components")]
-    public Transform orientation;
+    [Header("Keybinds")]
+    [SerializeField] KeyCode jumpKey = KeyCode.Space;
+    [SerializeField] KeyCode sprintKey = KeyCode.LeftShift;
+    [SerializeField] KeyCode crouchKey = KeyCode.LeftControl;
+    [SerializeField] KeyCode slideKey = KeyCode.LeftControl;
 
     [Header("Movement")]
-    private float moveSpeed;
-    public float walkSpeed;
-    public float sprintSpeed;
-    public float slideSpeed;
+    [SerializeField] float walkSpeed;
+    [SerializeField] float sprintSpeed;
+    [SerializeField] float slideSpeed;
 
+    [SerializeField] float speedIncreaseMultiplier;
+    [SerializeField] float slopeIncreaseMultiplier;
+
+    [SerializeField] float groundDrag;
+
+    private float moveSpeed;
     private float desiredMoveSpeed;
     private float lastDesiredMoveSpeed;
-
-    public float speedIncreaseMultiplier;
-    public float slopeIncreaseMultiplier;
-
-    [SerializeField] public float groundDrag;
-
-    [Header("Jumping")]
-    [SerializeField] public float jumpForce;
-    [SerializeField] public float jumpCooldown;
-    [Range(0, 2)][SerializeField] public float airMultiplier;
-    bool canJump;
-
-    [Header("Crouching")]
-    public float crouchSpeed;
-    public float crouchYScale;
-    private float yScaleOriginal;
-
-    [Header("Sliding")]
-    public float maxSlideTime;
-    public float slideForce;
-    private float slideTimer;
-
-    [Header("Keybinds")]
-    [SerializeField] public KeyCode jumpKey = KeyCode.Space;
-    [SerializeField] public KeyCode sprintKey = KeyCode.LeftShift;
-    [SerializeField] public KeyCode crouchKey = KeyCode.LeftControl;
-    [SerializeField] public KeyCode slideKey = KeyCode.LeftControl;
-
-
-    [Header("Ground Check")]
-    public float playerHeight;
-    public LayerMask whatIsGround;
-    bool grounded;
-
-    [Header("Slope Handling")]
-    public float maxSlopeAngle;
-    private RaycastHit slopeHit;
-    private bool exitingSlope;
-
-    float horizontalInput;
-    float verticalInput;
+    private float horizontalInput;
+    private float verticalInput;
 
     Vector3 moveDirection;
 
-    Rigidbody rb;
+    [Header("Jumping")]
+    [SerializeField] float jumpForce;
+    [SerializeField] float jumpCooldown;
+    [Range(0, 2)][SerializeField] float airMultiplier;
 
+    [Header("Crouching")]
+    [SerializeField] float crouchSpeed;
+    [SerializeField] float crouchYScale;
+    private float yScaleOriginal;
+
+    [Header("Sliding")]
+    [SerializeField] float maxSlideTime;
+    [SerializeField] float slideForce;
+    private float slideTimer;
+
+    [Header("Slope Handling")]
+    [SerializeField] float maxSlopeAngle;
+    private RaycastHit slopeHit;
+    private bool exitingSlope;
+
+    [Header("Ground Check")]
+    [SerializeField] float playerHeight;
+    [SerializeField] LayerMask whatIsGround;
+
+    [Header("Components")]
+    [SerializeField] Transform orientation;
+
+    private Rigidbody rb;
+
+    [Header("Debug")]
+    [SerializeField] float currentSpeed;
     public MovementState state;
+    [SerializeField] private bool canJump;
+    [SerializeField] private bool grounded;
+    
     public enum MovementState {
         walking,
         sprinting,
@@ -71,7 +72,7 @@ public class PlayerMovement : MonoBehaviour {
         air
     }
 
-    public bool sliding;
+    private bool sliding;
 
     private void Start() {
 
@@ -86,14 +87,12 @@ public class PlayerMovement : MonoBehaviour {
 
     private void Update() {
 
-        //Checks if the player is on the ground
         grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, whatIsGround);
 
         MyInput();
         SpeedControl();
         StateHandler();
 
-        //If player is on the ground apply drag
         if (grounded)
             rb.drag = groundDrag;
         else
@@ -106,6 +105,9 @@ public class PlayerMovement : MonoBehaviour {
             SlidingMovement();
     }
 
+    /// <summary>
+    /// Handles what state of movement the player is in
+    /// </summary>
     private void StateHandler() {
         // Mode - Sliding
         if (sliding) {
@@ -152,6 +154,9 @@ public class PlayerMovement : MonoBehaviour {
         lastDesiredMoveSpeed = desiredMoveSpeed;
     }
 
+    /// <summary>
+    /// Smoothly changes the move speed of the player to the cap if they go over, allowing momentum from high speeds to be held for a bit
+    /// </summary>
     private IEnumerator LerpMoveSpeed() {
 
         float time = 0;
@@ -175,8 +180,9 @@ public class PlayerMovement : MonoBehaviour {
         moveSpeed = desiredMoveSpeed;
     }
 
-
-
+    /// <summary>
+    /// Input Manager for the player
+    /// </summary>
     private void MyInput() {
 
         horizontalInput = Input.GetAxisRaw("Horizontal");
@@ -188,7 +194,6 @@ public class PlayerMovement : MonoBehaviour {
 
             Jump();
 
-            //Calls the method after the jumpCooldown
             Invoke(nameof(ResetJump), jumpCooldown);
         }
 
@@ -210,8 +215,6 @@ public class PlayerMovement : MonoBehaviour {
 
     }
 
-
-
     private void MovePlayer() {
 
         moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
@@ -229,7 +232,7 @@ public class PlayerMovement : MonoBehaviour {
             rb.AddForce(moveDirection.normalized * moveSpeed * 10f * airMultiplier, ForceMode.Force);
 
         rb.useGravity = !OnSlope();
-        Debug.Log("Player Speed: " + moveDirection.magnitude * moveSpeed);
+        currentSpeed = moveDirection.magnitude * moveSpeed;
     }
 
     /// <summary>
@@ -261,20 +264,22 @@ public class PlayerMovement : MonoBehaviour {
         canJump = true;
         exitingSlope = false;
     }
-    //set back to private when done
-    public bool OnSlope() {
+
+    private bool OnSlope() {
         if (Physics.Raycast(transform.position, Vector3.down, out slopeHit, playerHeight * 0.5f + 0.3f)) {
             float angle = Vector3.Angle(Vector3.up, slopeHit.normal);
             return angle < maxSlopeAngle && angle != 0;
         }
         return false;
     }
-    //set back to private when done
-    public Vector3 GetSlopeMoveDirection(Vector3 direction) {
+
+    private Vector3 GetSlopeMoveDirection(Vector3 direction) {
         return Vector3.ProjectOnPlane(direction, slopeHit.normal).normalized;
     }
 
-    //start of changes
+    /// <summary>
+    /// Shrinks player into crouched state and starts slide
+    /// </summary>
     private void StartSlide() {
 
         sliding = true;
@@ -285,6 +290,9 @@ public class PlayerMovement : MonoBehaviour {
         slideTimer = maxSlideTime;
     }
 
+    /// <summary>
+    /// Applies force to player based on slope angle and stops if slide timer is <= 0
+    /// </summary
     private void SlidingMovement() {
         Vector3 inputDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
 
@@ -301,9 +309,7 @@ public class PlayerMovement : MonoBehaviour {
     }
 
     private void StopSlide() {
-
         sliding = false;
-
         transform.localScale = new Vector3(transform.localScale.x, yScaleOriginal, transform.localScale.z);
     }
 }

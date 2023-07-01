@@ -5,14 +5,14 @@ using UnityEngine;
 public class PlayerCamera : MonoBehaviour {
 
     [Header("Components")]
-    public Transform orientation;
+    [SerializeField] private Transform orientation;
 
     [Header("Sensitivity")]
-    [Range(0f, 10f)][SerializeField] float xSensitivity;
-    [Range(0f, 10f)][SerializeField] float ySensitivity;
+    [SerializeField] private float xSensitivity;
+    [SerializeField] private float ySensitivity;
 
-    float xRotation;
-    float yRotation;
+    private float xRotation;
+    private float yRotation;
 
     void Start() {
         Cursor.lockState = CursorLockMode.Locked;

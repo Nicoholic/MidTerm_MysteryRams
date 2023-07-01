@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 298458657483445300}
   - component: {fileID: 5530706896573781636}
   - component: {fileID: 1234185268690524683}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -48,7 +48,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2f4c347c85277c42bfb3e20f2599510, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  orientation: {fileID: 7399150327368194408}
+  jumpKey: 32
+  sprintKey: 304
+  crouchKey: 306
+  slideKey: 306
   walkSpeed: 7
   sprintSpeed: 10
   slideSpeed: 30
@@ -62,17 +65,16 @@ MonoBehaviour:
   crouchYScale: 0.5
   maxSlideTime: 0.75
   slideForce: 200
-  jumpKey: 32
-  sprintKey: 304
-  crouchKey: 99
-  slideKey: 306
+  maxSlopeAngle: 40
   playerHeight: 2
   whatIsGround:
     serializedVersion: 2
     m_Bits: 1024
-  maxSlopeAngle: 40
+  orientation: {fileID: 7399150327368194408}
+  currentSpeed: 0
   state: 0
-  sliding: 0
+  canJump: 0
+  grounded: 0
 --- !u!54 &1234185268690524683
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -112,7 +114,7 @@ GameObject:
   - component: {fileID: 3412486448220145464}
   - component: {fileID: 8397727855957504917}
   - component: {fileID: 8054301612128771325}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: PlayerObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -216,7 +218,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7399150327368194408}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Orientation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -247,7 +249,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1016536462665237414}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: CameraPosition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
