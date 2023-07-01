@@ -33,10 +33,17 @@ public class PlayerMovement : MonoBehaviour {
     public float crouchYScale;
     private float yScaleOriginal;
 
+    [Header("Sliding")]
+    public float maxSlideTime;
+    public float slideForce;
+    private float slideTimer;
+
     [Header("Keybinds")]
     [SerializeField] public KeyCode jumpKey = KeyCode.Space;
     [SerializeField] public KeyCode sprintKey = KeyCode.LeftShift;
     [SerializeField] public KeyCode crouchKey = KeyCode.LeftControl;
+    [SerializeField] public KeyCode slideKey = KeyCode.LeftControl;
+
 
     [Header("Ground Check")]
     public float playerHeight;
@@ -95,6 +102,8 @@ public class PlayerMovement : MonoBehaviour {
 
     private void FixedUpdate() {
         MovePlayer();
+        if (sliding)
+            SlidingMovement();
     }
 
     private void StateHandler() {
@@ -188,10 +197,16 @@ public class PlayerMovement : MonoBehaviour {
             rb.AddForce(Vector3.down * 5f, ForceMode.Impulse);
         }
 
-        if (!Input.GetKey(crouchKey)) {
+        if (Input.GetKeyUp(crouchKey)) {
             transform.localScale = new Vector3(transform.localScale.x, yScaleOriginal, transform.localScale.z);
-
         }
+
+        if (Input.GetKeyDown(slideKey) && (horizontalInput != 0 || verticalInput != 0))
+            StartSlide();
+
+        if (Input.GetKeyUp(slideKey) && sliding)
+            StopSlide();
+
 
     }
 
@@ -214,7 +229,7 @@ public class PlayerMovement : MonoBehaviour {
             rb.AddForce(moveDirection.normalized * moveSpeed * 10f * airMultiplier, ForceMode.Force);
 
         rb.useGravity = !OnSlope();
-        Debug.Log(moveDirection.magnitude * moveSpeed );
+        Debug.Log("Player Speed: " + moveDirection.magnitude * moveSpeed);
     }
 
     /// <summary>
@@ -225,9 +240,7 @@ public class PlayerMovement : MonoBehaviour {
         if (OnSlope() && !exitingSlope) {
             if (rb.velocity.magnitude > moveSpeed)
                 rb.velocity = rb.velocity.normalized * moveSpeed;
-        }
-
-        else {
+        } else {
             Vector3 flatVelocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
 
             if (flatVelocity.magnitude > moveSpeed) {
@@ -259,5 +272,38 @@ public class PlayerMovement : MonoBehaviour {
     //set back to private when done
     public Vector3 GetSlopeMoveDirection(Vector3 direction) {
         return Vector3.ProjectOnPlane(direction, slopeHit.normal).normalized;
+    }
+
+    //start of changes
+    private void StartSlide() {
+
+        sliding = true;
+
+        transform.localScale = new Vector3(transform.localScale.x, crouchYScale, transform.localScale.z);
+        rb.AddForce(Vector3.down * 5f, ForceMode.Impulse);
+
+        slideTimer = maxSlideTime;
+    }
+
+    private void SlidingMovement() {
+        Vector3 inputDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
+
+        if (!OnSlope() || rb.velocity.y > -0.1f) {
+
+            rb.AddForce(inputDirection.normalized * slideForce, ForceMode.Force);
+            slideTimer -= Time.deltaTime;
+        } else {
+            rb.AddForce(GetSlopeMoveDirection(inputDirection) * slideForce, ForceMode.Force);
+        }
+
+        if (slideTimer <= 0)
+            StopSlide();
+    }
+
+    private void StopSlide() {
+
+        sliding = false;
+
+        transform.localScale = new Vector3(transform.localScale.x, yScaleOriginal, transform.localScale.z);
     }
 }
