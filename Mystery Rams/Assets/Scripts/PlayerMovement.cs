@@ -8,18 +8,37 @@ public class PlayerMovement : MonoBehaviour {
     public Transform orientation;
 
     [Header("Movement")]
-    [SerializeField] public float moveSpeed;
+    private float moveSpeed;
+    public float walkSpeed;
+    public float sprintSpeed;
+
     [SerializeField] public float groundDrag;
 
+    [Header("Jumping")]
     [SerializeField] public float jumpForce;
     [SerializeField] public float jumpCooldown;
-    [Range(0,2)][SerializeField] public float airMultiplier;
+    [Range(0, 2)][SerializeField] public float airMultiplier;
     bool canJump;
+
+    [Header("Crouching")]
+    public float crouchSpeed;
+    public float crouchYScale;
+    private float yScaleOriginal;
+
+    [Header("Keybinds")]
+    [SerializeField] public KeyCode jumpKey = KeyCode.Space;
+    [SerializeField] public KeyCode sprintKey = KeyCode.LeftShift;
+    [SerializeField] public KeyCode crouchKey = KeyCode.LeftControl;
 
     [Header("Ground Check")]
     public float playerHeight;
     public LayerMask whatIsGround;
     bool grounded;
+
+    [Header("Slope Handling")]
+    public float maxSlopeAngle;
+    private RaycastHit slopeHit;
+    private bool exitingSlope;
 
     float horizontalInput;
     float verticalInput;
@@ -28,11 +47,23 @@ public class PlayerMovement : MonoBehaviour {
 
     Rigidbody rb;
 
+    public MovementState state;
+    public enum MovementState {
+        walking,
+        sprinting,
+        crouching,
+        air
+    }
+
     void Start() {
 
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
+
         canJump = true;
+
+        yScaleOriginal = transform.localScale.y;
+
     }
 
     private void Update() {
@@ -42,12 +73,27 @@ public class PlayerMovement : MonoBehaviour {
 
         MyInput();
         SpeedControl();
+        StateHandler();
 
         //If player is on the ground apply drag
         if (grounded)
             rb.drag = groundDrag;
-        else 
+        else
             rb.drag = 0;
+    }
+
+    private void StateHandler() {
+        if (Input.GetKey(crouchKey)) {
+            state = MovementState.crouching;
+            moveSpeed = crouchSpeed;
+        } else if (grounded && Input.GetKey(sprintKey)) {
+            state = MovementState.sprinting;
+            moveSpeed = sprintSpeed;
+        } else if (grounded) {
+            state = MovementState.walking;
+            moveSpeed = walkSpeed;
+        } else
+            state = MovementState.air;
     }
 
     private void FixedUpdate() {
@@ -59,7 +105,7 @@ public class PlayerMovement : MonoBehaviour {
         horizontalInput = Input.GetAxisRaw("Horizontal");
         verticalInput = Input.GetAxisRaw("Vertical");
 
-        if(Input.GetButton("Jump") && canJump && grounded) {
+        if (Input.GetKey(jumpKey) && canJump && grounded) {
 
             canJump = false;
 
@@ -68,6 +114,17 @@ public class PlayerMovement : MonoBehaviour {
             //Calls the method after the jumpCooldown
             Invoke(nameof(ResetJump), jumpCooldown);
         }
+
+        if (Input.GetKeyDown(crouchKey)) {
+            transform.localScale = new Vector3(transform.localScale.x, crouchYScale, transform.localScale.z);
+            rb.AddForce(Vector3.down * 5f, ForceMode.Impulse);
+        }
+
+        if (!Input.GetKey(crouchKey)) {
+            transform.localScale = new Vector3(transform.localScale.x, yScaleOriginal, transform.localScale.z);
+
+        }
+
     }
 
     private void MovePlayer() {
@@ -75,29 +132,39 @@ public class PlayerMovement : MonoBehaviour {
         //This Calculates the movement direction
         moveDirection = (orientation.forward * verticalInput) +
                            (orientation.right * horizontalInput);
- 
-        if (grounded) {
-        rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
-        }
-        else {
+
+        if (OnSlope() && !exitingSlope) {
+            rb.AddForce(GetSlopeMoveDirection() * moveSpeed * 20f, ForceMode.Force);
+            if (rb.velocity.y > 0)
+                rb.AddForce(Vector3.down * 80f, ForceMode.Force);
+        } else if (grounded) {
+            rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
+        } else {
             rb.AddForce(moveDirection.normalized * moveSpeed * 10f * airMultiplier, ForceMode.Force);
         }
 
+        rb.useGravity = !OnSlope();
     }
 
     //Limits the velocity of the character if speed goes over cap
     private void SpeedControl() {
 
-        Vector3 flatVelocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+        if (OnSlope() && !exitingSlope) {
+            if (rb.velocity.magnitude > moveSpeed)
+                rb.velocity = rb.velocity.normalized * moveSpeed;
+        } else {
+            Vector3 flatVelocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
 
-        if(flatVelocity.magnitude > moveSpeed) {
+            if (flatVelocity.magnitude > moveSpeed) {
 
-            Vector3 limitedVelocity = flatVelocity.normalized * moveSpeed;
-            rb.velocity = new Vector3(limitedVelocity.x, rb.velocity.y, limitedVelocity.z);
+                Vector3 limitedVelocity = flatVelocity.normalized * moveSpeed;
+                rb.velocity = new Vector3(limitedVelocity.x, rb.velocity.y, limitedVelocity.z);
+            }
         }
     }
 
     private void Jump() {
+        exitingSlope = true;
 
         rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
         rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
@@ -105,5 +172,18 @@ public class PlayerMovement : MonoBehaviour {
 
     private void ResetJump() {
         canJump = true;
+        exitingSlope = false;
+    }
+
+    private bool OnSlope() {
+        if (Physics.Raycast(transform.position, Vector3.down, out slopeHit, playerHeight * 0.5f + 0.3f)) {
+            float angle = Vector3.Angle(Vector3.up, slopeHit.normal);
+            return angle < maxSlopeAngle && angle != 0;
+        }
+        return false;
+    }
+
+    private Vector3 GetSlopeMoveDirection() {
+        return Vector3.ProjectOnPlane(moveDirection, slopeHit.normal).normalized;
     }
 }

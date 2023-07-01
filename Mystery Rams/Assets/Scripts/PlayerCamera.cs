@@ -8,8 +8,8 @@ public class PlayerCamera : MonoBehaviour {
     public Transform orientation;
 
     [Header("Sensitivity")]
-    [SerializeField] public float xSensitivity;
-    [SerializeField] public float ySensitivity;
+    [Range(0f, 10f)][SerializeField] float xSensitivity;
+    [Range(0f, 10f)][SerializeField] float ySensitivity;
 
     float xRotation;
     float yRotation;
@@ -21,8 +21,8 @@ public class PlayerCamera : MonoBehaviour {
 
     void Update() {
 
-        float mouseX = Input.GetAxisRaw("Mouse X") * Time.deltaTime * xSensitivity;
-        float mouseY = Input.GetAxisRaw("Mouse Y") * Time.deltaTime * ySensitivity;
+        float mouseX = Input.GetAxis("Mouse X") * xSensitivity;
+        float mouseY = Input.GetAxis("Mouse Y") * ySensitivity;
 
         yRotation += mouseX;
 
