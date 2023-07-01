@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class enemyScript : MonoBehaviour//, damage script implementation
+public class enemyScript : MonoBehaviour, IDamage//, damage script implementation
 {
 
     //Currently doesn't react to physics.
