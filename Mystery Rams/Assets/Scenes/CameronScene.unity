@@ -141,11 +141,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 874272282724060903, guid: 57947b46a7313e74ebbeb38ed0fdc9b0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 874272282724060903, guid: 57947b46a7313e74ebbeb38ed0fdc9b0, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -43.25
       objectReference: {fileID: 0}
     - target: {fileID: 874272282724060903, guid: 57947b46a7313e74ebbeb38ed0fdc9b0, type: 3}
       propertyPath: m_LocalRotation.w
@@ -183,6 +183,14 @@ PrefabInstance:
       propertyPath: orientation
       value: 
       objectReference: {fileID: 1308483553}
+    - target: {fileID: 8503518005976806114, guid: 57947b46a7313e74ebbeb38ed0fdc9b0, type: 3}
+      propertyPath: xSensitivity
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8503518005976806114, guid: 57947b46a7313e74ebbeb38ed0fdc9b0, type: 3}
+      propertyPath: ySensitivity
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 8745380190125411441, guid: 57947b46a7313e74ebbeb38ed0fdc9b0, type: 3}
       propertyPath: CameraPosition
       value: 
@@ -4143,30 +4151,6 @@ PrefabInstance:
     - target: {fileID: 298458657483445300, guid: 6c9f1c0be974c2e48bbdeba6ef49cb12, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5530706896573781636, guid: 6c9f1c0be974c2e48bbdeba6ef49cb12, type: 3}
-      propertyPath: crouchKey
-      value: 99
-      objectReference: {fileID: 0}
-    - target: {fileID: 5530706896573781636, guid: 6c9f1c0be974c2e48bbdeba6ef49cb12, type: 3}
-      propertyPath: slideForce
-      value: 200
-      objectReference: {fileID: 0}
-    - target: {fileID: 5530706896573781636, guid: 6c9f1c0be974c2e48bbdeba6ef49cb12, type: 3}
-      propertyPath: slideSpeed
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 5530706896573781636, guid: 6c9f1c0be974c2e48bbdeba6ef49cb12, type: 3}
-      propertyPath: maxSlideTime
-      value: 0.75
-      objectReference: {fileID: 0}
-    - target: {fileID: 5530706896573781636, guid: 6c9f1c0be974c2e48bbdeba6ef49cb12, type: 3}
-      propertyPath: slopeIncreaseMultiplier
-      value: 2.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5530706896573781636, guid: 6c9f1c0be974c2e48bbdeba6ef49cb12, type: 3}
-      propertyPath: speedIncreaseMultiplier
-      value: 1.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
