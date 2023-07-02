@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager instance;
     [Header("Menu UI")]
     public GameObject activeMenu;
     public GameObject pauseMenu;
@@ -19,34 +20,35 @@ public class GameManager : MonoBehaviour
     int enemiesRemaining;
     bool isPaused;
     float timeScaleOrig;
-   
-    void Start()
+
+    void Awake()
     {
+        instance = this;
         
     }
 
     void Update()
     {
-        if (Input.GetButtonDown("Cancel") && activeMenu == null) 
+        if (Input.GetButtonDown("Cancel") && activeMenu == null)
         {
-        PauseGame();
+            PauseGame();
             activeMenu = pauseMenu;
             activeMenu.SetActive(isPaused);
-        
+
         }
-        
+
     }
 
-    public void PauseGame() 
+    public void PauseGame()
     {
         Time.timeScale = 0;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.Confined;
         isPaused = !isPaused;
-    
+
     }
 
-    public void GameUnpaused() 
+    public void GameUnpaused()
     {
         Time.timeScale = timeScaleOrig;
         Cursor.visible = false;
@@ -54,13 +56,13 @@ public class GameManager : MonoBehaviour
         isPaused = !isPaused;
         activeMenu.SetActive(false);
         activeMenu = null;
-    
+
     }
     public void UpdateGameGoal(int amount)
     {
         enemiesRemaining += amount;
         enemiesRemainingText.text = enemiesRemaining.ToString("F0");
-        if(enemiesRemaining <= 0)
+        if (enemiesRemaining <= 0)
         {
             activeMenu = winMenu;
             activeMenu.SetActive(true);
@@ -73,12 +75,12 @@ public class GameManager : MonoBehaviour
         activeMenu = loseMenu;
         activeMenu.SetActive(true);
     }
-    public IEnumerator playerDamageIndication() 
+    public IEnumerator playerDamageIndication()
     {
-    playerDamageIndicator.SetActive(true);
+        playerDamageIndicator.SetActive(true);
         yield return new WaitForSeconds(0.1f);
         playerDamageIndicator.SetActive(false);
-    
-    
+
+
     }
 }

@@ -5,14 +5,27 @@ using UnityEngine.SceneManagement;
 
 public class ButtonFunctions : MonoBehaviour
 {
-    void Start()
+    public void Resume() 
     {
+
+    GameManager.instance.PauseGame();
 
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Restart()
     {
+        GameManager.instance.GameUnpaused();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
 
+    //public void Respawn()
+    //{
+    //GameManager.instance.GameUnpause();
+    //
+    //}
+    
+    public void Quit()
+    {
+        Application.Quit();
     }
 }
