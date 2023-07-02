@@ -3395,16 +3395,15 @@ MonoBehaviour:
   orientation: {fileID: 1308483553}
   playerCam: {fileID: 390365686}
   dashForce: 20
-  dashUpwardForce: 15
+  dashUpwardForce: 0.9
   maxDashYSpeed: 0
   dashDuration: 0.25
   playerCamera: {fileID: 390365683}
   dashingFov: 95
   useCameraForward: 0
-  allowAllDirections: 1
   disableGravity: 1
   resetVel: 1
-  dashCooldown: 1.5
+  dashCooldown: 0.5
   dashKey: 304
 --- !u!1 &1402262698
 GameObject:
