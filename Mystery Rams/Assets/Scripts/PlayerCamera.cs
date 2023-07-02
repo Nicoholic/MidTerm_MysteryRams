@@ -8,7 +8,7 @@ public class PlayerCamera : MonoBehaviour {
     [SerializeField] private Transform orientation;
 
     [Header("Sensitivity")]
-    [SerializeField] private float xSensitivity;
+    [SerializeField] public float xSensitivity;
     [SerializeField] private float ySensitivity;
 
     private float xRotation;

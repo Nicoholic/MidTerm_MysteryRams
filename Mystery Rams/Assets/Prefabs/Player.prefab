@@ -51,10 +51,10 @@ MonoBehaviour:
   jumpKey: 32
   sprintKey: 304
   crouchKey: 306
-  slideKey: 306
+  toggleRun: 1
   walkSpeed: 7
   sprintSpeed: 10
-  slideSpeed: 30
+  slideSpeed: 50
   speedIncreaseMultiplier: 1.5
   slopeIncreaseMultiplier: 2.5
   groundDrag: 5
@@ -63,18 +63,23 @@ MonoBehaviour:
   airMultiplier: 0.4
   crouchSpeed: 3.5
   crouchYScale: 0.5
+  momentumPenalty: 5
   maxSlideTime: 0.75
-  slideForce: 200
+  slideForce: 300
+  slideSensitivity: 0
   maxSlopeAngle: 40
   playerHeight: 2
   whatIsGround:
     serializedVersion: 2
     m_Bits: 1024
   orientation: {fileID: 7399150327368194408}
+  playerCamera: {fileID: 0}
   currentSpeed: 0
   state: 0
-  canJump: 0
+  jumpAvailable: 0
   grounded: 0
+  sliding: 0
+  crouched: 0
 --- !u!54 &1234185268690524683
 Rigidbody:
   m_ObjectHideFlags: 0

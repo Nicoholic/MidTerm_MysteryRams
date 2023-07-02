@@ -13,6 +13,9 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI enemiesRemainingText;
     public GameObject playerDamageIndicator;
 
+    [Header("Components")]
+    [SerializeField] GameObject playerSpawnPos;
+
     int enemiesRemaining;
     bool isPaused;
     float timeScaleOrig;
@@ -22,7 +25,6 @@ public class GameManager : MonoBehaviour
         
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetButtonDown("Cancel") && activeMenu == null) 

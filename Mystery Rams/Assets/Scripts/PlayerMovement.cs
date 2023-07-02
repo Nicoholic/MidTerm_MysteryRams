@@ -1,15 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour {
 
-    [Header("Keybinds")]
+    [Header("Keybinds & Settings")]
     [SerializeField] KeyCode jumpKey = KeyCode.Space;
     [SerializeField] KeyCode sprintKey = KeyCode.LeftShift;
     [SerializeField] KeyCode crouchKey = KeyCode.LeftControl;
-    [SerializeField] KeyCode slideKey = KeyCode.LeftControl;
 
     [Header("Movement")]
     [SerializeField] float walkSpeed;
@@ -37,11 +37,15 @@ public class PlayerMovement : MonoBehaviour {
     [Header("Crouching")]
     [SerializeField] float crouchSpeed;
     [SerializeField] float crouchYScale;
+    [SerializeField] float momentumPenalty;
+
     private float yScaleOriginal;
 
     [Header("Sliding")]
     [SerializeField] float maxSlideTime;
     [SerializeField] float slideForce;
+    [Range(0, 1)][SerializeField] float slideSensitivity;
+
     private float slideTimer;
 
     [Header("Slope Handling")]
@@ -58,12 +62,15 @@ public class PlayerMovement : MonoBehaviour {
 
     private Rigidbody rb;
 
-    [Header("Debug")]
+    [Header("Debug (READ ONLY)")]
     [SerializeField] float currentSpeed;
-    public MovementState state;
-    [SerializeField] private bool canJump;
-    [SerializeField] private bool grounded;
-    
+    [SerializeField] MovementState state;
+    [SerializeField] bool jumpAvailable;
+    [SerializeField] bool grounded;
+    [SerializeField] bool sliding;
+    [SerializeField] bool crouched;
+
+
     public enum MovementState {
         walking,
         sprinting,
@@ -72,14 +79,13 @@ public class PlayerMovement : MonoBehaviour {
         air
     }
 
-    private bool sliding;
 
     private void Start() {
 
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
 
-        canJump = true;
+        jumpAvailable = true;
 
         yScaleOriginal = transform.localScale.y;
 
@@ -164,7 +170,11 @@ public class PlayerMovement : MonoBehaviour {
         float startValue = moveSpeed;
 
         while (time < difference) {
-            moveSpeed = Mathf.Lerp(startValue, desiredMoveSpeed, time / difference);
+            if (state == MovementState.crouching)
+                moveSpeed = Mathf.Lerp(startValue, desiredMoveSpeed, momentumPenalty * (time / difference));
+            else
+                moveSpeed = Mathf.Lerp(startValue, desiredMoveSpeed, time / difference);
+
 
             if (OnSlope()) {
                 float slopeAngle = Vector3.Angle(Vector3.up, slopeHit.normal);
@@ -185,34 +195,42 @@ public class PlayerMovement : MonoBehaviour {
     /// </summary>
     private void MyInput() {
 
-        horizontalInput = Input.GetAxisRaw("Horizontal");
-        verticalInput = Input.GetAxisRaw("Vertical");
+        if (!sliding || slideTimer > maxSlideTime * 0.95f) {
+            horizontalInput = Input.GetAxisRaw("Horizontal");
+            verticalInput = Input.GetAxisRaw("Vertical");
+        }
 
-        if (Input.GetKey(jumpKey) && canJump && grounded) {
 
-            canJump = false;
+        if (Input.GetKey(jumpKey) && jumpAvailable && grounded) {
+
+            jumpAvailable = false;
 
             Jump();
 
             Invoke(nameof(ResetJump), jumpCooldown);
+
+            if (sliding)
+                StopSlide();
+
         }
 
         if (Input.GetKeyDown(crouchKey)) {
-            transform.localScale = new Vector3(transform.localScale.x, crouchYScale, transform.localScale.z);
-            rb.AddForce(Vector3.down * 5f, ForceMode.Impulse);
+
+            if (!crouched) {
+                transform.localScale = new Vector3(transform.localScale.x, crouchYScale, transform.localScale.z);
+                rb.AddForce(Vector3.down * 5f, ForceMode.Impulse);
+                crouched = true;
+            }
+
+            if (((horizontalInput != 0 || verticalInput != 0) && grounded && !sliding) || OnSlope() && !sliding) {
+                StartSlide();
+            }
         }
 
-        if (Input.GetKeyUp(crouchKey)) {
+        if (Input.GetKeyUp(crouchKey) && state != MovementState.sliding) {
             transform.localScale = new Vector3(transform.localScale.x, yScaleOriginal, transform.localScale.z);
+            crouched = false;
         }
-
-        if (Input.GetKeyDown(slideKey) && (horizontalInput != 0 || verticalInput != 0))
-            StartSlide();
-
-        if (Input.GetKeyUp(slideKey) && sliding)
-            StopSlide();
-
-
     }
 
     private void MovePlayer() {
@@ -261,7 +279,7 @@ public class PlayerMovement : MonoBehaviour {
     }
 
     private void ResetJump() {
-        canJump = true;
+        jumpAvailable = true;
         exitingSlope = false;
     }
 
@@ -283,9 +301,12 @@ public class PlayerMovement : MonoBehaviour {
     private void StartSlide() {
 
         sliding = true;
+        if (!crouched) {
+            crouched = true;
+            transform.localScale = new Vector3(transform.localScale.x, crouchYScale, transform.localScale.z);
+            rb.AddForce(Vector3.down * 5f, ForceMode.Impulse);
+        }
 
-        transform.localScale = new Vector3(transform.localScale.x, crouchYScale, transform.localScale.z);
-        rb.AddForce(Vector3.down * 5f, ForceMode.Impulse);
 
         slideTimer = maxSlideTime;
     }
@@ -310,6 +331,10 @@ public class PlayerMovement : MonoBehaviour {
 
     private void StopSlide() {
         sliding = false;
-        transform.localScale = new Vector3(transform.localScale.x, yScaleOriginal, transform.localScale.z);
+        if (crouched && !Input.GetKey(crouchKey)) {
+            transform.localScale = new Vector3(transform.localScale.x, yScaleOriginal, transform.localScale.z);
+            crouched = false;
+        }
+
     }
 }
