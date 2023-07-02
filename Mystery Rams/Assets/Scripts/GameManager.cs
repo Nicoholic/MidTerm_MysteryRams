@@ -6,6 +6,10 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
+
+    [Header("KeyBindings")]
+    [SerializeField] KeyCode back;
+
     [Header("Menu UI")]
     public GameObject activeMenu;
     public GameObject pauseMenu;
@@ -29,7 +33,7 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetButtonDown("Cancel") && activeMenu == null)
+        if (Input.GetKeyDown(back) && activeMenu == null)
         {
             PauseGame();
             activeMenu = pauseMenu;

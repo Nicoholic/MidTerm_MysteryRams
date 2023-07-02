@@ -8,16 +8,20 @@ public class PlayerMovement : MonoBehaviour {
 
     [Header("Keybinds & Settings")]
     [SerializeField] KeyCode jumpKey = KeyCode.Space;
-    [SerializeField] KeyCode sprintKey = KeyCode.LeftShift;
+    // [SerializeField] KeyCode sprintKey = KeyCode.LeftShift;
     [SerializeField] KeyCode crouchKey = KeyCode.LeftControl;
 
     [Header("Movement")]
     [SerializeField] float walkSpeed;
     [SerializeField] float sprintSpeed;
     [SerializeField] float slideSpeed;
+    [SerializeField] public float dashSpeed;
+
 
     [SerializeField] float speedIncreaseMultiplier;
     [SerializeField] float slopeIncreaseMultiplier;
+
+    public float maxYSpeed;
 
     [SerializeField] float groundDrag;
 
@@ -69,11 +73,13 @@ public class PlayerMovement : MonoBehaviour {
     [SerializeField] bool grounded;
     [SerializeField] bool sliding;
     [SerializeField] bool crouched;
+    [SerializeField] public bool dashing;
 
 
     public enum MovementState {
         walking,
-        sprinting,
+        // sprinting,
+        dashing,
         crouching,
         sliding,
         air
@@ -99,7 +105,7 @@ public class PlayerMovement : MonoBehaviour {
         SpeedControl();
         StateHandler();
 
-        if (grounded)
+        if (grounded && state != MovementState.dashing)
             rb.drag = groundDrag;
         else
             rb.drag = 0;
@@ -115,8 +121,15 @@ public class PlayerMovement : MonoBehaviour {
     /// Handles what state of movement the player is in
     /// </summary>
     private void StateHandler() {
+
+        // Mode - Dashing
+        if (dashing) {
+            state = MovementState.dashing;
+            moveSpeed = dashSpeed;
+        }
+
         // Mode - Sliding
-        if (sliding) {
+        else if (sliding) {
             state = MovementState.sliding;
 
             if (OnSlope() && rb.velocity.y < 0.1f)
@@ -132,11 +145,11 @@ public class PlayerMovement : MonoBehaviour {
             desiredMoveSpeed = crouchSpeed;
         }
 
-        // Mode - Sprinting
-        else if (grounded && Input.GetKey(sprintKey)) {
-            state = MovementState.sprinting;
-            desiredMoveSpeed = sprintSpeed;
-        }
+        //// Mode - Sprinting
+        //else if (grounded && Input.GetKey(sprintKey)) {
+        //    state = MovementState.sprinting;
+        //    desiredMoveSpeed = sprintSpeed;
+        //}
 
         // Mode - Walking
         else if (grounded) {
@@ -269,6 +282,9 @@ public class PlayerMovement : MonoBehaviour {
                 rb.velocity = new Vector3(limitedVel.x, rb.velocity.y, limitedVel.z);
             }
         }
+
+        if (maxYSpeed != 0 && rb.velocity.y > maxYSpeed)
+            rb.velocity = new Vector3(rb.velocity.x, maxYSpeed, rb.velocity.y);
     }
 
     private void Jump() {
