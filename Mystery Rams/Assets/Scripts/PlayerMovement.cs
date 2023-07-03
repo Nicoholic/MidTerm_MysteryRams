@@ -66,7 +66,6 @@ public class PlayerMovement : MonoBehaviour {
     [Header("Components")]
     [SerializeField] Transform orientation;
     [SerializeField] PlayerCamera playerCamera;
-    [SerializeField] GameManager gameManager;
 
     private Rigidbody rb;
 
@@ -100,7 +99,8 @@ public class PlayerMovement : MonoBehaviour {
         yScaleOriginal = transform.localScale.y;
         originalSensitivity = playerCamera.GetSensitivity();
 
-        SpawnPlayer();
+        Invoke(nameof(SpawnPlayer), 0.025f);
+
     }
 
     private void Update() {
@@ -115,6 +115,7 @@ public class PlayerMovement : MonoBehaviour {
             rb.drag = groundDrag;
         else
             rb.drag = 0;
+
     }
 
     private void FixedUpdate() {
@@ -362,7 +363,7 @@ public class PlayerMovement : MonoBehaviour {
             playerCamera.LerpSensitivity(originalSensitivity);
     }
 
-    public void SpawnPlayer() {
-        transform.position = gameManager.playerSpawnPos.transform.position;
+   private void SpawnPlayer() {
+        GameManager.instance.SpawnPlayer();
     }
 }

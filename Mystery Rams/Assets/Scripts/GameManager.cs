@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
 
     [Header("Components")]
     public GameObject playerSpawnPos;
+    public GameObject player;
 
     int enemiesRemaining;
     bool isPaused;
@@ -86,5 +87,8 @@ public class GameManager : MonoBehaviour
         playerDamageIndicator.SetActive(false);
 
 
+    }
+    public void SpawnPlayer() {
+        GameManager.instance.player.gameObject.transform.position= GameManager.instance.playerSpawnPos.transform.position;
     }
 }

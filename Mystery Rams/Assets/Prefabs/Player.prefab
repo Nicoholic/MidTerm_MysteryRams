@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 298458657483445300}
+  - component: {fileID: 1079072646440175806}
   - component: {fileID: 9069294693800633259}
   - component: {fileID: 5530706896573781636}
   - component: {fileID: 1234185268690524683}
@@ -37,6 +38,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1079072646440175806
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 217374140566165333}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b28786c5885a3b245b78e1a35b38bfc6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rate: 1
+  damage: 1
+  range: 15
+  playerCamera: {fileID: 0}
+  shoot: 316
+  lastThingHit: {fileID: 0}
 --- !u!114 &9069294693800633259
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -94,6 +113,7 @@ MonoBehaviour:
   maxSlideTime: 0.75
   slideForce: 300
   slideSensitivity: 0.065
+  doSensLerp: 0
   maxSlopeAngle: 40
   playerHeight: 2
   whatIsGround:
@@ -101,6 +121,7 @@ MonoBehaviour:
     m_Bits: 1024
   orientation: {fileID: 7399150327368194408}
   playerCamera: {fileID: 0}
+  gameManager: {fileID: 0}
   currentSpeed: 0
   state: 0
   jumpAvailable: 0
