@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
     public GameObject playerDamageIndicator;
 
     [Header("Components")]
-    [SerializeField] GameObject playerSpawnPos;
+    public GameObject playerSpawnPos;
 
     int enemiesRemaining;
     bool isPaused;

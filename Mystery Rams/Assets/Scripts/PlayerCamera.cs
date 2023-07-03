@@ -53,9 +53,14 @@ public class PlayerCamera : MonoBehaviour {
         return sensitivity;
     }
 
-    public IEnumerator LerpSensitivity(float endValue, float duration = 0.1f) {
+    public void LerpSensitivity(float endValue) {
+        StartCoroutine(ChangeSensitivityOverTime(endValue));
+    }
+
+    private IEnumerator ChangeSensitivityOverTime(float endValue) {
         float startValue = sensitivity;
         float elapsedTime = 0f;
+        float duration = 0.2f;
 
         while (elapsedTime < duration) {
             float t = elapsedTime / duration;

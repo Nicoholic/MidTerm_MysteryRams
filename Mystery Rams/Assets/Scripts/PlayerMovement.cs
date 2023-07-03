@@ -49,6 +49,7 @@ public class PlayerMovement : MonoBehaviour {
     [SerializeField] float maxSlideTime;
     [SerializeField] float slideForce;
     [Range(0, 1)][SerializeField] float slideSensitivity;
+    [SerializeField] bool doSensLerp;
 
     private float originalSensitivity;
     private float slideTimer;
@@ -65,6 +66,7 @@ public class PlayerMovement : MonoBehaviour {
     [Header("Components")]
     [SerializeField] Transform orientation;
     [SerializeField] PlayerCamera playerCamera;
+    [SerializeField] GameManager gameManager;
 
     private Rigidbody rb;
 
@@ -97,6 +99,8 @@ public class PlayerMovement : MonoBehaviour {
 
         yScaleOriginal = transform.localScale.y;
         originalSensitivity = playerCamera.GetSensitivity();
+
+        SpawnPlayer();
     }
 
     private void Update() {
@@ -324,9 +328,8 @@ public class PlayerMovement : MonoBehaviour {
             transform.localScale = new Vector3(transform.localScale.x, crouchYScale, transform.localScale.z);
             rb.AddForce(Vector3.down * 5f, ForceMode.Impulse);
         }
-
-        StartCoroutine(
-                playerCamera.LerpSensitivity(originalSensitivity * slideSensitivity));
+        if (doSensLerp)
+            playerCamera.LerpSensitivity(originalSensitivity * slideSensitivity);
         slideTimer = maxSlideTime;
     }
 
@@ -355,9 +358,11 @@ public class PlayerMovement : MonoBehaviour {
             crouched = false;
         }
 
-        StartCoroutine(
-            playerCamera.LerpSensitivity(originalSensitivity / slideSensitivity));
+        if (doSensLerp)
+            playerCamera.LerpSensitivity(originalSensitivity);
     }
 
-
+    public void SpawnPlayer() {
+        transform.position = gameManager.playerSpawnPos.transform.position;
+    }
 }

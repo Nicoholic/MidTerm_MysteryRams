@@ -28,7 +28,7 @@ public class Bullets : MonoBehaviour
         IDamage damageableComponent = other.GetComponent<IDamage>();
         if (damageableComponent != null ) 
         {
-            damageableComponent.DamageTaken(bulletDamage);
+            damageableComponent.TakeDamage(bulletDamage);
         
         }
 

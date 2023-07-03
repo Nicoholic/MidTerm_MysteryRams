@@ -68,7 +68,7 @@ public class enemyScript : MonoBehaviour, IDamage//, damage script implementatio
         
     }
 
-    public void DamageTaken(int damage) //Needs the damage script to work.
+    public void TakeDamage(int damage) //Needs the damage script to work.
     {
         HP -= damage;
         //Something something code here to move toward player when we implement AI
