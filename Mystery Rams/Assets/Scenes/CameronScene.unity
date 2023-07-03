@@ -523,11 +523,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d5c5162168c4af4194337f76e48c718, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!4 &390365686 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7642221269837895930, guid: 57947b46a7313e74ebbeb38ed0fdc9b0, type: 3}
-  m_PrefabInstance: {fileID: 51895783}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &406842546
 GameObject:
   m_ObjectHideFlags: 0
@@ -3380,7 +3375,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 217374140566165333, guid: 6c9f1c0be974c2e48bbdeba6ef49cb12, type: 3}
   m_PrefabInstance: {fileID: 1763648372}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1390086031
+--- !u!114 &1390086034
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3389,22 +3384,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 1390086029}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c2ed0bdda8522d5489140978413f2466, type: 3}
+  m_Script: {fileID: 11500000, guid: b2f4c347c85277c42bfb3e20f2599510, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   orientation: {fileID: 1308483553}
-  playerCam: {fileID: 390365686}
-  dashForce: 20
-  dashUpwardForce: 0.9
-  maxDashYSpeed: 0
-  dashDuration: 0.25
-  playerCamera: {fileID: 390365683}
-  dashingFov: 95
-  useCameraForward: 0
-  disableGravity: 1
-  resetVel: 1
-  dashCooldown: 0.5
-  dashKey: 304
+  jumpKey: 32
+  slideKey: 306
+  walkSpeed: 7
+  slideSpeed: 10
+  airMultiplier: 0.4
+  groundDrag: 5
+  jumpForce: 20
+  jumpCooldown: 0.25
+  slideYScale: 0.5
+  playerHeight: 2
+  whatIsGround:
+    serializedVersion: 2
+    m_Bits: 1024
+  state: 0
 --- !u!1 &1402262698
 GameObject:
   m_ObjectHideFlags: 0
@@ -4281,13 +4278,14 @@ PrefabInstance:
       propertyPath: playerCamera
       value: 
       objectReference: {fileID: 390365683}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5530706896573781636, guid: 6c9f1c0be974c2e48bbdeba6ef49cb12, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 217374140566165333, guid: 6c9f1c0be974c2e48bbdeba6ef49cb12, type: 3}
       insertIndex: 1
-      addedObject: {fileID: 1390086031}
+      addedObject: {fileID: 1390086034}
   m_SourcePrefab: {fileID: 100100000, guid: 6c9f1c0be974c2e48bbdeba6ef49cb12, type: 3}
 --- !u!1 &1849473090
 GameObject:
