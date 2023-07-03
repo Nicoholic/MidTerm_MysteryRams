@@ -50,6 +50,7 @@ public class PlayerMovement : MonoBehaviour {
     [SerializeField] float slideForce;
     [Range(0, 1)][SerializeField] float slideSensitivity;
 
+    private float originalSensitivity;
     private float slideTimer;
 
     [Header("Slope Handling")]
@@ -95,7 +96,7 @@ public class PlayerMovement : MonoBehaviour {
         jumpAvailable = true;
 
         yScaleOriginal = transform.localScale.y;
-
+        originalSensitivity = playerCamera.GetSensitivity();
     }
 
     private void Update() {
@@ -325,7 +326,7 @@ public class PlayerMovement : MonoBehaviour {
         }
 
         StartCoroutine(
-                playerCamera.LerpSensitivity(playerCamera.GetSensitivity() * slideSensitivity));
+                playerCamera.LerpSensitivity(originalSensitivity * slideSensitivity));
         slideTimer = maxSlideTime;
     }
 
@@ -355,7 +356,7 @@ public class PlayerMovement : MonoBehaviour {
         }
 
         StartCoroutine(
-            playerCamera.LerpSensitivity(playerCamera.GetSensitivity() / slideSensitivity));
+            playerCamera.LerpSensitivity(originalSensitivity / slideSensitivity));
     }
 
 

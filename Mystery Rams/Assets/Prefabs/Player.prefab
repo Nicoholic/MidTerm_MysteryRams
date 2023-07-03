@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 298458657483445300}
+  - component: {fileID: 9069294693800633259}
   - component: {fileID: 5530706896573781636}
   - component: {fileID: 1234185268690524683}
   m_Layer: 13
@@ -36,6 +37,31 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &9069294693800633259
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 217374140566165333}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2ed0bdda8522d5489140978413f2466, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  orientation: {fileID: 7399150327368194408}
+  playerCam: {fileID: 0}
+  dashForce: 20
+  dashUpwardForce: 0.9
+  maxDashYSpeed: 1
+  dashDuration: 0.25
+  playerCamera: {fileID: 0}
+  dashingFov: 95
+  useCameraForward: 0
+  disableGravity: 1
+  resetVel: 1
+  dashCooldown: 0.5
+  dashKey: 101
 --- !u!114 &5530706896573781636
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -51,13 +77,14 @@ MonoBehaviour:
   jumpKey: 32
   sprintKey: 304
   crouchKey: 306
-  toggleRun: 1
   walkSpeed: 7
   sprintSpeed: 10
-  slideSpeed: 50
+  slideSpeed: 30
+  dashSpeed: 50
   speedIncreaseMultiplier: 1.5
   slopeIncreaseMultiplier: 2.5
-  groundDrag: 5
+  maxYSpeed: 0
+  groundDrag: 4
   jumpForce: 12
   jumpCooldown: 0.25
   airMultiplier: 0.4
@@ -66,7 +93,7 @@ MonoBehaviour:
   momentumPenalty: 5
   maxSlideTime: 0.75
   slideForce: 300
-  slideSensitivity: 0
+  slideSensitivity: 0.065
   maxSlopeAngle: 40
   playerHeight: 2
   whatIsGround:
@@ -78,8 +105,8 @@ MonoBehaviour:
   state: 0
   jumpAvailable: 0
   grounded: 0
-  sliding: 0
   crouched: 0
+  dashing: 0
 --- !u!54 &1234185268690524683
 Rigidbody:
   m_ObjectHideFlags: 0
