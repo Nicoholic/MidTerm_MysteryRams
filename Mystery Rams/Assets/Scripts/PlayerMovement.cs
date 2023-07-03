@@ -8,7 +8,7 @@ public class PlayerMovement : MonoBehaviour {
 
     [Header("Keybinds & Settings")]
     [SerializeField] KeyCode jumpKey = KeyCode.Space;
-    // [SerializeField] KeyCode sprintKey = KeyCode.LeftShift;
+    [SerializeField] KeyCode sprintKey = KeyCode.LeftShift;
     [SerializeField] KeyCode crouchKey = KeyCode.LeftControl;
 
     [Header("Movement")]
@@ -63,6 +63,7 @@ public class PlayerMovement : MonoBehaviour {
 
     [Header("Components")]
     [SerializeField] Transform orientation;
+    [SerializeField] PlayerCamera playerCamera;
 
     private Rigidbody rb;
 
@@ -71,14 +72,14 @@ public class PlayerMovement : MonoBehaviour {
     [SerializeField] MovementState state;
     [SerializeField] bool jumpAvailable;
     [SerializeField] bool grounded;
-    [SerializeField] bool sliding;
     [SerializeField] bool crouched;
-    [SerializeField] public bool dashing;
 
+    public bool dashing;
+    bool sliding;
 
     public enum MovementState {
         walking,
-        // sprinting,
+        sprinting,
         dashing,
         crouching,
         sliding,
@@ -146,10 +147,10 @@ public class PlayerMovement : MonoBehaviour {
         }
 
         //// Mode - Sprinting
-        //else if (grounded && Input.GetKey(sprintKey)) {
-        //    state = MovementState.sprinting;
-        //    desiredMoveSpeed = sprintSpeed;
-        //}
+        else if (grounded && Input.GetKey(sprintKey)) {
+            state = MovementState.sprinting;
+            desiredMoveSpeed = sprintSpeed;
+        }
 
         // Mode - Walking
         else if (grounded) {
@@ -323,7 +324,8 @@ public class PlayerMovement : MonoBehaviour {
             rb.AddForce(Vector3.down * 5f, ForceMode.Impulse);
         }
 
-
+        StartCoroutine(
+                playerCamera.LerpSensitivity(playerCamera.GetSensitivity() * slideSensitivity));
         slideTimer = maxSlideTime;
     }
 
@@ -352,5 +354,9 @@ public class PlayerMovement : MonoBehaviour {
             crouched = false;
         }
 
+        StartCoroutine(
+            playerCamera.LerpSensitivity(playerCamera.GetSensitivity() / slideSensitivity));
     }
+
+
 }

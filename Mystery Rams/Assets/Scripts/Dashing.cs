@@ -60,9 +60,8 @@ public class Dashing : MonoBehaviour {
         pm.dashing = true;
         pm.maxYSpeed = maxDashYSpeed;
         isDashing = true;
-
-        playerCamera.DoFov(dashingFov);
-
+        StartCoroutine(
+                playerCamera.LerpFov(dashingFov));
         dashDirection = GetDirection();
 
         if (disableGravity)
@@ -87,9 +86,8 @@ public class Dashing : MonoBehaviour {
         pm.dashing = false;
         pm.maxYSpeed = 0;
         isDashing = false;
-
-        playerCamera.DoFov(85f);
-
+        StartCoroutine(
+                playerCamera.LerpFov(85f));
         if (disableGravity)
             rb.useGravity = true;
     }
@@ -98,7 +96,7 @@ public class Dashing : MonoBehaviour {
         float horizontalInput = Input.GetAxisRaw("Horizontal");
         float verticalInput = Input.GetAxisRaw("Vertical");
 
-        Vector3 direction = Vector3.zero;
+        Vector3 direction;
 
         if (useCameraForward && !isDashing)
             direction = (playerCam.forward * verticalInput) + (playerCam.right * horizontalInput);

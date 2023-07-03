@@ -183,6 +183,10 @@ PrefabInstance:
       propertyPath: orientation
       value: 
       objectReference: {fileID: 1308483553}
+    - target: {fileID: 8503518005976806114, guid: 57947b46a7313e74ebbeb38ed0fdc9b0, type: 3}
+      propertyPath: sensitivity
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 8745380190125411441, guid: 57947b46a7313e74ebbeb38ed0fdc9b0, type: 3}
       propertyPath: CameraPosition
       value: 
@@ -3396,7 +3400,7 @@ MonoBehaviour:
   playerCam: {fileID: 390365686}
   dashForce: 20
   dashUpwardForce: 0.9
-  maxDashYSpeed: 0
+  maxDashYSpeed: 1
   dashDuration: 0.25
   playerCamera: {fileID: 390365683}
   dashingFov: 95
@@ -3404,7 +3408,7 @@ MonoBehaviour:
   disableGravity: 1
   resetVel: 1
   dashCooldown: 0.5
-  dashKey: 304
+  dashKey: 101
 --- !u!1 &1402262698
 GameObject:
   m_ObjectHideFlags: 0
@@ -4274,13 +4278,37 @@ PrefabInstance:
       value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 5530706896573781636, guid: 6c9f1c0be974c2e48bbdeba6ef49cb12, type: 3}
+      propertyPath: playerCam
+      value: 
+      objectReference: {fileID: 390365686}
+    - target: {fileID: 5530706896573781636, guid: 6c9f1c0be974c2e48bbdeba6ef49cb12, type: 3}
+      propertyPath: walkSpeed
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5530706896573781636, guid: 6c9f1c0be974c2e48bbdeba6ef49cb12, type: 3}
+      propertyPath: groundDrag
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5530706896573781636, guid: 6c9f1c0be974c2e48bbdeba6ef49cb12, type: 3}
+      propertyPath: slideForce
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 5530706896573781636, guid: 6c9f1c0be974c2e48bbdeba6ef49cb12, type: 3}
+      propertyPath: slideSpeed
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 5530706896573781636, guid: 6c9f1c0be974c2e48bbdeba6ef49cb12, type: 3}
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 745921913}
     - target: {fileID: 5530706896573781636, guid: 6c9f1c0be974c2e48bbdeba6ef49cb12, type: 3}
       propertyPath: playerCamera
       value: 
-      objectReference: {fileID: 390365683}
+      objectReference: {fileID: 390365686}
+    - target: {fileID: 5530706896573781636, guid: 6c9f1c0be974c2e48bbdeba6ef49cb12, type: 3}
+      propertyPath: slideSensitivity
+      value: 0.301
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

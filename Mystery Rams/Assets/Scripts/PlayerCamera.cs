@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 
 public class PlayerCamera : MonoBehaviour {
@@ -8,8 +9,7 @@ public class PlayerCamera : MonoBehaviour {
     [SerializeField] private Transform orientation;
 
     [Header("Sensitivity")]
-    [SerializeField] public float xSensitivity;
-    [SerializeField] private float ySensitivity;
+    [SerializeField] public float sensitivity;
 
     private float xRotation;
     private float yRotation;
@@ -21,8 +21,8 @@ public class PlayerCamera : MonoBehaviour {
 
     void Update() {
 
-        float mouseX = Input.GetAxis("Mouse X") * xSensitivity;
-        float mouseY = Input.GetAxis("Mouse Y") * ySensitivity;
+        float mouseX = Input.GetAxis("Mouse X") * sensitivity;
+        float mouseY = Input.GetAxis("Mouse Y") * sensitivity;
 
         yRotation += mouseX;
 
@@ -33,7 +33,39 @@ public class PlayerCamera : MonoBehaviour {
         orientation.rotation = Quaternion.Euler(0, yRotation, 0);
     }
 
-    public void DoFov(float endValue) {
+    public IEnumerator LerpFov(float endValue, float duration = 0.1f) {
+        float startValue = GetComponent<Camera>().fieldOfView;
+        float elapsedTime = 0f;
+
+        while (elapsedTime < duration) {
+            float t = elapsedTime / duration;
+            float currentFov = Mathf.Lerp(startValue, endValue, t);
+            GetComponent<Camera>().fieldOfView = currentFov;
+
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
         GetComponent<Camera>().fieldOfView = endValue;
+    }
+
+    public float GetSensitivity() {
+        return sensitivity;
+    }
+
+    public IEnumerator LerpSensitivity(float endValue, float duration = 0.1f) {
+        float startValue = sensitivity;
+        float elapsedTime = 0f;
+
+        while (elapsedTime < duration) {
+            float t = elapsedTime / duration;
+            float currentSensitivity = Mathf.Lerp(startValue, endValue, t);
+            sensitivity = currentSensitivity;
+
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        sensitivity = endValue;
     }
 }
