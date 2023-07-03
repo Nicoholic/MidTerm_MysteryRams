@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.AI;
 
 
-public class enemyScript : MonoBehaviour, IDamage//, damage script implementation
+public class enemyScript : MonoBehaviour, IDamage//damage script implementation should be IDamage. Doesn't seem to work properly.
 {
     public NavMeshAgent agent;
     public Transform player;
@@ -18,7 +18,7 @@ public class enemyScript : MonoBehaviour, IDamage//, damage script implementatio
     public float walkPointRange;
 
     //Attacking 
-    public float timeBetweenAttacks;
+    //public float timeBetweenAttacks;
     bool isAttacking;
 
     
@@ -34,13 +34,14 @@ public class enemyScript : MonoBehaviour, IDamage//, damage script implementatio
     //View Angle (to be done with movement)
     //Rotation Speed (to be done with movement)
 
-    //[Weaponry Info]
-    //[SerializeField] GameObject bullet;
-    //[SerializeField] float firerate
-    [SerializeField] 
+    [Header ("Weaponry Info")]
+    [SerializeField] GameObject bullet;
+    [SerializeField] float firerate;
+    [SerializeField] Transform bulletspawn;
+
 
     //Vector3 initSpawn;
-    void Awake()
+    void Start()
     {
         //Code would go here to change objective count if we decide to count enemies.
         //initSpawn = transform.position
@@ -137,10 +138,9 @@ public class enemyScript : MonoBehaviour, IDamage//, damage script implementatio
         // Type of attack goes here 
         if(!isAttacking)
         {
-
-
-            isAttacking= true;
-            Invoke(nameof(ResetAttack), timeBetweenAttacks);
+            Instantiate(bullet, bulletspawn.position, transform.rotation);
+            isAttacking = true;
+            Invoke(nameof(ResetAttack), firerate);
         }
     }
 
