@@ -5,7 +5,7 @@ using UnityEngine;
 public class DeathBarrier : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other) {
-        if (other.gameObject.tag == "Player")
+        if (other.gameObject.CompareTag("Player"))
             GameManager.instance.SpawnPlayer();
         else
             Destroy(other.gameObject);

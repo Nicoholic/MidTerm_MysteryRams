@@ -26,11 +26,13 @@ public class GameManager : MonoBehaviour
     bool isPaused;
     float timeScaleOrig;
 
+
     void Awake()
     {
         instance = this;
         
     }
+
 
     void Update()
     {
@@ -90,5 +92,14 @@ public class GameManager : MonoBehaviour
     }
     public void SpawnPlayer() {
         GameManager.instance.player.gameObject.transform.position= GameManager.instance.playerSpawnPos.transform.position;
+    }
+
+    public void UpdateSpawnPlatforms() {
+        Debug.Log("GameManager - platform update");
+        
+        RespawnPlatform[] spawnPlatforms = Resources.FindObjectsOfTypeAll(typeof(RespawnPlatform)) as RespawnPlatform[];
+        foreach (var spawnPlatform in spawnPlatforms) {
+            spawnPlatform.SetInactive();
+        }
     }
 }
