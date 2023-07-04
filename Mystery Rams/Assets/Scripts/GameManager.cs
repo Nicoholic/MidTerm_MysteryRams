@@ -88,13 +88,4 @@ public class GameManager : MonoBehaviour {
     public void SpawnPlayer() {
         player.GetComponent<Transform>().position = playerSpawnPoint.transform.position;
     }
-
-    public void UpdateSpawnPlatforms() {
-        Debug.Log("GameManager - platform update");
-
-        RespawnPlatform[] spawnPlatforms = Resources.FindObjectsOfTypeAll(typeof(RespawnPlatform)) as RespawnPlatform[];
-        foreach (var spawnPlatform in spawnPlatforms) {
-            spawnPlatform.SetInactive();
-        }
-    }
 }
