@@ -92,15 +92,16 @@ public class PlayerMovement : MonoBehaviour {
     private void Start() {
 
         rb = GetComponent<Rigidbody>();
-        rb.freezeRotation = true;
+        playerCamera = GameManager.instance.playerCamera.GetComponent<PlayerCamera>();
+        orientation = GameManager.instance.player.transform.GetChild(0);
 
+        rb.freezeRotation = true;
         jumpAvailable = true;
 
         yScaleOriginal = transform.localScale.y;
         originalSensitivity = playerCamera.GetSensitivity();
 
-        Invoke(nameof(SpawnPlayer), 0.025f);
-
+        Invoke(nameof(GameManager.instance.SpawnPlayer), 0.0025f);
     }
 
     private void Update() {

@@ -15,6 +15,7 @@ public class PlayerCamera : MonoBehaviour {
     private float yRotation;
 
     void Start() {
+        orientation = GameManager.instance.player.transform.GetChild(0);
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }

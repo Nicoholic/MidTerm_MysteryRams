@@ -6,7 +6,7 @@ using UnityEngine;
 public class Dashing : MonoBehaviour {
     [Header("Components")]
     public Transform orientation;
-    public Transform playerCam;
+    public Transform cameraPosition;
     private Rigidbody rb;
     private PlayerMovement pm;
 
@@ -30,7 +30,7 @@ public class Dashing : MonoBehaviour {
     private float dashCooldownTimer;
 
     [Header("Input")]
-    public KeyCode dashKey = KeyCode.LeftShift;
+    public KeyCode dashKey = KeyCode.E;
 
     private bool isDashing = false;
     private Vector3 dashDirection;
@@ -38,6 +38,8 @@ public class Dashing : MonoBehaviour {
     private void Start() {
         rb = GetComponent<Rigidbody>();
         pm = GetComponent<PlayerMovement>();
+        playerCamera = GameManager.instance.playerCamera.GetComponent<PlayerCamera>();
+        cameraPosition = GameManager.instance.player.transform.GetChild(1);
     }
 
     private void Update() {
@@ -60,8 +62,9 @@ public class Dashing : MonoBehaviour {
         pm.dashing = true;
         pm.maxYSpeed = maxDashYSpeed;
         isDashing = true;
-        StartCoroutine(
-                playerCamera.LerpFov(dashingFov));
+
+        StartCoroutine(playerCamera.LerpFov(dashingFov));
+
         dashDirection = GetDirection();
 
         if (disableGravity)
@@ -99,7 +102,7 @@ public class Dashing : MonoBehaviour {
         Vector3 direction;
 
         if (useCameraForward && !isDashing)
-            direction = (playerCam.forward * verticalInput) + (playerCam.right * horizontalInput);
+            direction = (cameraPosition.forward * verticalInput) + (cameraPosition.right * horizontalInput);
         else
             direction = (orientation.forward * verticalInput) + (orientation.right * horizontalInput);
 

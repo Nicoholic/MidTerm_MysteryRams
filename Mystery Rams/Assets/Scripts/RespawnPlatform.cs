@@ -15,14 +15,14 @@ public class RespawnPlatform : MonoBehaviour {
     private void OnTriggerEnter(Collider other) {
         if (other.gameObject.CompareTag("Player")) {
             GameManager.instance.UpdateSpawnPlatforms();
-            GameManager.instance.playerSpawnPos = spawnPos;
+            GameManager.instance.playerSpawnPoint = spawnPos;
             inside.material.color = colorActive;
         }
     }
 
     private void Start() {
         SetInactive();
-        if (GameManager.instance.playerSpawnPos.transform.position == spawnPos.transform.position)
+        if (GameManager.instance.playerSpawnPoint.transform.position == spawnPos.transform.position)
             inside.material.color = colorActive;
 
     }

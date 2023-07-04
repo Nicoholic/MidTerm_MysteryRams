@@ -153,6 +153,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7045276371396487804}
+  - component: {fileID: 230581020473067775}
   - component: {fileID: 1830051353139782577}
   - component: {fileID: 8010559705410768236}
   - component: {fileID: 5633797702435841638}
@@ -178,13 +179,35 @@ RectTransform:
   - {fileID: 8257208173242250350}
   - {fileID: 6121506321445668749}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &230581020473067775
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4067213702320752202}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d473cbf690738f74290c48a56ed74872, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  back: 0
+  playerSpawnPoint: {fileID: 0}
+  player: {fileID: 0}
+  playerCamera: {fileID: 0}
+  activeMenu: {fileID: 0}
+  pauseMenu: {fileID: 0}
+  winMenu: {fileID: 0}
+  loseMenu: {fileID: 0}
+  enemiesRemainingText: {fileID: 0}
+  playerDamageIndicator: {fileID: 0}
 --- !u!223 &1830051353139782577
 Canvas:
   m_ObjectHideFlags: 0

@@ -13,8 +13,8 @@ public class PlayerShoot : MonoBehaviour, IDamage {
     [SerializeField] int damage;
     [SerializeField] int range;
 
-    [Header("Components")]
-    [SerializeField] Camera playerCamera;
+    
+    public Camera playerCamera;
 
     [Header("Keybinds")]
     [SerializeField] KeyCode shoot = KeyCode.Mouse0;
@@ -25,6 +25,7 @@ public class PlayerShoot : MonoBehaviour, IDamage {
 
     void Start() {
         maxHP = HP;
+        playerCamera = GameManager.instance.playerCamera.GetComponent<Camera>();
     }
 
     void Update() {

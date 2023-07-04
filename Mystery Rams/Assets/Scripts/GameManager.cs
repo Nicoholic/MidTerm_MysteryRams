@@ -3,12 +3,16 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
-{
+public class GameManager : MonoBehaviour {
     public static GameManager instance;
 
     [Header("KeyBindings")]
     [SerializeField] KeyCode back;
+
+    [Header("Components")]
+    public GameObject playerSpawnPoint;
+    public GameObject player;
+    public GameObject playerCamera;
 
     [Header("Menu UI")]
     public GameObject activeMenu;
@@ -18,26 +22,23 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI enemiesRemainingText;
     public GameObject playerDamageIndicator;
 
-    [Header("Components")]
-    public GameObject playerSpawnPos;
-    public GameObject player;
+
 
     int enemiesRemaining;
     bool isPaused;
     float timeScaleOrig;
 
 
-    void Awake()
-    {
+    void Awake() {
         instance = this;
-        
+        player = GameObject.FindGameObjectWithTag("Player");
+        playerSpawnPoint = GameObject.FindGameObjectWithTag("PlayerSpawnPoint");
+        playerCamera = GameObject.FindGameObjectWithTag("PlayerCamera");
     }
 
 
-    void Update()
-    {
-        if (Input.GetKeyDown(back) && activeMenu == null)
-        {
+    void Update() {
+        if (Input.GetKeyDown(back) && activeMenu == null) {
             PauseGame();
             activeMenu = pauseMenu;
             activeMenu.SetActive(isPaused);
@@ -46,8 +47,7 @@ public class GameManager : MonoBehaviour
 
     }
 
-    public void PauseGame()
-    {
+    public void PauseGame() {
         Time.timeScale = 0;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.Confined;
@@ -55,8 +55,7 @@ public class GameManager : MonoBehaviour
 
     }
 
-    public void GameUnpaused()
-    {
+    public void GameUnpaused() {
         Time.timeScale = timeScaleOrig;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
@@ -65,25 +64,21 @@ public class GameManager : MonoBehaviour
         activeMenu = null;
 
     }
-    public void UpdateGameGoal(int amount)
-    {
+    public void UpdateGameGoal(int amount) {
         enemiesRemaining += amount;
         enemiesRemainingText.text = enemiesRemaining.ToString("F0");
-        if (enemiesRemaining <= 0)
-        {
+        if (enemiesRemaining <= 0) {
             activeMenu = winMenu;
             activeMenu.SetActive(true);
             PauseGame();
         }
     }
-    public void GameLoss()
-    {
+    public void GameLoss() {
         PauseGame();
         activeMenu = loseMenu;
         activeMenu.SetActive(true);
     }
-    public IEnumerator playerDamageIndication()
-    {
+    public IEnumerator playerDamageIndication() {
         playerDamageIndicator.SetActive(true);
         yield return new WaitForSeconds(0.1f);
         playerDamageIndicator.SetActive(false);
@@ -91,12 +86,12 @@ public class GameManager : MonoBehaviour
 
     }
     public void SpawnPlayer() {
-        GameManager.instance.player.gameObject.transform.position= GameManager.instance.playerSpawnPos.transform.position;
+        player.GetComponent<Transform>().position = playerSpawnPoint.transform.position;
     }
 
     public void UpdateSpawnPlatforms() {
         Debug.Log("GameManager - platform update");
-        
+
         RespawnPlatform[] spawnPlatforms = Resources.FindObjectsOfTypeAll(typeof(RespawnPlatform)) as RespawnPlatform[];
         foreach (var spawnPlatform in spawnPlatforms) {
             spawnPlatform.SetInactive();
