@@ -7,22 +7,23 @@ public class Grenade : MonoBehaviour
     [Header("Components")]
     [SerializeField] GameObject detonationEffect;
     [SerializeField] Rigidbody rb;
-    
+
 
     [Header("Grenade Stats")]
-    float explosionTimer = 2f;
-    float explosionCountdown;
-    float explosionRadius = 3f;
-    float explosionForce = 600f;
+    [SerializeField] float explosionTimer;
+    [SerializeField] float explosionRadius;
+    [SerializeField] float explosionForce;
+    [SerializeField] float explosionCountdown;
+ 
 
     bool hasExploded;
-    // Start is called before the first frame update
+    
     void Start()
     {
         explosionCountdown = explosionTimer;
     }
 
-    // Update is called once per frame
+    
     void Update()
     {
         explosionCountdown -= Time.deltaTime;
