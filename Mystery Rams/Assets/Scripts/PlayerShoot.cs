@@ -13,15 +13,11 @@ public class PlayerShoot : MonoBehaviour, IDamage {
     [SerializeField] int damage;
     [SerializeField] int range;
 
-    
+    [SerializeField] bool doDebug;
+
     public Camera playerCamera;
 
-    [Header("Keybinds")]
-    [SerializeField] KeyCode shoot = KeyCode.Mouse0;
-
     bool isShooting;
-
-    public Component lastThingHit;
 
     void Start() {
         maxHP = HP;
@@ -29,26 +25,21 @@ public class PlayerShoot : MonoBehaviour, IDamage {
     }
 
     void Update() {
-        if (Input.GetKeyDown(shoot) && !isShooting)
+        if (Input.GetMouseButton(0) && !isShooting)
             StartCoroutine(Shoot());
     }
 
     IEnumerator Shoot() {
         isShooting = true;
 
-        Ray ray = playerCamera.ScreenPointToRay(Input.mousePosition);
 
-        if (Physics.Raycast(ray, out RaycastHit hit)) {
-            Transform objectHit = hit.transform;
-            Debug.Log("pew");
-
-            if (hit.collider.TryGetComponent<IDamage>(out var damageable)) {
+        if (Physics.Raycast(playerCamera.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out RaycastHit hit, range)) {
+            if (doDebug)
+                Debug.Log("Raycast hit: " + hit.collider.gameObject.name);
+            if (hit.collider.TryGetComponent<IDamage>(out var damageable))
                 damageable.TakeDamage(damage);
-
-                //debug
-                lastThingHit = damageable as Component;
-                Debug.DrawRay(ray.origin, ray.direction * hit.distance, Color.red);
-            }
+        } else if (doDebug) {
+            Debug.Log("Raycast missed.");
         }
 
         yield return new WaitForSeconds(rate);

@@ -216,7 +216,7 @@ public class PlayerMovement : MonoBehaviour {
     /// </summary>
     private void MyInput() {
 
-        if (!sliding || slideTimer > maxSlideTime * 0.95f) {
+        if (!sliding) {
             horizontalInput = Input.GetAxisRaw("Horizontal");
             verticalInput = Input.GetAxisRaw("Vertical");
         }
@@ -259,16 +259,16 @@ public class PlayerMovement : MonoBehaviour {
         moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
 
         if (OnSlope() && !exitingSlope) {
-            rb.AddForce(GetSlopeMoveDirection(moveDirection) * moveSpeed * 20f, ForceMode.Force);
+            rb.AddForce(20f * moveSpeed * GetSlopeMoveDirection(moveDirection), ForceMode.Force);
 
             if (rb.velocity.y > 0)
                 rb.AddForce(Vector3.down * 80f, ForceMode.Force);
 
         } else if (grounded)
-            rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
+            rb.AddForce(10f * moveSpeed * moveDirection.normalized, ForceMode.Force);
 
         else if (!grounded)
-            rb.AddForce(moveDirection.normalized * moveSpeed * 10f * airMultiplier, ForceMode.Force);
+            rb.AddForce(10f * airMultiplier * moveSpeed * moveDirection.normalized, ForceMode.Force);
 
         rb.useGravity = !OnSlope();
         currentSpeed = moveDirection.magnitude * moveSpeed;
@@ -283,7 +283,7 @@ public class PlayerMovement : MonoBehaviour {
             if (rb.velocity.magnitude > moveSpeed)
                 rb.velocity = rb.velocity.normalized * moveSpeed;
         } else {
-            Vector3 flatVelocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+            Vector3 flatVelocity = new(rb.velocity.x, 0f, rb.velocity.z);
 
             if (flatVelocity.magnitude > moveSpeed) {
                 Vector3 limitedVel = flatVelocity.normalized * moveSpeed;
