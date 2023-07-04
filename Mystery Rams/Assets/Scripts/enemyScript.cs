@@ -61,7 +61,12 @@ public class enemyScript : MonoBehaviour, IDamage//damage script implementation 
         playerInAttackRange = Physics.CheckSphere(transform.position,attackRange, whatIsPlayer);
 
         // if player is out of sight and attack range roam
-        if (!playerInSightRange && !playerInAttackRange) Patroling();
+        if (!playerInSightRange && !playerInAttackRange)
+        {
+            //StartCoroutine("Patrol");
+            Patroling();
+            
+        }
         // if player is in sight but out of range chase 
         if (playerInSightRange && !playerInAttackRange) ChasePlayer();
         // if player is in sight and in range attack 
@@ -102,9 +107,13 @@ public class enemyScript : MonoBehaviour, IDamage//damage script implementation 
         Vector3 distanceToWalkPoint = transform.position - walkPoint;
 
         //walk point reached 
-        if (distanceToWalkPoint.magnitude < 1f)
+        if (distanceToWalkPoint.magnitude < 5f)
+        {
+            
             walkPointSet = false;
-        
+
+        }
+
     }
     private void SearchWalkPoint()
     {
@@ -148,4 +157,6 @@ public class enemyScript : MonoBehaviour, IDamage//damage script implementation 
     {
         isAttacking= false;
     }
+
+    
 }
