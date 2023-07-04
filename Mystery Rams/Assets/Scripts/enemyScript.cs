@@ -107,7 +107,7 @@ public class enemyScript : MonoBehaviour, IDamage//damage script implementation 
         Vector3 distanceToWalkPoint = transform.position - walkPoint;
 
         //walk point reached 
-        if (distanceToWalkPoint.magnitude < 5f)
+        if (distanceToWalkPoint.magnitude <= 3f)
         {
             
             walkPointSet = false;
