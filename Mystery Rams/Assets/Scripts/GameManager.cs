@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour {
     public static GameManager instance;
@@ -20,6 +21,7 @@ public class GameManager : MonoBehaviour {
     [SerializeField] GameObject winMenu;
     [SerializeField] GameObject loseMenu;
     [SerializeField] TextMeshProUGUI enemiesRemainingText;
+    [SerializeField] public Image PHealthBar;
     [SerializeField] GameObject playerDamageIndicator;
 
     int enemiesRemaining;
@@ -51,6 +53,8 @@ public class GameManager : MonoBehaviour {
             activeMenu.SetActive(isPaused);
         }
     }
+
+    
 
     public void PauseGame() {
         Time.timeScale = 0;
@@ -95,6 +99,14 @@ public class GameManager : MonoBehaviour {
     public void SpawnPlayer() {
         player.GetComponent<Rigidbody>().position = playerSpawnPoint.transform.position;
         if (isPaused)
+        {
             UnpauseGame();
+        }
+        PlayerShoot playerShoot = player.GetComponent<PlayerShoot>();
+        if (playerShoot != null)
+        {
+            playerShoot.PlayerUiUpdate();
+        }
     }
+
 }

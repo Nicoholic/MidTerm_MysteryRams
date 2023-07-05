@@ -48,9 +48,15 @@ public class PlayerShoot : MonoBehaviour, IDamage {
 
     public void TakeDamage(int damage) {
         HP -= damage;
+        PlayerUiUpdate();
         StartCoroutine(GameManager.instance.PlayerHurtFlash());
         if (HP <= 0) {
             GameManager.instance.GameLoss();
         }
+    }
+    
+    public void PlayerUiUpdate()
+    {
+        GameManager.instance.PHealthBar.fillAmount = (float)HP / maxHP;
     }
 }
