@@ -4,10 +4,22 @@ using UnityEngine;
 
 public class DeathBarrier : MonoBehaviour {
 
+    [Header("Settings")]
+    [SerializeField] bool instantLose;
+    [SerializeField] bool doDamage;
+    [SerializeField] int damage;
+
     private void OnTriggerEnter(Collider other) {
-        if (other.gameObject.CompareTag("Player"))
-            GameManager.instance.GameLoss();
-        else
+        if (other.gameObject.CompareTag("Player")) {
+            if (instantLose) {
+                GameManager.instance.GameLoss();
+                return;
+            } else if (doDamage)
+                other.GetComponent<IDamage>().TakeDamage(damage);
+
+            if (other.GetComponent<PlayerShoot>().HP > 0)
+                GameManager.instance.SpawnPlayer();
+        } else
             Destroy(other.gameObject);
     }
 }

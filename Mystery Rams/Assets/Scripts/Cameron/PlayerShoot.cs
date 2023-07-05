@@ -5,8 +5,8 @@ using UnityEngine;
 public class PlayerShoot : MonoBehaviour, IDamage {
 
     [Header("Player Stats")]
-    [SerializeField] int HP;
-    private int maxHP;
+    [SerializeField] public int HP;
+    public int maxHP;
 
     [Header("Gun Stats")]
     [SerializeField] float rate;
@@ -47,8 +47,9 @@ public class PlayerShoot : MonoBehaviour, IDamage {
     }
 
     public void TakeDamage(int damage) {
-        HP = -damage;
-        if (HP <= 0)
-            Debug.Log("PlayerShoot - Player should be dead now");
+        HP -= damage;
+        if (HP <= 0) {
+            GameManager.instance.GameLoss();
+        }
     }
 }

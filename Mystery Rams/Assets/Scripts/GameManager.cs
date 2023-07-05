@@ -91,7 +91,7 @@ public class GameManager : MonoBehaviour {
     }
 
     public void SpawnPlayer() {
-        player.GetComponent<Transform>().position = playerSpawnPoint.transform.position;
+        player.GetComponent<Rigidbody>().position = playerSpawnPoint.transform.position;
         if (isPaused)
             UnpauseGame();
     }

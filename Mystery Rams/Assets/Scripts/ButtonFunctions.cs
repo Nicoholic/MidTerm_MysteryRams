@@ -10,6 +10,7 @@ public class ButtonFunctions : MonoBehaviour {
 
     public void Respawn() {
         GameManager.instance.SpawnPlayer();
+        GameManager.instance.player.GetComponent<PlayerShoot>().HP = GameManager.instance.player.GetComponent<PlayerShoot>().maxHP;
     }
 
     public void Restart() {
