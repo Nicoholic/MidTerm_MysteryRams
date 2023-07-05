@@ -48,6 +48,8 @@ public class enemyScript : MonoBehaviour, IDamage//damage script implementation 
         //find the player 
         player = GameObject.Find("Player").transform;
         agent = GetComponent<NavMeshAgent>();
+        GameManager.instance.UpdateGameGoal(1);
+
 
 
     }
@@ -84,6 +86,7 @@ public class enemyScript : MonoBehaviour, IDamage//damage script implementation 
         {
             //Code would go here to change objective count if we decide to count enemies.
             Destroy(gameObject);
+            GameManager.instance.UpdateGameGoal(-1);
         }
 
         
@@ -153,8 +156,8 @@ public class enemyScript : MonoBehaviour, IDamage//damage script implementation 
         // Type of attack goes here 
         if(!isAttacking)
         {
-            Instantiate(bullet, bulletspawn.position, transform.rotation);
             isAttacking = true;
+            Instantiate(bullet, bulletspawn.position, transform.rotation);
             Invoke(nameof(ResetAttack), firerate);
         }
     }

@@ -66,6 +66,8 @@ public class GameManager : MonoBehaviour {
     }
     public void UpdateGameGoal(int amount) {
         enemiesRemaining += amount;
+        //why did we do float zero but have it pass in an int? || Harlan 
+        // added the code for this in AI but not seeing the UI || Harlan 
         enemiesRemainingText.text = enemiesRemaining.ToString("F0");
         if (enemiesRemaining <= 0) {
             activeMenu = winMenu;
