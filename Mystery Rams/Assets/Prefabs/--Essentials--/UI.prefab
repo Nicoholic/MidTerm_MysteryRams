@@ -63,7 +63,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.8962264, g: 0, b: 0.042578567, a: 0.392}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1334,15 +1334,15 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 5542402949413287550}
   - {fileID: 8257208173242250350}
   - {fileID: 6121506321445668749}
   - {fileID: 9064698963277773619}
   - {fileID: 7816654005970188632}
   - {fileID: 6573929947934830062}
   - {fileID: 5186274559580905931}
-  - {fileID: 5542402949413287550}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1978,7 +1978,7 @@ GameObject:
   - component: {fileID: 5653874264821599447}
   - component: {fileID: 3388978815473596703}
   m_Layer: 5
-  m_Name: Player DamI
+  m_Name: Player Damage Flasher
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

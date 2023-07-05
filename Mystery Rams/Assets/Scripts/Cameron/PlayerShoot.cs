@@ -48,6 +48,7 @@ public class PlayerShoot : MonoBehaviour, IDamage {
 
     public void TakeDamage(int damage) {
         HP -= damage;
+        StartCoroutine(GameManager.instance.PlayerHurtFlash());
         if (HP <= 0) {
             GameManager.instance.GameLoss();
         }
