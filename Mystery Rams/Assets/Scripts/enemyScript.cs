@@ -26,10 +26,10 @@ public class enemyScript : MonoBehaviour, IDamage//damage script implementation 
     [Header("Enemy Info")]
     [SerializeField] Renderer model;
     [SerializeField] int HP;
-    //States 
     [SerializeField] public float sightRange, attackRange;
     [SerializeField] public bool playerInSightRange, playerInAttackRange;
-    //Functions that haven't been added:
+
+    //AI Related Functions (Appear to be added)
     //Roaming functionality (to be done with AI)
     //View Angle (to be done with movement)
     //Rotation Speed (to be done with movement)
@@ -40,11 +40,11 @@ public class enemyScript : MonoBehaviour, IDamage//damage script implementation 
     [SerializeField] Transform bulletspawn;
 
 
-    //Vector3 initSpawn;
+    
     void Start()
     {
         //Code would go here to change objective count if we decide to count enemies.
-        //initSpawn = transform.position
+        
         //find the player 
         player = GameObject.Find("Player").transform;
         agent = GetComponent<NavMeshAgent>();
