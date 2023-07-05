@@ -201,7 +201,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6366596258348124477}
+      - m_Target: {fileID: 6294588913832803452}
         m_TargetAssemblyTypeName: ButtonFunctions, Assembly-CSharp
         m_MethodName: Resume
         m_Mode: 1
@@ -411,7 +411,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6366596258348124477}
+      - m_Target: {fileID: 6294588913832803452}
         m_TargetAssemblyTypeName: ButtonFunctions, Assembly-CSharp
         m_MethodName: Quit
         m_Mode: 1
@@ -950,7 +950,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6366596258348124477}
+      - m_Target: {fileID: 6294588913832803452}
         m_TargetAssemblyTypeName: ButtonFunctions, Assembly-CSharp
         m_MethodName: Quit
         m_Mode: 1
@@ -1310,6 +1310,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7045276371396487804}
   - component: {fileID: 230581020473067775}
+  - component: {fileID: 6294588913832803452}
   - component: {fileID: 6366596258348124477}
   - component: {fileID: 1830051353139782577}
   - component: {fileID: 8010559705410768236}
@@ -1368,6 +1369,18 @@ MonoBehaviour:
   loseMenu: {fileID: 608855705885097235}
   enemiesRemainingText: {fileID: 0}
   playerDamageIndicator: {fileID: 0}
+--- !u!114 &6294588913832803452
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4067213702320752202}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0862c90c036afd4b92cc95a226ea7fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &6366596258348124477
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1816,7 +1829,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6366596258348124477}
+      - m_Target: {fileID: 6294588913832803452}
         m_TargetAssemblyTypeName: ButtonFunctions, Assembly-CSharp
         m_MethodName: Restart
         m_Mode: 1
@@ -1950,7 +1963,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6366596258348124477}
+      - m_Target: {fileID: 6294588913832803452}
         m_TargetAssemblyTypeName: ButtonFunctions, Assembly-CSharp
         m_MethodName: Restart
         m_Mode: 1
@@ -2509,7 +2522,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6366596258348124477}
+      - m_Target: {fileID: 6294588913832803452}
         m_TargetAssemblyTypeName: ButtonFunctions, Assembly-CSharp
         m_MethodName: Quit
         m_Mode: 1
@@ -2723,7 +2736,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6366596258348124477}
+      - m_Target: {fileID: 6294588913832803452}
         m_TargetAssemblyTypeName: ButtonFunctions, Assembly-CSharp
         m_MethodName: Restart
         m_Mode: 1

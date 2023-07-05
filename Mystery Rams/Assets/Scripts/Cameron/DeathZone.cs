@@ -6,7 +6,7 @@ public class DeathBarrier : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other) {
         if (other.gameObject.CompareTag("Player"))
-            GameManager.instance.SpawnPlayer();
+            GameManager.instance.GameLoss();
         else
             Destroy(other.gameObject);
     }

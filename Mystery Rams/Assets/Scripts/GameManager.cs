@@ -15,19 +15,16 @@ public class GameManager : MonoBehaviour {
     public GameObject playerCamera;
 
     [Header("Menu UI")]
-    public GameObject activeMenu;
-    public GameObject pauseMenu;
-    public GameObject winMenu;
-    public GameObject loseMenu;
-    public TextMeshProUGUI enemiesRemainingText;
-    public GameObject playerDamageIndicator;
-
-
+    [SerializeField] GameObject activeMenu;
+    [SerializeField] GameObject pauseMenu;
+    [SerializeField] GameObject winMenu;
+    [SerializeField] GameObject loseMenu;
+    [SerializeField] TextMeshProUGUI enemiesRemainingText;
+    [SerializeField] GameObject playerDamageIndicator;
 
     int enemiesRemaining;
     bool isPaused;
     float originalTimeScale;
-
 
     void Awake() {
         instance = this;
@@ -46,7 +43,6 @@ public class GameManager : MonoBehaviour {
 
         originalTimeScale = Time.timeScale;
     }
-
 
     void Update() {
         if (Input.GetKeyDown(back) && activeMenu == null) {
