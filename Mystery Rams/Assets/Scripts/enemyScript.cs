@@ -78,6 +78,7 @@ public class enemyScript : MonoBehaviour, IDamage//damage script implementation 
     {
         HP -= damage;
         //Something something code here to move toward player when we implement AI
+        StartCoroutine(damageindicator());
 
         if (HP <= 0)
         {
@@ -85,17 +86,22 @@ public class enemyScript : MonoBehaviour, IDamage//damage script implementation 
             Destroy(gameObject);
         }
 
-        for (int i = 0; i < 3; i++)
-        {
-            model.material.color = Color.red;
-            new WaitForSeconds(0.01f);
-            model.material.color = Color.white;
-        }
+        
         
 
     }
+    IEnumerator damageindicator()
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            model.material.color = Color.red;
+            yield return new WaitForSeconds(0.05f);
+            model.material.color = Color.white;
+        }
+        
+    }
 
-    
+
     private void Patroling()
     {
         //if walkpoint is not set search for a new point 
@@ -107,7 +113,7 @@ public class enemyScript : MonoBehaviour, IDamage//damage script implementation 
         Vector3 distanceToWalkPoint = transform.position - walkPoint;
 
         //walk point reached 
-        if (distanceToWalkPoint.magnitude < 5f)
+        if (distanceToWalkPoint.magnitude <= 3f)
         {
             
             walkPointSet = false;

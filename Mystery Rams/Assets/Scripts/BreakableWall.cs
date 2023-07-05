@@ -19,13 +19,13 @@ public class BreakableWall : MonoBehaviour, IDamage
         {
             Destroy(gameObject);
         }
-        for (int i = 0; i < 3; i++)
-        {
+        StartCoroutine(damageindicator());
+
+    }
+    IEnumerator damageindicator()
+    {
             model.material.color = Color.red;
-            new WaitForSeconds(0.01f);
+            yield return new WaitForSeconds(0.05f);
             model.material.color = Color.white;
-        }
-
-
     }
 }

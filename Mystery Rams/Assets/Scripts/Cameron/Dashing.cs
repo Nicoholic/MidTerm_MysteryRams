@@ -20,6 +20,8 @@ public class Dashing : MonoBehaviour {
     public PlayerCamera playerCamera;
     public float dashingFov;
 
+    private float originalFov;
+
     [Header("Settings")]
     public bool useCameraForward = true;
     public bool disableGravity = false;
@@ -40,6 +42,7 @@ public class Dashing : MonoBehaviour {
         pm = GetComponent<PlayerMovement>();
         playerCamera = GameManager.instance.playerCamera.GetComponent<PlayerCamera>();
         cameraPosition = GameManager.instance.player.transform.GetChild(1);
+        originalFov = playerCamera.GetComponent<Camera>().fieldOfView;
     }
 
     private void Update() {
@@ -90,7 +93,7 @@ public class Dashing : MonoBehaviour {
         pm.maxYSpeed = 0;
         isDashing = false;
         StartCoroutine(
-                playerCamera.LerpFov(85f));
+                playerCamera.LerpFov(originalFov));
         if (disableGravity)
             rb.useGravity = true;
     }
