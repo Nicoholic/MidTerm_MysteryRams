@@ -364,7 +364,8 @@ public class PlayerMovement : MonoBehaviour {
             playerCamera.LerpSensitivity(originalSensitivity);
     }
 
-   private void SpawnPlayer() {
+    private void SpawnPlayer() {
+        rb.velocity = new Vector3(0.0f, 0.0f, 0.0f);
         GameManager.instance.SpawnPlayer();
     }
 }

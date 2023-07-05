@@ -15,36 +15,41 @@ public class GameManager : MonoBehaviour {
     public GameObject playerCamera;
 
     [Header("Menu UI")]
-    public GameObject activeMenu;
-    public GameObject pauseMenu;
-    public GameObject winMenu;
-    public GameObject loseMenu;
-    public TextMeshProUGUI enemiesRemainingText;
-    public GameObject playerDamageIndicator;
-
-
+    [SerializeField] GameObject activeMenu;
+    [SerializeField] GameObject pauseMenu;
+    [SerializeField] GameObject winMenu;
+    [SerializeField] GameObject loseMenu;
+    [SerializeField] TextMeshProUGUI enemiesRemainingText;
+    [SerializeField] GameObject playerDamageIndicator;
 
     int enemiesRemaining;
     bool isPaused;
-    float timeScaleOrig;
-
+    float originalTimeScale;
 
     void Awake() {
         instance = this;
-        player = GameObject.FindGameObjectWithTag("Player");
-        playerSpawnPoint = GameObject.FindGameObjectWithTag("PlayerSpawnPoint");
-        playerCamera = GameObject.FindGameObjectWithTag("PlayerCamera");
-    }
 
+        player = GameObject.FindGameObjectWithTag("Player");
+        if (player == null)
+            Debug.LogError("GameManager - No player object with tag 'Player' found.");
+
+        playerSpawnPoint = GameObject.FindGameObjectWithTag("PlayerSpawnPoint");
+        if (playerSpawnPoint == null)
+            Debug.LogError("GameManager - No playerSpawnPoint object with tag 'PlayerSpawnPoint' found.");
+
+        playerCamera = GameObject.FindGameObjectWithTag("PlayerCamera");
+        if (playerCamera == null)
+            Debug.LogError("GameManager - No PlayerCamera object with tag 'PlayerCamera' found.");
+
+        originalTimeScale = Time.timeScale;
+    }
 
     void Update() {
         if (Input.GetKeyDown(back) && activeMenu == null) {
             PauseGame();
             activeMenu = pauseMenu;
             activeMenu.SetActive(isPaused);
-
         }
-
     }
 
     public void PauseGame() {
@@ -52,18 +57,17 @@ public class GameManager : MonoBehaviour {
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.Confined;
         isPaused = !isPaused;
-
     }
 
-    public void GameUnpaused() {
-        Time.timeScale = timeScaleOrig;
+    public void UnpauseGame() {
+        Time.timeScale = originalTimeScale;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         isPaused = !isPaused;
         activeMenu.SetActive(false);
         activeMenu = null;
-
     }
+
     public void UpdateGameGoal(int amount) {
         enemiesRemaining += amount;
         //why did we do float zero but have it pass in an int? || Harlan 
@@ -75,19 +79,22 @@ public class GameManager : MonoBehaviour {
             PauseGame();
         }
     }
+
     public void GameLoss() {
         PauseGame();
         activeMenu = loseMenu;
         activeMenu.SetActive(true);
     }
-    public IEnumerator playerDamageIndication() {
+
+    public IEnumerator PlayerHurtFlash() {
         playerDamageIndicator.SetActive(true);
         yield return new WaitForSeconds(0.1f);
         playerDamageIndicator.SetActive(false);
-
-
     }
+
     public void SpawnPlayer() {
-        player.GetComponent<Transform>().position = playerSpawnPoint.transform.position;
+        player.GetComponent<Rigidbody>().position = playerSpawnPoint.transform.position;
+        if (isPaused)
+            UnpauseGame();
     }
 }

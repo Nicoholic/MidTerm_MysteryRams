@@ -5,8 +5,8 @@ using UnityEngine;
 public class PlayerShoot : MonoBehaviour, IDamage {
 
     [Header("Player Stats")]
-    [SerializeField] int HP;
-    private int maxHP;
+    [SerializeField] public int HP;
+    public int maxHP;
 
     [Header("Gun Stats")]
     [SerializeField] float rate;
@@ -36,7 +36,7 @@ public class PlayerShoot : MonoBehaviour, IDamage {
         if (Physics.Raycast(playerCamera.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out RaycastHit hit, range)) {
             if (doDebug)
                 Debug.Log("Raycast hit: " + hit.collider.gameObject.name);
-            if (hit.collider.TryGetComponent<IDamage>(out var damageable))
+            if (hit.collider.TryGetComponent<IDamage>(out var damageable) && !hit.collider.TryGetComponent<PlayerMovement>( out _) )
                 damageable.TakeDamage(damage);
         } else if (doDebug) {
             Debug.Log("Raycast missed.");
@@ -47,8 +47,9 @@ public class PlayerShoot : MonoBehaviour, IDamage {
     }
 
     public void TakeDamage(int damage) {
-        HP = -damage;
-        if (HP <= 0)
-            Debug.Log("PlayerShoot - Player should be dead now");
+        HP -= damage;
+        if (HP <= 0) {
+            GameManager.instance.GameLoss();
+        }
     }
 }
