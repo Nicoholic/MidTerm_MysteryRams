@@ -36,7 +36,7 @@ public class PlayerShoot : MonoBehaviour, IDamage {
         if (Physics.Raycast(playerCamera.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out RaycastHit hit, range)) {
             if (doDebug)
                 Debug.Log("Raycast hit: " + hit.collider.gameObject.name);
-            if (hit.collider.TryGetComponent<IDamage>(out var damageable))
+            if (hit.collider.TryGetComponent<IDamage>(out var damageable) && !hit.collider.TryGetComponent<PlayerMovement>( out _) )
                 damageable.TakeDamage(damage);
         } else if (doDebug) {
             Debug.Log("Raycast missed.");
