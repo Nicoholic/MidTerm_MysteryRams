@@ -9,7 +9,6 @@ public class ButtonFunctions : MonoBehaviour {
     }
 
     public void Respawn() {
-        GameManager.instance.UnpauseGame();
         GameManager.instance.SpawnPlayer();
     }
 

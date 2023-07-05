@@ -66,8 +66,8 @@ public class GameManager : MonoBehaviour {
         isPaused = !isPaused;
         activeMenu.SetActive(false);
         activeMenu = null;
-
     }
+
     public void UpdateGameGoal(int amount) {
         enemiesRemaining += amount;
         enemiesRemainingText.text = enemiesRemaining.ToString("F0");
@@ -77,17 +77,22 @@ public class GameManager : MonoBehaviour {
             PauseGame();
         }
     }
+
     public void GameLoss() {
         PauseGame();
         activeMenu = loseMenu;
         activeMenu.SetActive(true);
     }
+
     public IEnumerator PlayerHurtFlash() {
         playerDamageIndicator.SetActive(true);
         yield return new WaitForSeconds(0.1f);
         playerDamageIndicator.SetActive(false);
     }
+
     public void SpawnPlayer() {
         player.GetComponent<Transform>().position = playerSpawnPoint.transform.position;
+        if (isPaused)
+            UnpauseGame();
     }
 }

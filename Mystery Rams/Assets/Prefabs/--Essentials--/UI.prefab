@@ -1312,7 +1312,6 @@ GameObject:
   - component: {fileID: 7045276371396487804}
   - component: {fileID: 230581020473067775}
   - component: {fileID: 6294588913832803452}
-  - component: {fileID: 6366596258348124477}
   - component: {fileID: 1830051353139782577}
   - component: {fileID: 8010559705410768236}
   - component: {fileID: 5633797702435841638}
@@ -1343,7 +1342,7 @@ RectTransform:
   - {fileID: 5186274559580905931}
   - {fileID: 5542402949413287550}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1373,18 +1372,6 @@ MonoBehaviour:
   enemiesRemainingText: {fileID: 7379457820840519988}
   playerDamageIndicator: {fileID: 5279282140857721025}
 --- !u!114 &6294588913832803452
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4067213702320752202}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f0862c90c036afd4b92cc95a226ea7fd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &6366596258348124477
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2735,7 +2722,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1564576262894563777}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6294588913832803452}
+        m_TargetAssemblyTypeName: ButtonFunctions, Assembly-CSharp
+        m_MethodName: Respawn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6427750274955914080
 GameObject:
   m_ObjectHideFlags: 0
