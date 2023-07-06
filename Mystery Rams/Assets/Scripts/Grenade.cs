@@ -20,6 +20,7 @@ public class Grenade : MonoBehaviour
     
     void Start()
     {
+        
         explosionCountdown = explosionTimer;
     }
 
@@ -30,26 +31,14 @@ public class Grenade : MonoBehaviour
         if (explosionCountdown <= 0f && !hasExploded) 
         {
         Explode();
-        hasExploded = true;
-        
+            hasExploded = true;
         }
 
     }
     void Explode() 
     {
     Instantiate(detonationEffect, transform.position,transform.rotation);
-        Collider[] colliders = Physics.OverlapSphere(transform.position, explosionRadius);
-
-    foreach (Collider nearbyObject in colliders) 
-        { 
-            rb = nearbyObject.GetComponent<Rigidbody>();
-            if (rb != null) 
-            {
-                rb.AddExplosionForce(explosionForce, transform.position, explosionRadius);
-            
-            }
-        
-        }
+      
         Destroy(gameObject);
     }
 }
