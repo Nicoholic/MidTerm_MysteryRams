@@ -65,9 +65,11 @@ public class EnemyTest : MonoBehaviour, IDamage {
         }
     }
 
-    void FacePlayer() {
+    void FacePlayer()
+    {
         Quaternion rotation = Quaternion.LookRotation(new Vector3(playerDirection.x, 0, playerDirection.z));
         transform.rotation = Quaternion.Lerp(transform.rotation, rotation, Time.deltaTime * playerFaceSpeed);
+
     }
 
     bool CanSeePlayer() {
@@ -75,7 +77,6 @@ public class EnemyTest : MonoBehaviour, IDamage {
         agent.stoppingDistance = originalStoppingDistance;
         playerDirection = GameManager.instance.player.transform.position - headPos.position;
         angleToPlayer = Vector3.Angle(new Vector3(playerDirection.x, 0, playerDirection.z), transform.forward);
-
         if (doDebug) {
             Debug.Log(angleToPlayer + "     " + viewAngle);
             Debug.DrawRay(headPos.position, playerDirection);
@@ -109,7 +110,7 @@ public class EnemyTest : MonoBehaviour, IDamage {
 
     IEnumerator Shoot() {
         isShooting = true;
-
+        
         if (shotgun) {
             for (int i = 0; i < gunPellets; i++) {
                 Quaternion randomRotationOffset = Quaternion.Euler( Random.Range(-inaccuracy, inaccuracy), Random.Range(-inaccuracy, inaccuracy), Random.Range(-inaccuracy, inaccuracy));
