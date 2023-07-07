@@ -112,7 +112,7 @@ public class EnemyTest : MonoBehaviour, IDamage {
         isShooting = true;
         
         if (shotgun) {
-            for (int i = 0; i < gunPellets; i++) {
+            for (int i = 0; i < 15; i++) {
                 Quaternion randomRotationOffset = Quaternion.Euler( Random.Range(-inaccuracy, inaccuracy), Random.Range(-inaccuracy, inaccuracy), Random.Range(-inaccuracy, inaccuracy));
                 Instantiate(bullet, shootPos.position, transform.rotation * randomRotationOffset);
             }
