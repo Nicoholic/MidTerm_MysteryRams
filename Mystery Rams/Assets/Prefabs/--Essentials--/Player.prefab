@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 298458657483445300}
-  - component: {fileID: 1079072646440175806}
+  - component: {fileID: 3724650878710600734}
   - component: {fileID: 9069294693800633259}
   - component: {fileID: 5530706896573781636}
   - component: {fileID: 1234185268690524683}
@@ -40,7 +40,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1079072646440175806
+--- !u!114 &3724650878710600734
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -49,16 +49,32 @@ MonoBehaviour:
   m_GameObject: {fileID: 217374140566165333}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b28786c5885a3b245b78e1a35b38bfc6, type: 3}
+  m_Script: {fileID: 11500000, guid: 26ca9c199427d9c429ea5ff9ad4672e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HP: 10
-  maxHP: 0
-  rate: 1
-  damage: 1
-  range: 15
-  doDebug: 0
+  damage: 20
+  timeBetweenShooting: 0.05
+  spread: 0.02
+  range: 100
+  reloadTime: 1
+  timeBetweenShots: 0
+  magazineSize: 30
+  bulletsPerTap: 1
+  allowButtonHold: 1
+  reloadKey: 114
+  muzzleFlash: {fileID: 0}
+  bulletHoleGraphic: {fileID: 7564686294492250184, guid: 10e0fd1d4f7ae8a4c8e6005e54c8d008, type: 3}
   playerCamera: {fileID: 0}
+  attackPoint: {fileID: 0}
+  whatIsEnemy:
+    serializedVersion: 2
+    m_Bits: 0
+  doDebug: 1
+  bulletsLeft: 0
+  bulletsShot: 0
+  shooting: 0
+  readyToShoot: 0
+  reloading: 0
 --- !u!114 &9069294693800633259
 MonoBehaviour:
   m_ObjectHideFlags: 0

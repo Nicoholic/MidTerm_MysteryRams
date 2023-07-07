@@ -18,15 +18,8 @@ public class GunSystem : MonoBehaviour {
 
     [SerializeField] bool allowButtonHold;
 
-    private int bulletsLeft;
-    private int bulletsShot;
-
     [Header("KeyBindings")]
     [SerializeField] KeyCode reloadKey = KeyCode.R;
-
-    private bool shooting;
-    private bool readyToShoot;
-    private bool reloading;
 
     [Header("Graphics")]
     [SerializeField] GameObject muzzleFlash;
@@ -40,6 +33,13 @@ public class GunSystem : MonoBehaviour {
 
     [Header("Debug")]
     [SerializeField] bool doDebug;
+
+    [SerializeField] int bulletsLeft;
+    [SerializeField] int bulletsShot;
+  
+    [SerializeField] bool shooting;
+    [SerializeField] bool readyToShoot;
+    [SerializeField] bool reloading;
 
     //This is set this way so you don't have to reload on restart
     private void Awake() {
