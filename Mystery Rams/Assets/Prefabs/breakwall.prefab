@@ -13,12 +13,13 @@ GameObject:
   - component: {fileID: 386135218617640097}
   - component: {fileID: 3194304132324140406}
   - component: {fileID: 2130295523606397239}
-  m_Layer: 10
+  - component: {fileID: 7069483477364992936}
+  m_Layer: 14
   m_Name: breakwall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &7724367416651933852
 Transform:
@@ -33,7 +34,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &5098539679841598492
 MeshFilter:
@@ -120,3 +121,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   model: {fileID: 386135218617640097}
   HP: 0
+--- !u!208 &7069483477364992936
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8071982129832491412}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour {
     public static GameManager instance;
@@ -20,10 +21,11 @@ public class GameManager : MonoBehaviour {
     [SerializeField] GameObject winMenu;
     [SerializeField] GameObject loseMenu;
     [SerializeField] TextMeshProUGUI enemiesRemainingText;
+    [SerializeField] public Image PHealthBar;
     [SerializeField] GameObject playerDamageIndicator;
 
     int enemiesRemaining;
-    bool isPaused;
+    public bool isPaused;
     float originalTimeScale;
 
     void Awake() {
@@ -52,6 +54,8 @@ public class GameManager : MonoBehaviour {
         }
     }
 
+
+
     public void PauseGame() {
         Time.timeScale = 0;
         Cursor.visible = true;
@@ -70,8 +74,6 @@ public class GameManager : MonoBehaviour {
 
     public void UpdateGameGoal(int amount) {
         enemiesRemaining += amount;
-        //why did we do float zero but have it pass in an int? || Harlan 
-        // added the code for this in AI but not seeing the UI || Harlan 
         enemiesRemainingText.text = enemiesRemaining.ToString("F0");
         if (enemiesRemaining <= 0) {
             activeMenu = winMenu;
@@ -96,5 +98,7 @@ public class GameManager : MonoBehaviour {
         player.GetComponent<Rigidbody>().position = playerSpawnPoint.transform.position;
         if (isPaused)
             UnpauseGame();
+        //player.GetComponent<PlayerShoot>().PlayerUiUpdate();
     }
+
 }

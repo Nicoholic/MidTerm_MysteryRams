@@ -14,6 +14,9 @@ public class PlayerCamera : MonoBehaviour {
     private float xRotation;
     private float yRotation;
 
+    float mouseX;
+    float mouseY;
+
     void Start() {
         orientation = GameManager.instance.player.transform.GetChild(0);
         Cursor.lockState = CursorLockMode.Locked;
@@ -22,8 +25,10 @@ public class PlayerCamera : MonoBehaviour {
 
     void Update() {
 
-        float mouseX = Input.GetAxis("Mouse X") * sensitivity;
-        float mouseY = Input.GetAxis("Mouse Y") * sensitivity;
+        if (!GameManager.instance.isPaused) {
+            mouseX = Input.GetAxis("Mouse X") * sensitivity;
+            mouseY = Input.GetAxis("Mouse Y") * sensitivity;
+        }
 
         yRotation += mouseX;
 
