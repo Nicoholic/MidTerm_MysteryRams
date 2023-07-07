@@ -38,7 +38,7 @@ Transform:
   - {fileID: 7399150327368194408}
   - {fileID: 1016536462665237414}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1079072646440175806
 MonoBehaviour:
@@ -52,7 +52,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b28786c5885a3b245b78e1a35b38bfc6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HP: 3
+  HP: 10
+  maxHP: 0
   rate: 1
   damage: 1
   range: 15
@@ -102,11 +103,11 @@ MonoBehaviour:
   sprintSpeed: 10
   slideSpeed: 30
   dashSpeed: 50
-  speedIncreaseMultiplier: 1.5
-  slopeIncreaseMultiplier: 2.5
+  speedIncreaseMultiplier: 2.5
+  slopeIncreaseMultiplier: 4.5
   maxYSpeed: 0
   groundDrag: 7
-  jumpForce: 12
+  jumpForce: 13
   jumpCooldown: 0.25
   airMultiplier: 0.4
   crouchSpeed: 3.5
