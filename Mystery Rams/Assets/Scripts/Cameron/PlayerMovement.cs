@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using Unity.VisualScripting.ReorderableList;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour {
@@ -42,7 +43,10 @@ public class PlayerMovement : MonoBehaviour {
     [SerializeField] float crouchYScale;
     [SerializeField] float momentumPenalty;
 
+    [SerializeField] float slamForce;
+
     private float yScaleOriginal;
+    private bool slamming;
 
     [Header("Sliding")]
     [SerializeField] float maxSlideTime;
@@ -122,6 +126,9 @@ public class PlayerMovement : MonoBehaviour {
         MovePlayer();
         if (sliding)
             SlidingMovement();
+
+        if (grounded)
+            slamming = false;
     }
 
     /// <summary>
@@ -236,14 +243,18 @@ public class PlayerMovement : MonoBehaviour {
 
         if (Input.GetKeyDown(crouchKey)) {
 
-            if (!crouched) {
+            if (!crouched && state != MovementState.air) {
                 transform.localScale = new Vector3(transform.localScale.x, crouchYScale, transform.localScale.z);
-                rb.AddForce(Vector3.down * 5f, ForceMode.Impulse);
                 crouched = true;
             }
 
-            if (((horizontalInput != 0 || verticalInput != 0) && grounded && !sliding) || OnSlope() && !sliding) {
+            if (((horizontalInput != 0 || verticalInput != 0) && grounded && !sliding) || OnSlope() && !sliding)
                 StartSlide();
+
+            if (state == MovementState.air && !slamming) {
+                rb.velocity = Vector3.zero;
+                rb.AddForce(Vector3.down * slamForce, ForceMode.Impulse);
+                slamming = true;
             }
         }
 
@@ -260,14 +271,20 @@ public class PlayerMovement : MonoBehaviour {
         if (OnSlope() && !exitingSlope) {
             rb.AddForce(20f * moveSpeed * GetSlopeMoveDirection(moveDirection), ForceMode.Force);
 
+
+            //come back here to fix upward slopes
             if (rb.velocity.y > 0)
-                rb.AddForce(Vector3.down * 80f, ForceMode.Force);
+               rb.AddForce(Vector3.down * 80f, ForceMode.Force);
 
         } else if (grounded)
             rb.AddForce(10f * moveSpeed * moveDirection.normalized, ForceMode.Force);
 
-        else if (!grounded)
+        //fix was here
+        else if (!grounded && !slamming) {
             rb.AddForce(10f * airMultiplier * moveSpeed * moveDirection.normalized, ForceMode.Force);
+            Debug.Log(10f * airMultiplier * moveSpeed * moveDirection.normalized);
+        }
+           
 
         rb.useGravity = !OnSlope();
         currentSpeed = moveDirection.magnitude * moveSpeed;
@@ -328,6 +345,7 @@ public class PlayerMovement : MonoBehaviour {
             crouched = true;
             transform.localScale = new Vector3(transform.localScale.x, crouchYScale, transform.localScale.z);
             rb.AddForce(Vector3.down * 5f, ForceMode.Impulse);
+           
         }
         if (doSensLerp)
             playerCamera.LerpSensitivity(originalSensitivity * slideSensitivity);
