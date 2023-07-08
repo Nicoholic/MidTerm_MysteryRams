@@ -14,6 +14,7 @@ public class Grenade : MonoBehaviour
     [SerializeField] float explosionRadius;
     [SerializeField] float explosionForce;
     [SerializeField] float explosionCountdown;
+    [SerializeField] int explosionDamage;
  
 
     bool hasExploded;
@@ -39,6 +40,10 @@ public class Grenade : MonoBehaviour
     {
     Instantiate(detonationEffect, transform.position,transform.rotation);
       
-        Destroy(gameObject);
+        
     }
+
+   
+
+
 }

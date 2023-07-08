@@ -54,7 +54,7 @@ public class GameManager : MonoBehaviour {
         }
     }
 
-
+    
 
     public void PauseGame() {
         Time.timeScale = 0;
@@ -87,6 +87,9 @@ public class GameManager : MonoBehaviour {
         activeMenu = loseMenu;
         activeMenu.SetActive(true);
     }
+
+   
+    
 
     public IEnumerator PlayerHurtFlash() {
         playerDamageIndicator.SetActive(true);
