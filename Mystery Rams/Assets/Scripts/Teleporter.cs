@@ -5,16 +5,14 @@ using UnityEngine;
 public class Teleporter : MonoBehaviour
 {
 
-    [SerializeField] GameObject player;
-    [SerializeField] GameObject teleportLocation;
-    [SerializeField] GameObject teleportStart;
-    // Start is called before the first frame update
+
+    
     void Start()
     {
 
     }
 
-    // Update is called once per frame
+    
     void Update()
     {
 
@@ -22,17 +20,6 @@ public class Teleporter : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Teleporter"))
-        {
-            player.transform.position = teleportLocation.transform.position;
-
-        }
-
-        if (other.gameObject.CompareTag("Second Teleporter")) 
-        {
-        
-        player.transform.position =  teleportStart.transform.position;
-        
-        }
+       other.transform.position = new Vector3 (Random.Range (-10.0f, 10.0f), other.transform.position.y, Random.Range(-10.0f, 10.0f));
     }
 }
