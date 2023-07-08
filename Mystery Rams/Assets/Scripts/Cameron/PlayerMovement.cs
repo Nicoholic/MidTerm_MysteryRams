@@ -4,12 +4,16 @@ using Unity.VisualScripting;
 using Unity.VisualScripting.ReorderableList;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour {
+public class PlayerMovement : MonoBehaviour, IDamage {
 
     [Header("Keybinds & Settings")]
     [SerializeField] KeyCode jumpKey = KeyCode.Space;
     [SerializeField] KeyCode sprintKey = KeyCode.LeftShift;
     [SerializeField] KeyCode crouchKey = KeyCode.LeftControl;
+
+    public int HP;
+
+    private int maxHP;
 
     [Header("Movement")]
     [SerializeField] float walkSpeed;
@@ -105,6 +109,8 @@ public class PlayerMovement : MonoBehaviour {
         originalSensitivity = playerCamera.GetSensitivity();
 
         Invoke(nameof(GameManager.instance.SpawnPlayer), 0.0025f);
+
+        maxHP = HP;
     }
 
     private void Update() {
@@ -271,7 +277,6 @@ public class PlayerMovement : MonoBehaviour {
         if (OnSlope() && !exitingSlope) {
             rb.AddForce(20f * moveSpeed * GetSlopeMoveDirection(moveDirection), ForceMode.Force);
 
-
             //come back here to fix upward slopes
             if (rb.velocity.y > 0)
                rb.AddForce(Vector3.down * 80f, ForceMode.Force);
@@ -279,12 +284,8 @@ public class PlayerMovement : MonoBehaviour {
         } else if (grounded)
             rb.AddForce(10f * moveSpeed * moveDirection.normalized, ForceMode.Force);
 
-        //fix was here
-        else if (!grounded && !slamming) {
+        else if (!grounded && !slamming)
             rb.AddForce(10f * airMultiplier * moveSpeed * moveDirection.normalized, ForceMode.Force);
-            Debug.Log(10f * airMultiplier * moveSpeed * moveDirection.normalized);
-        }
-           
 
         rb.useGravity = !OnSlope();
         currentSpeed = moveDirection.magnitude * moveSpeed;
@@ -384,5 +385,14 @@ public class PlayerMovement : MonoBehaviour {
     private void SpawnPlayer() {
         rb.velocity = new Vector3(0.0f, 0.0f, 0.0f);
         GameManager.instance.SpawnPlayer();
+    }
+
+    public void TakeDamage(int damage) {
+        HP -= damage;
+        GameManager.instance.PHealthBar.fillAmount = (float)HP / maxHP;
+        StartCoroutine(GameManager.instance.PlayerHurtFlash());
+        if (HP <= 0) {
+            GameManager.instance.GameLoss();
+        }
     }
 }
