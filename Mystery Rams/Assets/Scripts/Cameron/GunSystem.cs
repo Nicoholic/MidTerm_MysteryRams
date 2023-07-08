@@ -4,26 +4,25 @@ using System.Xml.Serialization;
 using UnityEngine;
 
 public class GunSystem : MonoBehaviour {
-    [Header("Gun Stats")]
-    [SerializeField] int damage;
 
-    [SerializeField] float timeBetweenShooting;
-    [SerializeField] float spread;
-    [SerializeField] float range;
-    [SerializeField] float reloadTime;
-    [SerializeField] float timeBetweenShots;
+    [SerializeField] Gun gun;
 
-    [SerializeField] int magazineSize;
-    [SerializeField] int bulletsPerTap;
-
-    [SerializeField] bool allowButtonHold;
+    private int damage;
+    private float timeBetweenShooting;
+    private float spread;
+    private float range;
+    private float reloadTime;
+    private float timeBetweenShots;
+    private int magazineSize;
+    private int bulletsPerTap;
+    private bool allowButtonHold;
 
     [Header("KeyBindings")]
     [SerializeField] KeyCode reloadKey = KeyCode.R;
 
-    [Header("Graphics")]
-    [SerializeField] GameObject muzzleFlash;
-    [SerializeField] GameObject bulletHoleGraphic;
+    
+    private GameObject muzzleFlash;
+    private GameObject bulletHoleGraphic;
 
     [Header("Components")]
     [SerializeField] Camera playerCamera;
@@ -36,18 +35,19 @@ public class GunSystem : MonoBehaviour {
 
     [SerializeField] int bulletsLeft;
     [SerializeField] int bulletsShot;
-  
+
     [SerializeField] bool shooting;
     [SerializeField] bool readyToShoot;
     [SerializeField] bool reloading;
 
-    //This is set this way so you don't have to reload on restart
-    private void Awake() {
+    private void Start() {
         bulletsLeft = magazineSize;
         readyToShoot = true;
 
         if (doDebug)
             Debug.Log("GunSystem - Debug enabled");
+
+        UpdateGunStats();
     }
 
     private void Update() {
@@ -116,5 +116,19 @@ public class GunSystem : MonoBehaviour {
     private void ReloadFinished() {
         bulletsLeft = magazineSize;
         reloading = false;
+    }
+
+    public void UpdateGunStats() {
+        damage = gun.damage;
+        timeBetweenShooting = gun.timeBetweenShooting;
+        spread = gun.spread;
+        range = gun.range;
+        reloadTime = gun.reloadTime;
+        timeBetweenShots = gun.timeBetweenShots;
+        magazineSize = gun.magazineSize;
+        bulletsPerTap = gun.bulletsPerTap;
+        allowButtonHold = gun.allowButtonHold;
+        muzzleFlash = gun.muzzleFlash;
+        bulletHoleGraphic = gun.bulletHoleGraphic;
     }
 }
