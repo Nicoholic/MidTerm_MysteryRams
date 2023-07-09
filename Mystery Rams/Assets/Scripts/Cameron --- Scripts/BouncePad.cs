@@ -7,9 +7,9 @@ public class BouncePad : MonoBehaviour {
 
     [SerializeField] float jumpForce;
     private void OnTriggerStay(Collider other) {
-        if (other.gameObject.CompareTag("Player")) {
 
-            other.GetComponent<Rigidbody>().AddForce(Vector3.up * jumpForce, ForceMode.VelocityChange);
-        }
+        if (other.TryGetComponent<Rigidbody>(out var rb))
+            rb.GetComponent<Rigidbody>().AddForce(Vector3.up * jumpForce, ForceMode.VelocityChange);
+
     }
 }

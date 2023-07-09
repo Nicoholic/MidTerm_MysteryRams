@@ -67,7 +67,7 @@ public class EnemyTest : MonoBehaviour, IDamage {
 
     void FacePlayer()
     {
-        Quaternion rotation = Quaternion.LookRotation(new Vector3(playerDirection.x, 0, playerDirection.z));
+        Quaternion rotation = Quaternion.LookRotation(playerDirection);
         transform.rotation = Quaternion.Lerp(transform.rotation, rotation, Time.deltaTime * playerFaceSpeed);
 
     }

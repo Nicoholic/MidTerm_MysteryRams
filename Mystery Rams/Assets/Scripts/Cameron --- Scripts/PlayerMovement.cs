@@ -76,15 +76,17 @@ public class PlayerMovement : MonoBehaviour, IDamage {
 
     private Rigidbody rb;
 
-    [Header("Debug (READ ONLY)")]
+    [Header("Debug")]
+    public bool doDebug;
     [SerializeField] float currentSpeed;
     [SerializeField] MovementState state;
     [SerializeField] bool jumpAvailable;
-    [SerializeField] bool grounded;
+    [SerializeField] public bool grounded;
     [SerializeField] bool crouched;
 
     public bool dashing;
     bool sliding;
+    public bool wallGrinding;
 
     public enum MovementState {
         walking,
@@ -92,6 +94,7 @@ public class PlayerMovement : MonoBehaviour, IDamage {
         dashing,
         crouching,
         sliding,
+        wallGrinding,
         air
     }
 
@@ -136,6 +139,7 @@ public class PlayerMovement : MonoBehaviour, IDamage {
         if (grounded)
             slamming = false;
     }
+
 
     /// <summary>
     /// Handles what state of movement the player is in
@@ -279,7 +283,7 @@ public class PlayerMovement : MonoBehaviour, IDamage {
 
             //come back here to fix upward slopes
             if (rb.velocity.y > 0)
-               rb.AddForce(Vector3.down * 80f, ForceMode.Force);
+                rb.AddForce(Vector3.down * 80f, ForceMode.Force);
 
         } else if (grounded)
             rb.AddForce(10f * moveSpeed * moveDirection.normalized, ForceMode.Force);
@@ -346,7 +350,7 @@ public class PlayerMovement : MonoBehaviour, IDamage {
             crouched = true;
             transform.localScale = new Vector3(transform.localScale.x, crouchYScale, transform.localScale.z);
             rb.AddForce(Vector3.down * 5f, ForceMode.Impulse);
-           
+
         }
         if (doSensLerp)
             playerCamera.LerpSensitivity(originalSensitivity * slideSensitivity);
@@ -389,10 +393,13 @@ public class PlayerMovement : MonoBehaviour, IDamage {
 
     public void TakeDamage(int damage) {
         HP -= damage;
-        GameManager.instance.PHealthBar.fillAmount = (float)HP / maxHP;
         StartCoroutine(GameManager.instance.PlayerHurtFlash());
         if (HP <= 0) {
             GameManager.instance.GameLoss();
         }
+    }
+
+    public void UpdateUI() {
+        GameManager.instance.PHealthBar.fillAmount = (float)HP / maxHP;
     }
 }
