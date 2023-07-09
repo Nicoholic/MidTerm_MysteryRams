@@ -7,4 +7,5 @@ public class Gun : MonoBehaviour {
     public GunInfo gunInfo;
     public Transform attackPoint;
     public GameObject muzzleFlash;
+    public float xOffset, yOffset, zOffset;
 }

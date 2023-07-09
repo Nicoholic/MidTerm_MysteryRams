@@ -28,7 +28,7 @@ public class ProjectileGunSystem : MonoBehaviour {
         playerCamera = GameManager.instance.playerCamera.GetComponent<Camera>();
         rb = GameManager.instance.player.GetComponent<Rigidbody>();
         gun.transform.parent = playerCamera.transform;
-        gun.transform.localPosition = Vector3.zero;
+        gun.transform.localPosition = new Vector3(gun.xOffset,gun.yOffset,gun.zOffset);
     }
 
     void Update() {
