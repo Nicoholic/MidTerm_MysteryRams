@@ -3,27 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "New Gun", menuName = "Gun")]
-public class Gun : ScriptableObject {
+public class GunInfo : ScriptableObject {
+
+    [Header("Bullet")]
+    public GameObject bullet;
+
+    [Header("Bullet")]
+    public float shootForce;
+    public float upwardForce;
 
     [Header("Gun Stats")]
-    public int damage;
-
     public float timeBetweenShooting;
     public float spread;
-    public float range;
     public float reloadTime;
     public float timeBetweenShots;
-
     public int magazineSize;
-    public int bulletsPerTap;
- 
+    public float bulletsPerTap;
     public bool allowButtonHold;
 
-    [Header("Graphics")]
-    public GameObject muzzleFlash;
-    public GameObject bulletHoleGraphic;
-
-
-
+    public float recoilForce;
 
 }

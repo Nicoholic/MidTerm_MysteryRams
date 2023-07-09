@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 452064b9fb988c745958c3d657ada469, type: 3}
-  m_Name: AR
+  m_Name: Assault Rifle
   m_EditorClassIdentifier: 
-  damage: 20
-  timeBetweenShooting: 0.05
-  spread: 0.02
-  range: 100
-  reloadTime: 1
+  bullet: {fileID: 0}
+  shootForce: 0
+  upwardForce: 0
+  timeBetweenShooting: 0
+  spread: 0
+  reloadTime: 0
   timeBetweenShots: 0
-  magazineSize: 30
-  bulletsPerTap: 1
-  allowButtonHold: 1
-  muzzleFlash: {fileID: 7564686294492250184, guid: 10e0fd1d4f7ae8a4c8e6005e54c8d008, type: 3}
-  bulletHoleGraphic: {fileID: 0}
+  magazineSize: 0
+  bulletsPerTap: 0
+  allowButtonHold: 0
+  recoilForce: 0

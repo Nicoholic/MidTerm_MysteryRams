@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Xml.Serialization;
 using UnityEngine;
 
-public class GunSystem : MonoBehaviour {
+public class PlayerGunSystem : MonoBehaviour {
 
     [SerializeField] Gun gun;
 
@@ -47,7 +47,7 @@ public class GunSystem : MonoBehaviour {
         if (doDebug)
             Debug.Log("GunSystem - Debug enabled");
 
-        UpdateGunStats();
+    
     }
 
     private void Update() {
@@ -116,19 +116,5 @@ public class GunSystem : MonoBehaviour {
     private void ReloadFinished() {
         bulletsLeft = magazineSize;
         reloading = false;
-    }
-
-    public void UpdateGunStats() {
-        damage = gun.damage;
-        timeBetweenShooting = gun.timeBetweenShooting;
-        spread = gun.spread;
-        range = gun.range;
-        reloadTime = gun.reloadTime;
-        timeBetweenShots = gun.timeBetweenShots;
-        magazineSize = gun.magazineSize;
-        bulletsPerTap = gun.bulletsPerTap;
-        allowButtonHold = gun.allowButtonHold;
-        muzzleFlash = gun.muzzleFlash;
-        bulletHoleGraphic = gun.bulletHoleGraphic;
     }
 }
