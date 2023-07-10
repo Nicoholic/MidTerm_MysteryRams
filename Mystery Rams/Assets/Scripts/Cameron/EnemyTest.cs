@@ -34,11 +34,13 @@ public class EnemyTest : MonoBehaviour, IDamage {
     float angleToPlayer;
     Vector3 playerDirection;
     Vector3 startingPos;
+    bool isdead;
 
     void Start() {
         GameManager.instance.UpdateGameGoal(1);
         originalStoppingDistance = agent.stoppingDistance;
         startingPos = transform.position;
+        isdead = false;
     }
 
     void Update() {
@@ -141,15 +143,18 @@ public class EnemyTest : MonoBehaviour, IDamage {
             Debug.Log("EnemyTest - Took damage: " + amount);
 
         hp -= amount;
-        agent.SetDestination(GameManager.instance.player.GetComponent<Rigidbody>().transform.position);
+        agent.SetDestination(GameManager.instance.player.transform.position);
         StartCoroutine(FlashDamage());
 
         if (hp <= 0) {
-            GameManager.instance.UpdateGameGoal(-1);
+            if (isdead==false)
+            {
+                isdead = true;
+                GameManager.instance.UpdateGameGoal(-1);
+            }
             Destroy(gameObject);
         }
     }
-
     IEnumerator FlashDamage() {
         model.material.color = Color.red;
         yield return new WaitForSeconds(0.1f);
