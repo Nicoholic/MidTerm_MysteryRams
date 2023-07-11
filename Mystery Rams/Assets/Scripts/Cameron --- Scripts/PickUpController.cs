@@ -82,7 +82,8 @@ public class PickUpController : MonoBehaviour {
         float random = UnityEngine.Random.Range(-1f, 1f);
         rb.AddTorque(new Vector3(random, random, random) * 10);
 
-        gun.enabled = false;
 
+
+        gun.enabled = false;
     }
 }
