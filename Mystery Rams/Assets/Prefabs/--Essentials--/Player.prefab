@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 298458657483445300}
-  - component: {fileID: 3724650878710600734}
   - component: {fileID: 9069294693800633259}
   - component: {fileID: 5530706896573781636}
   - component: {fileID: 1234185268690524683}
@@ -38,43 +37,8 @@ Transform:
   - {fileID: 7399150327368194408}
   - {fileID: 1016536462665237414}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3724650878710600734
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 217374140566165333}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 26ca9c199427d9c429ea5ff9ad4672e5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 20
-  timeBetweenShooting: 0.05
-  spread: 0.02
-  range: 100
-  reloadTime: 1
-  timeBetweenShots: 0
-  magazineSize: 30
-  bulletsPerTap: 1
-  allowButtonHold: 1
-  reloadKey: 114
-  muzzleFlash: {fileID: 0}
-  bulletHoleGraphic: {fileID: 7564686294492250184, guid: 10e0fd1d4f7ae8a4c8e6005e54c8d008, type: 3}
-  playerCamera: {fileID: 0}
-  attackPoint: {fileID: 0}
-  whatIsEnemy:
-    serializedVersion: 2
-    m_Bits: 0
-  doDebug: 1
-  bulletsLeft: 0
-  bulletsShot: 0
-  shooting: 0
-  readyToShoot: 0
-  reloading: 0
 --- !u!114 &9069294693800633259
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -115,20 +79,22 @@ MonoBehaviour:
   jumpKey: 32
   sprintKey: 304
   crouchKey: 306
+  HP: 100
   walkSpeed: 7
   sprintSpeed: 10
   slideSpeed: 30
   dashSpeed: 50
   speedIncreaseMultiplier: 2.5
   slopeIncreaseMultiplier: 4.5
-  maxYSpeed: 0
+  maxYSpeed: 9999
   groundDrag: 7
-  jumpForce: 13
+  jumpForce: 20
   jumpCooldown: 0.25
   airMultiplier: 0.4
   crouchSpeed: 3.5
   crouchYScale: 0.5
   momentumPenalty: 5
+  slamForce: 50
   maxSlideTime: 0.75
   slideForce: 300
   slideSensitivity: 0.065
@@ -140,12 +106,14 @@ MonoBehaviour:
     m_Bits: 1024
   orientation: {fileID: 7399150327368194408}
   playerCamera: {fileID: 0}
+  doDebug: 0
   currentSpeed: 0
   state: 0
   jumpAvailable: 0
   grounded: 0
   crouched: 0
   dashing: 0
+  wallGrinding: 0
 --- !u!54 &1234185268690524683
 Rigidbody:
   m_ObjectHideFlags: 0
