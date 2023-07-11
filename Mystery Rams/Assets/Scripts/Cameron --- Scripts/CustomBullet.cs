@@ -61,7 +61,7 @@ public class CustomBullet : MonoBehaviour {
         if (explosion != null)
             Instantiate(explosion, transform.position, Quaternion.identity);
 
-        Collider[] enemies = Physics.OverlapSphere(transform.position, explosionRange);
+        Collider[] enemies = Physics.OverlapSphere(transform.position, explosionRange, whatIsEnemy);
         foreach (var item in enemies) {
 
             if (item.TryGetComponent<Rigidbody>(out var itemRB))
@@ -78,7 +78,7 @@ public class CustomBullet : MonoBehaviour {
 
     private void OnCollisionEnter(Collision collision) {
         collisions++;
-        if (collision.collider.CompareTag("Enemy") && explodeOnTouch)
+        if ((collision.collider.gameObject.layer == whatIsEnemy) && explodeOnTouch)
             Explode();
     }
 

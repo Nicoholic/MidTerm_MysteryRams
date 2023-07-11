@@ -12,8 +12,7 @@ public class PlayerMovement : MonoBehaviour, IDamage {
     [SerializeField] KeyCode crouchKey = KeyCode.LeftControl;
 
     public int HP;
-
-    private int maxHP;
+    public int maxHP;
 
     [Header("Movement")]
     [SerializeField] float walkSpeed;
