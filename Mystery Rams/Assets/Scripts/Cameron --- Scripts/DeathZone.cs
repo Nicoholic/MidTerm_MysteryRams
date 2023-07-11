@@ -8,6 +8,7 @@ public class DeathBarrier : MonoBehaviour {
     [SerializeField] bool instantLose;
     [SerializeField] bool doDamage;
     [SerializeField] int damage;
+    [SerializeField] bool doDestroy;
 
     private void OnTriggerEnter(Collider other) {
         if (other.gameObject.CompareTag("Player")) {
@@ -17,9 +18,9 @@ public class DeathBarrier : MonoBehaviour {
             } else if (doDamage)
                 other.GetComponent<IDamage>().TakeDamage(damage);
 
-            if (other.GetComponent<PlayerShoot>().HP > 0)
+            if (other.GetComponent<PlayerMovement>().HP > 0)
                 GameManager.instance.SpawnPlayer();
-        } else
+        } else if (doDestroy)
             Destroy(other.gameObject);
     }
 }

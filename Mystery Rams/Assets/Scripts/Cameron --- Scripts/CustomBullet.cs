@@ -71,12 +71,10 @@ public class CustomBullet : MonoBehaviour {
                 enemy.TakeDamage(explosionDamage);
         }
 
-        Invoke(nameof(DelayedDestroy), 0.05f);
+        Invoke(nameof(DelayedDestroy), 0.005f);
     }
 
-    private void DelayedDestroy() {
-        Destroy(gameObject);
-    }
+    private void DelayedDestroy() => Destroy(gameObject);
 
     private void OnCollisionEnter(Collision collision) {
         collisions++;
