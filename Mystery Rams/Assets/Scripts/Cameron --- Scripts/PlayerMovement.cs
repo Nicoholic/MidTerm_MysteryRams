@@ -20,6 +20,7 @@ public class PlayerMovement : MonoBehaviour, IDamage {
     [SerializeField] float slideSpeed;
     [SerializeField] public float dashSpeed;
 
+    [SerializeField] bool doLerp;
 
     [SerializeField] float speedIncreaseMultiplier;
     [SerializeField] float slopeIncreaseMultiplier;
@@ -188,6 +189,7 @@ public class PlayerMovement : MonoBehaviour, IDamage {
         // check if desiredMoveSpeed has changed drastically
         if (Mathf.Abs(desiredMoveSpeed - lastDesiredMoveSpeed) > 4f && moveSpeed != 0) {
             StopAllCoroutines();
+            if (doLerp)
             StartCoroutine(LerpMoveSpeed());
         } else {
             moveSpeed = desiredMoveSpeed;
