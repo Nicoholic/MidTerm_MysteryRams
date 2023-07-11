@@ -9,7 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5693430906615772138}
-  - component: {fileID: 1235970351364014739}
+  - component: {fileID: 3551284197103942816}
+  - component: {fileID: 2689315089744814297}
+  - component: {fileID: 2448631778178876035}
+  - component: {fileID: 5448973018613695765}
   m_Layer: 0
   m_Name: Assault Rifle
   m_TagString: Untagged
@@ -36,7 +39,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1235970351364014739
+--- !u!114 &3551284197103942816
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -45,12 +48,102 @@ MonoBehaviour:
   m_GameObject: {fileID: 3891216362043856922}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1dbe6356a39fb4149953eac870004930, type: 3}
+  m_Script: {fileID: 11500000, guid: 7b5f1a4067714e04ca6741d214e5d876, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gunInfo: {fileID: 11400000, guid: bc5a49d78c6e78f4f97f2e791de8f0a3, type: 2}
+  bullet: {fileID: 2809463482995139570, guid: de1b0e705a55fb24f9e6bc17e4180d58, type: 3}
+  shootForce: 200
+  upwardForce: 0
+  timeBetweenShooting: 0.05
+  spread: 0.02
+  reloadTime: 1
+  timeBetweenShots: 0
+  magazineSize: 30
+  bulletsPerTap: 1
+  allowButtonHold: 1
+  recoilForce: 0
   attackPoint: {fileID: 6090182229179722210}
   muzzleFlash: {fileID: 0}
+  xOffset: 0.35
+  yOffset: -0.35
+  zOffset: 0.8
+  ammunitionDisplay: {fileID: 0}
+  allowInvoke: 1
+  bulletsLeft: 0
+  bulletsShot: 0
+  shooting: 0
+  readyToShoot: 0
+  reloading: 0
+--- !u!114 &2689315089744814297
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3891216362043856922}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33557bf8e988da14c9eb8dd107068878, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gun: {fileID: 3551284197103942816}
+  rb: {fileID: 5448973018613695765}
+  bc: {fileID: 2448631778178876035}
+  player: {fileID: 0}
+  gunContainer: {fileID: 0}
+  playerCamera: {fileID: 0}
+  pickUpRange: 4
+  dropForwardForce: 15
+  dropUpwardForce: 7
+  equipped: 0
+--- !u!65 &2448631778178876035
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3891216362043856922}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.17568946, y: 0.40416503, z: 0.70605105}
+  m_Center: {x: -0.028715968, y: -0.089399815, z: 0.10204926}
+--- !u!54 &5448973018613695765
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3891216362043856922}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 3
 --- !u!1 &4098360374365453449
 GameObject:
   m_ObjectHideFlags: 0

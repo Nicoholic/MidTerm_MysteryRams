@@ -61,7 +61,7 @@ public class CustomBullet : MonoBehaviour {
         if (explosion != null)
             Instantiate(explosion, transform.position, Quaternion.identity);
 
-        Collider[] enemies = Physics.OverlapSphere(transform.position, explosionRange);
+        Collider[] enemies = Physics.OverlapSphere(transform.position, explosionRange, whatIsEnemy);
         foreach (var item in enemies) {
 
             if (item.TryGetComponent<Rigidbody>(out var itemRB))
@@ -71,16 +71,14 @@ public class CustomBullet : MonoBehaviour {
                 enemy.TakeDamage(explosionDamage);
         }
 
-        Invoke(nameof(DelayedDestroy), 0.05f);
+        Invoke(nameof(DelayedDestroy), 0.005f);
     }
 
-    private void DelayedDestroy() {
-        Destroy(gameObject);
-    }
+    private void DelayedDestroy() => Destroy(gameObject);
 
     private void OnCollisionEnter(Collision collision) {
         collisions++;
-        if (collision.collider.CompareTag("Enemy") && explodeOnTouch)
+        if ((collision.collider.gameObject.layer == whatIsEnemy) && explodeOnTouch)
             Explode();
     }
 

@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+
 public class EnemyTest : MonoBehaviour, IDamage {
 
     [Header("----- Components -----")]
     [SerializeField] Renderer model;
     [SerializeField] NavMeshAgent agent;
     [SerializeField] Transform headPos;
+
 
     [Header("Enemy Stats")]
     [SerializeField] int hp;
@@ -35,6 +37,7 @@ public class EnemyTest : MonoBehaviour, IDamage {
     Vector3 playerDirection;
     Vector3 startingPos;
     bool isdead;
+   
 
     void Start() {
         GameManager.instance.UpdateGameGoal(1);
@@ -143,10 +146,12 @@ public class EnemyTest : MonoBehaviour, IDamage {
             Debug.Log("EnemyTest - Took damage: " + amount);
 
         hp -= amount;
+       
         agent.SetDestination(GameManager.instance.player.transform.position);
         StartCoroutine(FlashDamage());
 
         if (hp <= 0) {
+            
             if (isdead==false)
             {
                 isdead = true;
