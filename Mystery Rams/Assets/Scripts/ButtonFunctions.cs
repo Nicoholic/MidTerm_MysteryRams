@@ -10,6 +10,7 @@ public class ButtonFunctions : MonoBehaviour {
 
     public void Respawn() {
         GameManager.instance.SpawnPlayer();
+        GameManager.instance.player.GetComponent<PlayerMovement>().HP = GameManager.instance.player.GetComponent<PlayerMovement>().maxHP;
         GameManager.instance.player.GetComponent<PlayerMovement>().UpdateUI();
     }
 
