@@ -12,6 +12,7 @@ public class PlayerMovement : MonoBehaviour, IDamage {
     [SerializeField] KeyCode crouchKey = KeyCode.LeftControl;
 
     public int HP;
+
     public int maxHP;
 
     [Header("Movement")]
@@ -113,6 +114,8 @@ public class PlayerMovement : MonoBehaviour, IDamage {
         Invoke(nameof(GameManager.instance.SpawnPlayer), 0.0025f);
 
         maxHP = HP;
+
+        GameManager.instance.SpawnPlayer();
     }
 
     private void Update() {
@@ -392,6 +395,7 @@ public class PlayerMovement : MonoBehaviour, IDamage {
 
     public void TakeDamage(int damage) {
         HP -= damage;
+        UpdateUI();
         StartCoroutine(GameManager.instance.PlayerHurtFlash());
         if (HP <= 0) {
             GameManager.instance.GameLoss();
@@ -400,5 +404,7 @@ public class PlayerMovement : MonoBehaviour, IDamage {
 
     public void UpdateUI() {
         GameManager.instance.PHealthBar.fillAmount = (float)HP / maxHP;
+
+        GameManager.instance.heathTxt.text = HP.ToString("F0");
     }
 }
