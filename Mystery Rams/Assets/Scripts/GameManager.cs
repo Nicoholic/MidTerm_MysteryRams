@@ -21,6 +21,9 @@ public class GameManager : MonoBehaviour {
     [SerializeField] GameObject winMenu;
     [SerializeField] GameObject loseMenu;
     [SerializeField] TextMeshProUGUI enemiesRemainingText;
+    [SerializeField] public TextMeshProUGUI heathTxt;
+    [SerializeField] public TextMeshProUGUI currentAmmoTxt;
+    [SerializeField] public TextMeshProUGUI maxAmmoTxt;
     [SerializeField] public Image PHealthBar;
     [SerializeField] GameObject playerDamageIndicator;
 
@@ -100,8 +103,11 @@ public class GameManager : MonoBehaviour {
     public void SpawnPlayer() {
         player.GetComponent<Rigidbody>().position = playerSpawnPoint.transform.position;
         if (isPaused)
+        {
             UnpauseGame();
-        //player.GetComponent<PlayerShoot>().PlayerUiUpdate();
+        }
+        GameManager.instance.player.GetComponent<PlayerMovement>().HP = GameManager.instance.player.GetComponent<PlayerMovement>().maxHP;
+        player.GetComponent<PlayerMovement>().UpdateUI();
     }
 
 }
