@@ -1235,6 +1235,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 680773941577681384, guid: 1ba4a29df4f386d42b68ef28ae084a15, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: fcffe114490a38f43901e374b57abf47, type: 2}
+    - target: {fileID: 680773941577681384, guid: 1ba4a29df4f386d42b68ef28ae084a15, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3111954369462020267, guid: 1ba4a29df4f386d42b68ef28ae084a15, type: 3}
       propertyPath: m_Name
       value: Turret Enemy
@@ -1447,6 +1455,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1926447019746563573, guid: 6dadb899d5801274e971d82b10ae9fbb, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: a30101b0b8c42ec479ef3357ffbb252f, type: 2}
     - target: {fileID: 2226195569404806277, guid: 6dadb899d5801274e971d82b10ae9fbb, type: 3}
       propertyPath: m_Enabled
       value: 0
