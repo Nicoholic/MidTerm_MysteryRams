@@ -21,6 +21,7 @@ public class PlayerMovement : MonoBehaviour, IDamage {
     [SerializeField] float slideSpeed;
     [SerializeField] public float dashSpeed;
 
+    [SerializeField] bool doLerp;
 
     [SerializeField] float speedIncreaseMultiplier;
     [SerializeField] float slopeIncreaseMultiplier;
@@ -48,6 +49,7 @@ public class PlayerMovement : MonoBehaviour, IDamage {
     [SerializeField] float momentumPenalty;
 
     [SerializeField] float slamForce;
+    [SerializeField] GameObject slamEffect;
 
     private float yScaleOriginal;
     private bool slamming;
@@ -81,12 +83,17 @@ public class PlayerMovement : MonoBehaviour, IDamage {
     [SerializeField] float currentSpeed;
     [SerializeField] MovementState state;
     [SerializeField] bool jumpAvailable;
-    [SerializeField] public bool grounded;
+    public bool grounded;
     [SerializeField] bool crouched;
 
     public bool dashing;
-    bool sliding;
+    public bool sliding;
     public bool wallGrinding;
+
+    [Header("Guns")]
+    public List<ProjectileGun> gunList = new();
+
+    public int selectedGun;
 
     public enum MovementState {
         walking,
@@ -125,6 +132,7 @@ public class PlayerMovement : MonoBehaviour, IDamage {
         MyInput();
         SpeedControl();
         StateHandler();
+        GunChangeInput();
 
         if (grounded && state != MovementState.dashing)
             rb.drag = groundDrag;
@@ -138,8 +146,10 @@ public class PlayerMovement : MonoBehaviour, IDamage {
         if (sliding)
             SlidingMovement();
 
-        if (grounded)
+        if (grounded && slamming) {
             slamming = false;
+            Instantiate(slamEffect, new Vector3(gameObject.transform.position.x, gameObject.transform.position.y -1,gameObject.transform.position.z), Quaternion.identity);
+        }
     }
 
 
@@ -191,7 +201,8 @@ public class PlayerMovement : MonoBehaviour, IDamage {
         // check if desiredMoveSpeed has changed drastically
         if (Mathf.Abs(desiredMoveSpeed - lastDesiredMoveSpeed) > 4f && moveSpeed != 0) {
             StopAllCoroutines();
-            StartCoroutine(LerpMoveSpeed());
+            if (doLerp)
+                StartCoroutine(LerpMoveSpeed());
         } else {
             moveSpeed = desiredMoveSpeed;
         }
@@ -406,5 +417,29 @@ public class PlayerMovement : MonoBehaviour, IDamage {
         GameManager.instance.PHealthBar.fillAmount = (float)HP / maxHP;
 
         GameManager.instance.heathTxt.text = HP.ToString("F0");
+    }
+
+    void GunChangeInput() {
+        if (Input.GetAxis("Mouse ScrollWheel") > 0 && selectedGun < gunList.Count - 1) {
+            gunList[selectedGun].gameObject.SetActive(false);
+            selectedGun++;
+            gunList[selectedGun].gameObject.SetActive(true);
+        } else if (Input.GetAxis("Mouse ScrollWheel") < 0 && selectedGun > 0) {
+            gunList[selectedGun].gameObject.SetActive(false);
+            selectedGun--;
+            gunList[selectedGun].gameObject.SetActive(true);
+        } else if (Input.GetKeyDown(KeyCode.Alpha1) && gunList.Count >= 1) {
+            gunList[selectedGun].gameObject.SetActive(false);
+            selectedGun = 0;
+            gunList[selectedGun].gameObject.SetActive(true);
+        } else if (Input.GetKeyDown(KeyCode.Alpha2) && gunList.Count >= 2) {
+            gunList[selectedGun].gameObject.SetActive(false);
+            selectedGun = 1;
+            gunList[selectedGun].gameObject.SetActive(true);
+        } else if (Input.GetKeyDown(KeyCode.Alpha3) && gunList.Count >= 3) {
+            gunList[selectedGun].gameObject.SetActive(false);
+            selectedGun = 2;
+            gunList[selectedGun].gameObject.SetActive(true);
+        }
     }
 }
