@@ -37,7 +37,7 @@ Transform:
   - {fileID: 7399150327368194408}
   - {fileID: 1016536462665237414}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &9069294693800633259
 MonoBehaviour:
@@ -80,13 +80,15 @@ MonoBehaviour:
   sprintKey: 304
   crouchKey: 306
   HP: 100
-  walkSpeed: 7
+  maxHP: 0
+  walkSpeed: 13
   sprintSpeed: 10
   slideSpeed: 30
   dashSpeed: 50
+  doLerp: 0
   speedIncreaseMultiplier: 2.5
   slopeIncreaseMultiplier: 4.5
-  maxYSpeed: 9999
+  maxYSpeed: 0
   groundDrag: 7
   jumpForce: 20
   jumpCooldown: 0.25
@@ -96,7 +98,7 @@ MonoBehaviour:
   momentumPenalty: 5
   slamForce: 50
   maxSlideTime: 0.75
-  slideForce: 300
+  slideForce: 50
   slideSensitivity: 0.065
   doSensLerp: 0
   maxSlopeAngle: 40
@@ -113,7 +115,10 @@ MonoBehaviour:
   grounded: 0
   crouched: 0
   dashing: 0
+  sliding: 0
   wallGrinding: 0
+  gunList: []
+  selectedGun: 0
 --- !u!54 &1234185268690524683
 Rigidbody:
   m_ObjectHideFlags: 0
