@@ -65,7 +65,7 @@ Transform:
   m_Children:
   - {fileID: 1169406322556103431}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3780097300018788315
 MonoBehaviour:
@@ -118,6 +118,7 @@ MonoBehaviour:
   player: {fileID: 0}
   gunContainer: {fileID: 0}
   playerCamera: {fileID: 0}
+  pm: {fileID: 0}
   pickUpRange: 1.5
   dropForwardForce: 15
   dropUpwardForce: 7
