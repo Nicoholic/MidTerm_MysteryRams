@@ -28,8 +28,6 @@ public class ProjectileGun : MonoBehaviour {
 
     public Vector3 offset;
 
-    public TextMeshProUGUI ammunitionDisplay;
-
     [Header("Debug")]
     [SerializeField] bool allowInvoke = true;
     [SerializeField] int bulletsLeft;
@@ -52,8 +50,7 @@ public class ProjectileGun : MonoBehaviour {
     void Update() {
         MyInput();
 
-        if (ammunitionDisplay != null)
-            ammunitionDisplay.SetText(bulletsLeft / bulletsPerTap + "/" + magazineSize / bulletsPerTap);
+        GameManager.instance.currentAmmoTxt.SetText(bulletsLeft / bulletsPerTap + "/" + magazineSize / bulletsPerTap);
     }
 
     private void MyInput() {

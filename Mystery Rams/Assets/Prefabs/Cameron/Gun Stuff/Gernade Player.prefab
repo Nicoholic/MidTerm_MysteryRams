@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 7041507287391047406}
   - component: {fileID: 8077725843063392449}
   m_Layer: 12
-  m_Name: Gernade
+  m_Name: Gernade Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -51,9 +51,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 7041507287391047406}
   explosion: {fileID: 466863138485084077, guid: ed953e9a21d4b724c8785b855f6fd746, type: 3}
-  whatIsEnemy:
-    serializedVersion: 2
-    m_Bits: 16384
+  target: Enemy
   bounciness: 0.8
   useGravity: 1
   explosionDamage: 50
