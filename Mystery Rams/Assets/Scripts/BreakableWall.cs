@@ -11,15 +11,25 @@ public class BreakableWall : MonoBehaviour, IDamage
     [SerializeField] Renderer model;
     [Range(1, 3)][SerializeField] int HP; //Note that anything higher than 1 broke AI Tracking for me when I added this to my original project.
 
+    bool isdead;
+
+    void Start()
+    {
+        isdead = false;
+    }
+
     public void TakeDamage(int amount)
     {
         //Damage Function
         HP -= amount;
-        if (HP <= 0)
+        StartCoroutine(damageindicator());
+
+        if (HP <= 0 && !isdead)
         {
+            isdead = true;
             Destroy(gameObject);
         }
-        StartCoroutine(damageindicator());
+        
 
     }
     IEnumerator damageindicator()

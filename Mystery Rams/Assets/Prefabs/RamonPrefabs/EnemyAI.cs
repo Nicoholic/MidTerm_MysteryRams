@@ -143,6 +143,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     void IDamage.TakeDamage(int amount)
     {
         HP -= amount;
+        updateUI();
         agent.SetDestination(GameManager.instance.player.transform.position);
         StartCoroutine(flashdmg());
 
