@@ -49,13 +49,17 @@ public class ProjectileGun : MonoBehaviour {
 
     void Update() {
         MyInput();
+    }
 
+    private void FixedUpdate() {
         GameManager.instance.currentAmmoTxt.SetText(bulletsLeft / bulletsPerTap + "/" + magazineSize / bulletsPerTap);
     }
 
     private void MyInput() {
-        if (allowButtonHold) shooting = Input.GetKey(KeyCode.Mouse0);
-        else shooting = Input.GetKeyDown(KeyCode.Mouse0);
+        if (allowButtonHold)
+            shooting = Input.GetKey(KeyCode.Mouse0);
+        else
+            shooting = Input.GetKeyDown(KeyCode.Mouse0);
 
         if (Input.GetKeyDown(KeyCode.R) && bulletsLeft < magazineSize && !reloading)
             Reload();
