@@ -29,6 +29,8 @@ public class AggroEnemy : MonoBehaviour, IDamage {
     [SerializeField] bool alreadyAttacked;
     [SerializeField] int bulletsShot;
 
+    [SerializeField] Renderer model;
+
     private NavMeshAgent agent;
     private Transform player;
 
@@ -44,25 +46,26 @@ public class AggroEnemy : MonoBehaviour, IDamage {
         alreadyAttacked = false;
     }
 
-    void Update() {
+    void FixedUpdate() {
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
 
-        if (!playerInAttackRange) 
+        if (!playerInAttackRange)
             ChasePlayer();
-        
-        if (playerInAttackRange) 
+
+        if (playerInAttackRange)
             AttackPlayer();
     }
 
     private void ChasePlayer() {
-        agent.SetDestination(player.position);
+        if (HP > 0)
+            agent.SetDestination(player.position);
     }
 
     private void AttackPlayer() {
-        agent.SetDestination(transform.position);
+        if (HP > 0)
+            agent.SetDestination(transform.position);
 
-        //change this
-        transform.LookAt(player.position);
+        transform.LookAt(new Vector3(player.position.x, 0, player.position.z));
 
         if (!alreadyAttacked) {
             bulletsShot = 0;
@@ -78,8 +81,9 @@ public class AggroEnemy : MonoBehaviour, IDamage {
 
         float x = Random.Range(-spread, spread);
         float y = Random.Range(-spread, spread);
+        float z = Random.Range(-spread, spread);
 
-        Vector3 directionWithSpread = directionWithoutSpread + new Vector3(x, y, 0);
+        Vector3 directionWithSpread = directionWithoutSpread + new Vector3(x, y, z);
 
         GameObject currentBullet = Instantiate(projectile, attackPoint.position, Quaternion.identity);
         currentBullet.transform.forward = directionWithSpread.normalized;
@@ -97,11 +101,10 @@ public class AggroEnemy : MonoBehaviour, IDamage {
         alreadyAttacked = false;
     }
 
-    public void TakeDamage(int damage) {
-        HP -= damage;
-
-        if (HP <= 0)
-            Invoke(nameof(DelayedDestroy), 0.025f);
+    IEnumerator FlashDamage() {
+        model.material.color = Color.red;
+        yield return new WaitForSeconds(0.1f);
+        model.material.color = Color.white;
     }
 
     private void DelayedDestroy() => Destroy(gameObject);
@@ -109,5 +112,14 @@ public class AggroEnemy : MonoBehaviour, IDamage {
     private void OnDrawGizmosSelected() {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, attackRange);
+    }
+
+    public void TakeDamage(int damage) {
+
+        HP -= damage;
+        StartCoroutine(FlashDamage());
+
+        if (HP <= 0)
+            Invoke(nameof(DelayedDestroy), 0.025f);
     }
 }
