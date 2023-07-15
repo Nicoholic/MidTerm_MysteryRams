@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour {
@@ -25,6 +27,7 @@ public class GameManager : MonoBehaviour {
     [SerializeField] public TextMeshProUGUI currentAmmoTxt;
     [SerializeField] public TextMeshProUGUI maxAmmoTxt;
     [SerializeField] public Image PHealthBar;
+    [SerializeField] public Image AmmoBar;
     [SerializeField] GameObject playerDamageIndicator;
 
     int enemiesRemaining;
@@ -82,6 +85,7 @@ public class GameManager : MonoBehaviour {
             activeMenu = winMenu;
             activeMenu.SetActive(true);
             PauseGame();
+            UnlockLevel();
         }
     }
 
@@ -91,8 +95,10 @@ public class GameManager : MonoBehaviour {
         activeMenu.SetActive(true);
     }
 
-   
-    
+    public void ReloadUI()
+    {                      //replace V if using this
+        AmmoBar.fillAmount -= 1.0f / 0 * Time.deltaTime;
+    }
 
     public IEnumerator PlayerHurtFlash() {
         playerDamageIndicator.SetActive(true);
@@ -110,4 +116,13 @@ public class GameManager : MonoBehaviour {
         player.GetComponent<PlayerMovement>().UpdateUI();
     }
 
+    public void UnlockLevel()
+    {
+        if (SceneManager.GetActiveScene().buildIndex>=PlayerPrefs.GetInt("ReachedIndex"))
+        {
+            PlayerPrefs.SetInt("ReachedIndex", SceneManager.GetActiveScene().buildIndex + 1);
+            PlayerPrefs.SetInt("Level", PlayerPrefs.GetInt("Level", 1) + 1);
+            PlayerPrefs.Save();
+        }
+    }
 }
