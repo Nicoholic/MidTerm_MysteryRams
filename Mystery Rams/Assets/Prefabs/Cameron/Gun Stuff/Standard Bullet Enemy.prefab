@@ -16,8 +16,8 @@ GameObject:
   - component: {fileID: 4930259174039597215}
   - component: {fileID: 8567102775063600304}
   m_Layer: 12
-  m_Name: Standard Bullet
-  m_TagString: Bullet
+  m_Name: Standard Bullet Enemy
+  m_TagString: Undefined
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -51,7 +51,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 7366489392516069456}
   explosion: {fileID: 0}
-  target: Enemy
+  target: Player
   bounciness: 0
   useGravity: 0
   explosionDamage: 20

@@ -111,5 +111,7 @@ public class PickUpController : MonoBehaviour {
         } else
             pm.gunList.Remove(gun);
 
+        if (pm.gunList.Count == 0)
+            GameManager.instance.currentAmmoTxt.SetText("0/0");
     }
 }

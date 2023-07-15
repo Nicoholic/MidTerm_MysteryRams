@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 7041507287391047406}
   - component: {fileID: 8077725843063392449}
   m_Layer: 12
-  m_Name: Gernade
+  m_Name: Gernade Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -51,10 +51,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 7041507287391047406}
   explosion: {fileID: 466863138485084077, guid: ed953e9a21d4b724c8785b855f6fd746, type: 3}
-  whatIsEnemy:
-    serializedVersion: 2
-    m_Bits: 16384
-  bounciness: 0.8
+  target: Player
+  bounciness: 1
   useGravity: 1
   explosionDamage: 50
   explosionRange: 3
@@ -90,7 +88,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 5f2fd6bb7d3bc3946b3fb88be2d46358, type: 2}
+  - {fileID: 2100000, guid: 976b31720675c1a47be763ebf89dc566, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
