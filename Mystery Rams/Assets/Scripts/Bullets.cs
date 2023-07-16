@@ -26,13 +26,13 @@ public class Bullets : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        IDamage damageableComponent = other.GetComponent<IDamage>();
-        if (damageableComponent != null ) 
+        if (other.TryGetComponent<IDamage>(out var damageableComponent)) 
         {
             damageableComponent.TakeDamage(bulletDamage);
         
         }
 
         Destroy(gameObject);
+    
     }
 }

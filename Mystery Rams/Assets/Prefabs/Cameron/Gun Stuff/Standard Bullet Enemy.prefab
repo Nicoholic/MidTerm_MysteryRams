@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -2290422641213879402}
   - component: {fileID: 4930259174039597215}
   - component: {fileID: 8567102775063600304}
-  m_Layer: 12
+  m_Layer: 15
   m_Name: Standard Bullet Enemy
   m_TagString: Undefined
   m_Icon: {fileID: 0}
@@ -51,10 +51,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 7366489392516069456}
   explosion: {fileID: 0}
-  target: Player
+  targetTag: Player
   bounciness: 0
   useGravity: 0
-  explosionDamage: 20
+  explosionDamage: 5
   explosionRange: 0.1
   explosionForce: 0.5
   maxCollisions: 0

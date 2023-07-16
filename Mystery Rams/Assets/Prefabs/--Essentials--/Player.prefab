@@ -62,8 +62,8 @@ MonoBehaviour:
   useCameraForward: 0
   disableGravity: 1
   resetVel: 1
-  dashCooldown: 0.5
-  dashKey: 101
+  dashCooldown: 1
+  dashKey: 304
 --- !u!114 &5530706896573781636
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -77,12 +77,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpKey: 32
-  sprintKey: 304
+  sprintKey: 0
   crouchKey: 306
   HP: 100
   maxHP: 0
   walkSpeed: 13
-  sprintSpeed: 10
+  sprintSpeed: 20
   slideSpeed: 30
   dashSpeed: 50
   doLerp: 0
@@ -99,7 +99,7 @@ MonoBehaviour:
   slamForce: 50
   slamEffect: {fileID: 3596354832864168291, guid: 9b71e32d85bfdbd40b8bca828ee97ab3, type: 3}
   maxSlideTime: 0.75
-  slideForce: 50
+  slideForce: 15
   slideSensitivity: 0.065
   doSensLerp: 0
   maxSlopeAngle: 40

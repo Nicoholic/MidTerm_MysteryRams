@@ -26,8 +26,11 @@ public class AggroEnemy : MonoBehaviour, IDamage {
 
     [Header("Debug")]
     [SerializeField] bool playerInAttackRange;
-    [SerializeField] bool alreadyAttacked;
+    [SerializeField] bool canSeePlayer;
+    [SerializeField] bool attacking;
     [SerializeField] int bulletsShot;
+
+    [SerializeField] Renderer model;
 
     private NavMeshAgent agent;
     private Transform player;
@@ -41,34 +44,36 @@ public class AggroEnemy : MonoBehaviour, IDamage {
         agent = GetComponent<NavMeshAgent>();
         whatIsGround = 10;
         whatIsPlayer = LayerMask.GetMask("Player");
-        alreadyAttacked = false;
+        attacking = false;
     }
 
-    void Update() {
-        playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
+    void FixedUpdate() {
 
-        if (!playerInAttackRange) 
-            ChasePlayer();
-        
-        if (playerInAttackRange) 
+        playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
+        canSeePlayer = Physics.Raycast(attackPoint.position, player.position - attackPoint.position, out var hit) && hit.collider.CompareTag("Player");
+
+        if (playerInAttackRange && canSeePlayer)
             AttackPlayer();
+        else if (!attacking)
+            ChasePlayer();
     }
 
     private void ChasePlayer() {
-        agent.SetDestination(player.position);
+        if (HP > 0)
+            agent.SetDestination(player.position);
     }
 
     private void AttackPlayer() {
-        agent.SetDestination(transform.position);
+        if (HP > 0)
+            agent.SetDestination(transform.position);
 
-        //change this
-        transform.LookAt(player.position);
+        transform.LookAt(new Vector3(player.position.x, 0, player.position.z));
 
-        if (!alreadyAttacked) {
+        if (!attacking) {
             bulletsShot = 0;
             Shoot();
 
-            alreadyAttacked = true;
+            attacking = true;
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
         }
     }
@@ -78,8 +83,9 @@ public class AggroEnemy : MonoBehaviour, IDamage {
 
         float x = Random.Range(-spread, spread);
         float y = Random.Range(-spread, spread);
+        float z = Random.Range(-spread, spread);
 
-        Vector3 directionWithSpread = directionWithoutSpread + new Vector3(x, y, 0);
+        Vector3 directionWithSpread = directionWithoutSpread + new Vector3(x, y, z);
 
         GameObject currentBullet = Instantiate(projectile, attackPoint.position, Quaternion.identity);
         currentBullet.transform.forward = directionWithSpread.normalized;
@@ -94,14 +100,13 @@ public class AggroEnemy : MonoBehaviour, IDamage {
     }
 
     private void ResetAttack() {
-        alreadyAttacked = false;
+        attacking = false;
     }
 
-    public void TakeDamage(int damage) {
-        HP -= damage;
-
-        if (HP <= 0)
-            Invoke(nameof(DelayedDestroy), 0.025f);
+    IEnumerator FlashDamage() {
+        model.material.color = Color.red;
+        yield return new WaitForSeconds(0.1f);
+        model.material.color = Color.white;
     }
 
     private void DelayedDestroy() => Destroy(gameObject);
@@ -109,5 +114,14 @@ public class AggroEnemy : MonoBehaviour, IDamage {
     private void OnDrawGizmosSelected() {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, attackRange);
+    }
+
+    public void TakeDamage(int damage) {
+
+        HP -= damage;
+        StartCoroutine(FlashDamage());
+
+        if (HP <= 0)
+            Invoke(nameof(DelayedDestroy), 0.025f);
     }
 }
