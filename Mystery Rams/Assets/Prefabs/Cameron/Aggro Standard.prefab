@@ -34,7 +34,7 @@ Transform:
   - {fileID: 7409271403021330827}
   - {fileID: 4573368233089811437}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1953684169741801513
 MonoBehaviour:
@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80129efe422c02d4aad7ae23fa53808f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HP: 100
+  HP: 150
   projectile: {fileID: 2809463482995139570, guid: e48ee86e750797b42805977eef0b95c9, type: 3}
   timeBetweenAttacks: 1
   spread: 0
@@ -59,7 +59,8 @@ MonoBehaviour:
   upwardForce: 0
   attackPoint: {fileID: 4573368233089811437}
   playerInAttackRange: 0
-  alreadyAttacked: 1
+  canSeePlayer: 0
+  attacking: 0
   bulletsShot: 0
   model: {fileID: 3721716266680722730}
 --- !u!195 &1517874992501855306
@@ -103,8 +104,8 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 2
+  m_Radius: 0.6
+  m_Height: 2.2
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &5028705914688725728

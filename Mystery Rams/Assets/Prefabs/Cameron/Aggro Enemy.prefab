@@ -59,7 +59,8 @@ MonoBehaviour:
   upwardForce: 0
   attackPoint: {fileID: 8249570525717349527}
   playerInAttackRange: 0
-  alreadyAttacked: 1
+  canSeePlayer: 0
+  attacking: 0
   bulletsShot: 0
   model: {fileID: 8626110011997487216}
 --- !u!195 &6196334000653408478
@@ -103,8 +104,8 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 2
+  m_Radius: 0.6
+  m_Height: 2.2
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &2310085581969078191

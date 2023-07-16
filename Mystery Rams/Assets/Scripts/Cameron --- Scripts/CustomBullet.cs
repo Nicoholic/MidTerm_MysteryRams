@@ -42,7 +42,7 @@ public class CustomBullet : MonoBehaviour {
             bounceCombine = PhysicMaterialCombine.Minimum
         };
 
-        GetComponent<SphereCollider>().material = physicalMaterial;
+       // GetComponent<SphereCollider>().material = physicalMaterial;
 
         rb.useGravity = useGravity;
     }
@@ -68,7 +68,7 @@ public class CustomBullet : MonoBehaviour {
             if (item.TryGetComponent<Rigidbody>(out var itemRB))
                 itemRB.AddExplosionForce(explosionForce, transform.position, explosionRange);
 
-            if (item.TryGetComponent<IDamage>(out var enemy))
+            if (item.TryGetComponent<IDamage>(out var enemy) && item.CompareTag(targetTag))
                 enemy.TakeDamage(explosionDamage);
         }
 
