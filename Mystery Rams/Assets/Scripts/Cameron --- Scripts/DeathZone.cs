@@ -19,7 +19,7 @@ public class DeathBarrier : MonoBehaviour {
                 other.GetComponent<IDamage>().TakeDamage(damage);
 
             if (other.GetComponent<PlayerMovement>().HP > 0)
-                GameManager.instance.SpawnPlayer();
+                GameManager.instance.player.GetComponent<PlayerMovement>().SpawnPlayer();
         } else if (doDestroy)
             Destroy(other.gameObject);
     }

@@ -106,16 +106,6 @@ public class GameManager : MonoBehaviour {
         playerDamageIndicator.SetActive(false);
     }
 
-    public void SpawnPlayer() {
-        player.GetComponent<Rigidbody>().position = playerSpawnPoint.transform.position;
-        if (isPaused)
-        {
-            UnpauseGame();
-        }
-        GameManager.instance.player.GetComponent<PlayerMovement>().HP = GameManager.instance.player.GetComponent<PlayerMovement>().maxHP;
-        player.GetComponent<PlayerMovement>().UpdateUI();
-    }
-
     public void UnlockLevel()
     {
         if (SceneManager.GetActiveScene().buildIndex>=PlayerPrefs.GetInt("ReachedIndex"))

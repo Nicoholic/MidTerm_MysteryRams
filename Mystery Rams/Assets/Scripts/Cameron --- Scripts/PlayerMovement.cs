@@ -118,11 +118,11 @@ public class PlayerMovement : MonoBehaviour, IDamage {
         yScaleOriginal = transform.localScale.y;
         originalSensitivity = playerCamera.GetSensitivity();
 
-        Invoke(nameof(GameManager.instance.SpawnPlayer), 0.0025f);
+        Invoke(nameof(SpawnPlayer), 0.0025f);
 
         maxHP = HP;
 
-        GameManager.instance.SpawnPlayer();
+        GameManager.instance.player.GetComponent<PlayerMovement>().SpawnPlayer();
     }
 
     private void Update() {
@@ -399,11 +399,6 @@ public class PlayerMovement : MonoBehaviour, IDamage {
             playerCamera.LerpSensitivity(originalSensitivity);
     }
 
-    private void SpawnPlayer() {
-        rb.velocity = new Vector3(0.0f, 0.0f, 0.0f);
-        GameManager.instance.SpawnPlayer();
-    }
-
     public void TakeDamage(int damage) {
         HP -= damage;
         UpdateUI();
@@ -417,6 +412,17 @@ public class PlayerMovement : MonoBehaviour, IDamage {
         GameManager.instance.PHealthBar.fillAmount = (float)HP / maxHP;
 
         GameManager.instance.heathTxt.text = HP.ToString("F0");
+    }
+
+    public void SpawnPlayer()
+    {
+        gameObject.transform.position = GameManager.instance.playerSpawnPoint.transform.position;
+        if (GameManager.instance.isPaused)
+        {
+            GameManager.instance.UnpauseGame();
+        }
+        HP = maxHP;
+        UpdateUI();
     }
 
     void GunChangeInput() {
