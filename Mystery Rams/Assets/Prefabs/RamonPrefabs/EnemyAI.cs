@@ -161,7 +161,7 @@ public class EnemyAI : MonoBehaviour, IDamage
             StopAllCoroutines();
             isdead = true;
             GameManager.instance.UpdateGameGoal(-1);
-            anim.SetBool("Dead", true);
+            anim.SetBool("Death", true);
             agent.enabled = false;
             GetComponent<CapsuleCollider>().enabled = false;
             //Destroy(gameObject);

@@ -64,10 +64,7 @@ MonoBehaviour:
   recoilForce: 0
   attackPoint: {fileID: 6090182229179722210}
   muzzleFlash: {fileID: 0}
-  xOffset: 0.35
-  yOffset: -0.35
-  zOffset: 0.8
-  ammunitionDisplay: {fileID: 0}
+  offset: {x: 0, y: 0, z: 0}
   allowInvoke: 1
   bulletsLeft: 0
   bulletsShot: 0
@@ -92,6 +89,7 @@ MonoBehaviour:
   player: {fileID: 0}
   gunContainer: {fileID: 0}
   playerCamera: {fileID: 0}
+  pm: {fileID: 0}
   pickUpRange: 4
   dropForwardForce: 15
   dropUpwardForce: 7
