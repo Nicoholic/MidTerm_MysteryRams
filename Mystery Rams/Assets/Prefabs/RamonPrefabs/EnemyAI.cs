@@ -164,6 +164,7 @@ public class EnemyAI : MonoBehaviour, IDamage
             anim.SetBool("Death", true);
             agent.enabled = false;
             GetComponent<CapsuleCollider>().enabled = false;
+            Invoke("Kill", 5f);
             //Destroy(gameObject);
         }
         else
@@ -183,5 +184,9 @@ public class EnemyAI : MonoBehaviour, IDamage
     public void updateUI()
     {
         HPBar.fillAmount = (float)HP / hporig;
+    }
+    private void Kill()
+    {
+        Destroy(gameObject);
     }
 }
