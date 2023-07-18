@@ -11,8 +11,13 @@ public class PlayerMovement : MonoBehaviour, IDamage {
     [SerializeField] KeyCode sprintKey = KeyCode.LeftShift;
     [SerializeField] KeyCode crouchKey = KeyCode.LeftControl;
 
-    public int HP;
 
+    [Header("Health")]
+    public int HP;
+    [SerializeField] float healRate;
+    [SerializeField] int healAmount;
+
+    private bool healing;
     public int maxHP;
 
     [Header("Movement")]
@@ -148,7 +153,7 @@ public class PlayerMovement : MonoBehaviour, IDamage {
 
         if (grounded && slamming) {
             slamming = false;
-            Instantiate(slamEffect, new Vector3(gameObject.transform.position.x, gameObject.transform.position.y -1,gameObject.transform.position.z), Quaternion.identity);
+            Instantiate(slamEffect, new Vector3(gameObject.transform.position.x, gameObject.transform.position.y - 1, gameObject.transform.position.z), Quaternion.identity);
         }
     }
 
@@ -200,7 +205,7 @@ public class PlayerMovement : MonoBehaviour, IDamage {
 
         // check if desiredMoveSpeed has changed drastically
         if (Mathf.Abs(desiredMoveSpeed - lastDesiredMoveSpeed) > 4f && moveSpeed != 0) {
-            StopAllCoroutines();
+            StopCoroutine(LerpMoveSpeed());
             if (doLerp)
                 StartCoroutine(LerpMoveSpeed());
         } else {
@@ -390,6 +395,7 @@ public class PlayerMovement : MonoBehaviour, IDamage {
 
     private void StopSlide() {
         sliding = false;
+
         if (crouched && !Input.GetKey(crouchKey)) {
             transform.localScale = new Vector3(transform.localScale.x, yScaleOriginal, transform.localScale.z);
             crouched = false;
@@ -401,26 +407,27 @@ public class PlayerMovement : MonoBehaviour, IDamage {
 
     public void TakeDamage(int damage) {
         HP -= damage;
+
         UpdateUI();
         StartCoroutine(GameManager.instance.PlayerHurtFlash());
-        if (HP <= 0) {
+
+        Invoke(nameof(HealAfterDelay), healRate);
+
+        if (HP <= 0)
             GameManager.instance.GameLoss();
-        }
     }
 
     public void UpdateUI() {
         GameManager.instance.PHealthBar.fillAmount = (float)HP / maxHP;
-
         GameManager.instance.heathTxt.text = HP.ToString("F0");
     }
 
-    public void SpawnPlayer()
-    {
+    public void SpawnPlayer() {
         gameObject.transform.position = GameManager.instance.playerSpawnPoint.transform.position;
+
         if (GameManager.instance.isPaused)
-        {
             GameManager.instance.UnpauseGame();
-        }
+
         HP = maxHP;
         UpdateUI();
     }
@@ -447,5 +454,32 @@ public class PlayerMovement : MonoBehaviour, IDamage {
             selectedGun = 2;
             gunList[selectedGun].gameObject.SetActive(true);
         }
+    }
+
+    private void HealAfterDelay() {
+
+        if (healing)
+            return;
+
+        Heal();
+
+        healing = true;
+
+        StartCoroutine(HealLoop());
+    }
+
+    private IEnumerator HealLoop() {
+        yield return new WaitForSeconds(healRate);
+        healing = false;
+        HealAfterDelay();
+    }
+
+    private void Heal() {
+        HP += healAmount;
+        if (HP >= maxHP) {
+            HP = maxHP;
+            StopCoroutine(HealLoop());
+        }
+        UpdateUI();
     }
 }
