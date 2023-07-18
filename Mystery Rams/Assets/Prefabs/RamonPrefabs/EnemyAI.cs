@@ -13,9 +13,11 @@ public class EnemyAI : MonoBehaviour, IDamage
     [SerializeField] NavMeshAgent agent;
     [SerializeField] Transform headpos;
     [SerializeField] Image HPBar;
+    [SerializeField] Animator anim;
 
     [Header("Stats")]
     [SerializeField] int HP;
+    [SerializeField] int shootAngle;
     [SerializeField] float viewAngle;
     [SerializeField] int playerFaceSpeed;
     [SerializeField] int roamtime;
@@ -39,7 +41,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     // Start is called before the first frame update
     void Start()
     {
-        GameManager.instance.UpdateGameGoal(1);
+        //GameManager.instance.UpdateGameGoal(1);
         stoppingDistanceOrig = agent.stoppingDistance;
         hporig = HP;
         startingPos = transform.position;
@@ -50,14 +52,21 @@ public class EnemyAI : MonoBehaviour, IDamage
     // Update is called once per frame
     void Update()
     {
-        if (playerInRange && !canSeePlayer())
+        if (agent.isActiveAndEnabled)
         {
-            StartCoroutine(roaming());
+            anim.SetFloat("Blend", agent.velocity.normalized.magnitude);
+
+            if (playerInRange && !canSeePlayer())
+            {
+                StartCoroutine(roaming());
+            }
+            else if (agent.destination != GameManager.instance.player.transform.position)
+            {
+                StartCoroutine(roaming());
+            }
         }
-        else if(agent.destination != GameManager.instance.player.transform.position)
-        {
-            StartCoroutine(roaming());
-        }
+
+            
     }
 
     IEnumerator roaming()
@@ -96,6 +105,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     IEnumerator shoot()
     {
         isShooting = true;
+        anim.SetTrigger("Shoot");
         Instantiate(bullet, ShootPos.position, transform.rotation);
         yield return new WaitForSeconds(ShotRate);
         isShooting = false;
@@ -127,7 +137,7 @@ public class EnemyAI : MonoBehaviour, IDamage
                 {
                     facePlayer();
                 }
-                if (!isShooting)
+                if (!isShooting && angleToPlayer <= shootAngle)
                 {
                     StartCoroutine(shoot());
                 }
@@ -144,14 +154,23 @@ public class EnemyAI : MonoBehaviour, IDamage
     {
         HP -= amount;
         updateUI();
-        agent.SetDestination(GameManager.instance.player.transform.position);
-        StartCoroutine(flashdmg());
+        
 
         if (HP <= 0 && !isdead)
         {
+            StopAllCoroutines();
             isdead = true;
             GameManager.instance.UpdateGameGoal(-1);
-            Destroy(gameObject);
+            anim.SetBool("Dead", true);
+            agent.enabled = false;
+            GetComponent<CapsuleCollider>().enabled = false;
+            //Destroy(gameObject);
+        }
+        else
+        {
+            anim.SetTrigger("Damage");
+            agent.SetDestination(GameManager.instance.player.transform.position);
+            StartCoroutine(flashdmg());
         }
     }
 
