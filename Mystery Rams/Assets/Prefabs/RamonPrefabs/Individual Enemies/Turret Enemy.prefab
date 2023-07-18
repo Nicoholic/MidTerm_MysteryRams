@@ -460,7 +460,9 @@ MonoBehaviour:
   agent: {fileID: 7667810908102911822}
   headpos: {fileID: 8632039564635948113}
   HPBar: {fileID: 9026440522187198618}
-  HP: 100
+  anim: {fileID: 680773941577681384}
+  HP: 200
+  shootAngle: 30
   viewAngle: 360
   playerFaceSpeed: 180
   roamtime: 3
@@ -478,7 +480,7 @@ Animator:
   m_GameObject: {fileID: 3111954369462020267}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 9e6376af45d044888914cb4041e67a21, type: 3}
-  m_Controller: {fileID: 9100000, guid: fcffe114490a38f43901e374b57abf47, type: 2}
+  m_Controller: {fileID: 9100000, guid: 1ecf641d67112134b874f1c8346e28ec, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
