@@ -57,7 +57,7 @@ public class GameManager : MonoBehaviour {
         }
     }
 
-    
+
 
     public void PauseGame() {
         Time.timeScale = 0;
@@ -91,23 +91,17 @@ public class GameManager : MonoBehaviour {
         activeMenu.SetActive(true);
     }
 
-   
-    
+    public void GameWin() {
+        activeMenu = winMenu;
+        activeMenu.SetActive(true);
+        PauseGame();
+    }
+
 
     public IEnumerator PlayerHurtFlash() {
         playerDamageIndicator.SetActive(true);
         yield return new WaitForSeconds(0.1f);
         playerDamageIndicator.SetActive(false);
-    }
-
-    public void SpawnPlayer() {
-        player.GetComponent<Rigidbody>().position = playerSpawnPoint.transform.position;
-        if (isPaused)
-        {
-            UnpauseGame();
-        }
-        GameManager.instance.player.GetComponent<PlayerMovement>().HP = GameManager.instance.player.GetComponent<PlayerMovement>().maxHP;
-        player.GetComponent<PlayerMovement>().UpdateUI();
     }
 
 }

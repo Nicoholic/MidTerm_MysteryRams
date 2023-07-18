@@ -49,12 +49,15 @@ public class PlayerCamera : MonoBehaviour {
             float t = elapsedTime / duration;
             float currentFov = Mathf.Lerp(startValue, endValue, t);
             GetComponent<Camera>().fieldOfView = currentFov;
+            gameObject.transform.GetChild(0).GetComponent<Camera>().fieldOfView = currentFov;
+
 
             elapsedTime += Time.deltaTime;
             yield return null;
         }
 
         GetComponent<Camera>().fieldOfView = endValue;
+        gameObject.transform.GetChild(0).GetComponent<Camera>().fieldOfView = endValue;
     }
 
     public float GetSensitivity() {

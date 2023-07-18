@@ -26,7 +26,8 @@ public class AggroEnemy : MonoBehaviour, IDamage {
 
     [Header("Debug")]
     [SerializeField] bool playerInAttackRange;
-    [SerializeField] bool alreadyAttacked;
+    [SerializeField] bool canSeePlayer;
+    [SerializeField] bool attacking;
     [SerializeField] int bulletsShot;
 
     [SerializeField] Renderer model;
@@ -43,17 +44,18 @@ public class AggroEnemy : MonoBehaviour, IDamage {
         agent = GetComponent<NavMeshAgent>();
         whatIsGround = 10;
         whatIsPlayer = LayerMask.GetMask("Player");
-        alreadyAttacked = false;
+        attacking = false;
     }
 
     void FixedUpdate() {
+
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
+        canSeePlayer = Physics.Raycast(attackPoint.position, player.position - attackPoint.position, out var hit) && hit.collider.CompareTag("Player");
 
-        if (!playerInAttackRange)
-            ChasePlayer();
-
-        if (playerInAttackRange)
+        if (playerInAttackRange && canSeePlayer)
             AttackPlayer();
+        else if (!attacking)
+            ChasePlayer();
     }
 
     private void ChasePlayer() {
@@ -67,11 +69,11 @@ public class AggroEnemy : MonoBehaviour, IDamage {
 
         transform.LookAt(new Vector3(player.position.x, 0, player.position.z));
 
-        if (!alreadyAttacked) {
+        if (!attacking) {
             bulletsShot = 0;
             Shoot();
 
-            alreadyAttacked = true;
+            attacking = true;
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
         }
     }
@@ -98,7 +100,7 @@ public class AggroEnemy : MonoBehaviour, IDamage {
     }
 
     private void ResetAttack() {
-        alreadyAttacked = false;
+        attacking = false;
     }
 
     IEnumerator FlashDamage() {
