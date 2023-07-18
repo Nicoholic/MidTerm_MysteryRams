@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
     public static GameManager instance;
@@ -29,7 +30,7 @@ public class GameManager : MonoBehaviour {
 
     int enemiesRemaining;
     public bool isPaused;
-    float originalTimeScale;
+    public float originalTimeScale;
 
     void Awake() {
         instance = this;
@@ -97,6 +98,17 @@ public class GameManager : MonoBehaviour {
         PauseGame();
     }
 
+    public void LevelUnlocked()
+    {
+        int currentLevel = SceneManager.GetActiveScene().buildIndex;
+        int nextLevel = currentLevel + 1;
+
+        int OpenLevel = PlayerPrefs.GetInt("OpenLevel", 1);
+        if (nextLevel > OpenLevel)
+        {
+            PlayerPrefs.SetInt("OpenLevel", nextLevel);
+        }
+    }
 
     public IEnumerator PlayerHurtFlash() {
         playerDamageIndicator.SetActive(true);
