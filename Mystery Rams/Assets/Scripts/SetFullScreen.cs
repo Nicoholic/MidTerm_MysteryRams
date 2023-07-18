@@ -5,8 +5,11 @@ using UnityEngine;
 
 public class SetFullScreen : MonoBehaviour
 {
-    public void FullsScreen(bool isfullScreen)
+    public bool IsFullScreen => Screen.fullScreen;
+
+    public void FullsScreen(bool isFullScreen)
     {
-        Screen.fullScreen = isfullScreen;
+        Screen.fullScreen = isFullScreen;
     }
 }
+
