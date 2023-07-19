@@ -5048,7 +5048,7 @@ Transform:
   - {fileID: 3342148098933622019}
   - {fileID: 2144866628836520178}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5760980239611899516
 MonoBehaviour:
@@ -5063,7 +5063,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseMe: {fileID: 4392870701867610895}
-  howLong: 2
+  howLong: 1
 --- !u!114 &4392870701867610895
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5078,11 +5078,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HP: 50
   projectile: {fileID: 2809463482995139570, guid: b8e67249c6738ff47846569c8f42fc72, type: 3}
+  attackDelay: 0.35
   timeBetweenAttacks: 1
   spread: 0
   timeBetweenShots: 0
   bulletsPerShot: 1
-  attackRange: 0.75
+  attackRange: 1.25
   shootForce: 50
   upwardForce: 0
   attackPoint: {fileID: 2144866628836520178}
@@ -5091,7 +5092,7 @@ MonoBehaviour:
   canSeePlayer: 0
   attacking: 0
   bulletsShot: 0
-  model: {fileID: 0}
+  model: {fileID: 5278081927104917360}
 --- !u!195 &3581377955714162884
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -5106,9 +5107,9 @@ NavMeshAgent:
   m_Acceleration: 9999
   avoidancePriority: 50
   m_AngularSpeed: 9999
-  m_StoppingDistance: 0
+  m_StoppingDistance: 1.25
   m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
+  m_AutoBraking: 0
   m_AutoRepath: 1
   m_Height: 2
   m_BaseOffset: 0

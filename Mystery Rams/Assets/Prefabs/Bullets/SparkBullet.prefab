@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 6869333358981253692}
   m_Layer: 15
   m_Name: SparkBullet
-  m_TagString: Untagged
+  m_TagString: Undefined
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -50,6 +50,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 5218006298617525158}
+  bulletEffect: {fileID: 0}
   bulletDamage: 1
   bulletSpeed: 20
   destroyBulletTime: 3
