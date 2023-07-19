@@ -7,10 +7,13 @@ public class DoorManager : MonoBehaviour
     public bool isOpen = false;
     [SerializeField] bool isDoor;
 
-    [Header("Door Settings")]
+    [Header("Vertical Door Settings")]//doors that open vertically
     [SerializeField] float doorSpeed = 1F;
     [SerializeField] float doorRotationAngle = 90F;
     [SerializeField] float openingDirection = 0F;
+
+    [Header("Horizontal Door Settings")]//doors that open horizontally
+
 
     private Vector3 initialRotation;
     private Vector3 forward;
