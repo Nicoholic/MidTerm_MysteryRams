@@ -9,6 +9,8 @@ TagManager:
   - SpawnPoint
   - Wall
   - Enemy
+  - Bullet
+  - Undefined
   layers:
   - Default
   - TransparentFX
@@ -20,14 +22,14 @@ TagManager:
   - 
   - 
   - 
-  - whatIsGround
-  - whatIsWall
-  - whatIsPlayerBullet
-  - whatIsPlayer
-  - whatIsEnemy
-  - whatIsEnemyBullet
+  - Ground
   - 
+  - PlayerBullet
+  - Player
+  - Enemy
+  - EnemyBullet
   - 
+  - RenderPriority
   - 
   - 
   - 

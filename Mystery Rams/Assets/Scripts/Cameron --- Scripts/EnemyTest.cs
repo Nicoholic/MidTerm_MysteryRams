@@ -11,7 +11,6 @@ public class EnemyTest : MonoBehaviour, IDamage {
     [SerializeField] NavMeshAgent agent;
     [SerializeField] Transform headPos;
 
-
     [Header("Enemy Stats")]
     [SerializeField] int hp;
     [Range(1.0f,360.0f)][SerializeField] private float viewAngle;
@@ -36,14 +35,14 @@ public class EnemyTest : MonoBehaviour, IDamage {
     float angleToPlayer;
     Vector3 playerDirection;
     Vector3 startingPos;
-    bool isdead;
+    bool isDead;
    
 
     void Start() {
         GameManager.instance.UpdateGameGoal(1);
         originalStoppingDistance = agent.stoppingDistance;
         startingPos = transform.position;
-        isdead = false;
+        isDead = false;
     }
 
     void Update() {
@@ -152,9 +151,9 @@ public class EnemyTest : MonoBehaviour, IDamage {
 
         if (hp <= 0) {
             
-            if (isdead==false)
+            if (isDead==false)
             {
-                isdead = true;
+                isDead = true;
                 GameManager.instance.UpdateGameGoal(-1);
             }
             Destroy(gameObject);

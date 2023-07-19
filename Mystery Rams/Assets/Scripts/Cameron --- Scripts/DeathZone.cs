@@ -5,22 +5,28 @@ using UnityEngine;
 public class DeathBarrier : MonoBehaviour {
 
     [Header("Settings")]
-    [SerializeField] bool instantLose;
+    [SerializeField] bool doDeath;
     [SerializeField] bool doDamage;
     [SerializeField] int damage;
-    [SerializeField] bool doDestroy;
+    [SerializeField] bool doDestroyGameObject;
+    [SerializeField] bool doRespawn;
 
-    private void OnTriggerEnter(Collider other) {
+    private void OnTriggerStay(Collider other) {
+
         if (other.gameObject.CompareTag("Player")) {
-            if (instantLose) {
+
+            if (doDeath) {
                 GameManager.instance.GameLoss();
                 return;
+
             } else if (doDamage)
                 other.GetComponent<IDamage>().TakeDamage(damage);
 
-            if (other.GetComponent<PlayerMovement>().HP > 0)
-                GameManager.instance.SpawnPlayer();
-        } else if (doDestroy)
+            if (other.GetComponent<PlayerMovement>().HP > 0 && doRespawn)
+                GameManager.instance.player.GetComponent<PlayerMovement>().SpawnPlayer();
+
+
+        } else if (doDestroyGameObject)
             Destroy(other.gameObject);
     }
 }

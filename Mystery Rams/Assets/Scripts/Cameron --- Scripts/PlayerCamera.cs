@@ -28,15 +28,17 @@ public class PlayerCamera : MonoBehaviour {
         if (!GameManager.instance.isPaused) {
             mouseX = Input.GetAxis("Mouse X") * sensitivity;
             mouseY = Input.GetAxis("Mouse Y") * sensitivity;
+
+
+            yRotation += mouseX;
+
+            xRotation -= mouseY;
+            xRotation = Mathf.Clamp(xRotation, -90f, 90f);
+
+
+            transform.rotation = Quaternion.Euler(xRotation, yRotation, 0);
+            orientation.rotation = Quaternion.Euler(0, yRotation, 0);
         }
-
-        yRotation += mouseX;
-
-        xRotation -= mouseY;
-        xRotation = Mathf.Clamp(xRotation, -90f, 90f);
-
-        transform.rotation = Quaternion.Euler(xRotation, yRotation, 0);
-        orientation.rotation = Quaternion.Euler(0, yRotation, 0);
     }
 
     public IEnumerator LerpFov(float endValue, float duration = 0.1f) {
@@ -47,12 +49,15 @@ public class PlayerCamera : MonoBehaviour {
             float t = elapsedTime / duration;
             float currentFov = Mathf.Lerp(startValue, endValue, t);
             GetComponent<Camera>().fieldOfView = currentFov;
+            gameObject.transform.GetChild(0).GetComponent<Camera>().fieldOfView = currentFov;
+
 
             elapsedTime += Time.deltaTime;
             yield return null;
         }
 
         GetComponent<Camera>().fieldOfView = endValue;
+        gameObject.transform.GetChild(0).GetComponent<Camera>().fieldOfView = endValue;
     }
 
     public float GetSensitivity() {

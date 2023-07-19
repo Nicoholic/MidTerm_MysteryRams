@@ -21,6 +21,9 @@ public class GameManager : MonoBehaviour {
     [SerializeField] GameObject winMenu;
     [SerializeField] GameObject loseMenu;
     [SerializeField] TextMeshProUGUI enemiesRemainingText;
+    [SerializeField] public TextMeshProUGUI heathTxt;
+    [SerializeField] public TextMeshProUGUI currentAmmoTxt;
+    [SerializeField] public TextMeshProUGUI maxAmmoTxt;
     [SerializeField] public Image PHealthBar;
     [SerializeField] GameObject playerDamageIndicator;
 
@@ -54,7 +57,7 @@ public class GameManager : MonoBehaviour {
         }
     }
 
-    
+
 
     public void PauseGame() {
         Time.timeScale = 0;
@@ -88,20 +91,17 @@ public class GameManager : MonoBehaviour {
         activeMenu.SetActive(true);
     }
 
-   
-    
+    public void GameWin() {
+        activeMenu = winMenu;
+        activeMenu.SetActive(true);
+        PauseGame();
+    }
+
 
     public IEnumerator PlayerHurtFlash() {
         playerDamageIndicator.SetActive(true);
         yield return new WaitForSeconds(0.1f);
         playerDamageIndicator.SetActive(false);
-    }
-
-    public void SpawnPlayer() {
-        player.GetComponent<Rigidbody>().position = playerSpawnPoint.transform.position;
-        if (isPaused)
-            UnpauseGame();
-        //player.GetComponent<PlayerShoot>().PlayerUiUpdate();
     }
 
 }

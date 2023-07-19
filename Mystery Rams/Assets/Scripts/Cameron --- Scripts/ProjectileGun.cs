@@ -28,8 +28,6 @@ public class ProjectileGun : MonoBehaviour {
 
     public Vector3 offset;
 
-    public TextMeshProUGUI ammunitionDisplay;
-
     [Header("Debug")]
     [SerializeField] bool allowInvoke = true;
     [SerializeField] int bulletsLeft;
@@ -51,14 +49,17 @@ public class ProjectileGun : MonoBehaviour {
 
     void Update() {
         MyInput();
+    }
 
-        if (ammunitionDisplay != null)
-            ammunitionDisplay.SetText(bulletsLeft / bulletsPerTap + "/" + magazineSize / bulletsPerTap);
+    private void FixedUpdate() {
+        GameManager.instance.currentAmmoTxt.SetText(bulletsLeft / bulletsPerTap + "/" + magazineSize / bulletsPerTap);
     }
 
     private void MyInput() {
-        if (allowButtonHold) shooting = Input.GetKey(KeyCode.Mouse0);
-        else shooting = Input.GetKeyDown(KeyCode.Mouse0);
+        if (allowButtonHold)
+            shooting = Input.GetKey(KeyCode.Mouse0);
+        else
+            shooting = Input.GetKeyDown(KeyCode.Mouse0);
 
         if (Input.GetKeyDown(KeyCode.R) && bulletsLeft < magazineSize && !reloading)
             Reload();

@@ -37,7 +37,7 @@ Transform:
   - {fileID: 7399150327368194408}
   - {fileID: 1016536462665237414}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &9069294693800633259
 MonoBehaviour:
@@ -62,8 +62,8 @@ MonoBehaviour:
   useCameraForward: 0
   disableGravity: 1
   resetVel: 1
-  dashCooldown: 0.5
-  dashKey: 101
+  dashCooldown: 1
+  dashKey: 304
 --- !u!114 &5530706896573781636
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -77,16 +77,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpKey: 32
-  sprintKey: 304
+  sprintKey: 0
   crouchKey: 306
   HP: 100
-  walkSpeed: 7
-  sprintSpeed: 10
+  healRate: 0.75
+  healAmount: 1
+  maxHP: 0
+  walkSpeed: 13
+  sprintSpeed: 20
   slideSpeed: 30
   dashSpeed: 50
+  doLerp: 0
   speedIncreaseMultiplier: 2.5
   slopeIncreaseMultiplier: 4.5
-  maxYSpeed: 9999
+  maxYSpeed: 0
   groundDrag: 7
   jumpForce: 20
   jumpCooldown: 0.25
@@ -95,8 +99,9 @@ MonoBehaviour:
   crouchYScale: 0.5
   momentumPenalty: 5
   slamForce: 50
+  slamEffect: {fileID: 3596354832864168291, guid: 9b71e32d85bfdbd40b8bca828ee97ab3, type: 3}
   maxSlideTime: 0.75
-  slideForce: 300
+  slideForce: 15
   slideSensitivity: 0.065
   doSensLerp: 0
   maxSlopeAngle: 40
@@ -113,7 +118,10 @@ MonoBehaviour:
   grounded: 0
   crouched: 0
   dashing: 0
+  sliding: 0
   wallGrinding: 0
+  gunList: []
+  selectedGun: 0
 --- !u!54 &1234185268690524683
 Rigidbody:
   m_ObjectHideFlags: 0

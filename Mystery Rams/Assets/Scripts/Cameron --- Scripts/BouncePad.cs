@@ -9,7 +9,7 @@ public class BouncePad : MonoBehaviour {
     private void OnTriggerStay(Collider other) {
 
         if (other.TryGetComponent<Rigidbody>(out var rb))
-            rb.GetComponent<Rigidbody>().AddForce(Vector3.up * jumpForce, ForceMode.VelocityChange);
+            rb.GetComponent<Rigidbody>().AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
 
     }
 }

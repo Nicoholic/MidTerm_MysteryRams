@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.Design;
+using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.SubsystemsImplementation;
 
@@ -9,7 +10,7 @@ public class CustomBullet : MonoBehaviour {
     [Header("Components")]
     public Rigidbody rb;
     public GameObject explosion;
-    public LayerMask whatIsEnemy;
+    public string targetTag;
 
     [Header("Stats")]
     public float bounciness;
@@ -41,12 +42,12 @@ public class CustomBullet : MonoBehaviour {
             bounceCombine = PhysicMaterialCombine.Minimum
         };
 
-        GetComponent<SphereCollider>().material = physicalMaterial;
+       // GetComponent<SphereCollider>().material = physicalMaterial;
 
         rb.useGravity = useGravity;
     }
 
-    private void Update() {
+    private void FixedUpdate() {
         if (collisions > maxCollisions)
             Explode();
 
@@ -67,7 +68,7 @@ public class CustomBullet : MonoBehaviour {
             if (item.TryGetComponent<Rigidbody>(out var itemRB))
                 itemRB.AddExplosionForce(explosionForce, transform.position, explosionRange);
 
-            if (item.TryGetComponent<IDamage>(out var enemy))
+            if (item.TryGetComponent<IDamage>(out var enemy) && item.CompareTag(targetTag))
                 enemy.TakeDamage(explosionDamage);
         }
 
@@ -78,7 +79,7 @@ public class CustomBullet : MonoBehaviour {
 
     private void OnCollisionEnter(Collision collision) {
         collisions++;
-        if (collision.collider.CompareTag("Enemy") && explodeOnTouch)
+        if (collision.collider.CompareTag(targetTag) && explodeOnTouch)
             Explode();
     }
 
