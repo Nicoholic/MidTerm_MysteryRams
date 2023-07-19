@@ -299,7 +299,6 @@ public class PlayerMovement : MonoBehaviour, IDamage {
         if (OnSlope() && !exitingSlope) {
             rb.AddForce(20f * moveSpeed * GetSlopeMoveDirection(moveDirection), ForceMode.Force);
 
-            //come back here to fix upward slopes
             if (rb.velocity.y > 0)
                 rb.AddForce(Vector3.down * 80f, ForceMode.Force);
 
