@@ -13,9 +13,12 @@ public class DoorManager : MonoBehaviour
     [SerializeField] float openingDirection = 0F;
 
     [Header("Horizontal Door Settings")]//doors that open horizontally
+    [SerializeField] Vector3 horizontalOpeningDirection = Vector3.back;
+    [SerializeField] float openingAmount = 2F;
 
 
     private Vector3 initialRotation;
+    private Vector3 initialPosition;
     private Vector3 forward;
 
     private Coroutine doorAnimation;
@@ -25,6 +28,7 @@ public class DoorManager : MonoBehaviour
     {
         initialRotation = transform.rotation.eulerAngles;
         forward = transform.right;
+        initialPosition = transform.position;
     }
 
     public void Open(Vector3 playerPosition)
@@ -44,6 +48,12 @@ public class DoorManager : MonoBehaviour
                 float dotProduct = Vector3.Dot(forward, (playerPosition - transform.position).normalized);
                 doorAnimation = StartCoroutine(OpenDoor(dotProduct));
 
+            }
+            else 
+            {
+
+                doorAnimation = StartCoroutine(OpenHorizontalDoor());
+            
             }
 
         }
@@ -77,6 +87,23 @@ public class DoorManager : MonoBehaviour
 
     }
 
+    private IEnumerator OpenHorizontalDoor() 
+    {
+        Vector3 endPosition = initialPosition + openingAmount * horizontalOpeningDirection;
+        Vector3 startPosition = transform.position;
+
+        float time = 0;
+        isOpen = true;
+        while (time < 1) 
+        {
+        transform.position = Vector3.Lerp(startPosition, endPosition, time);
+            yield return null;
+            time += Time.deltaTime * doorSpeed;
+        
+        }
+    
+    }
+
     public void Close() 
     {
         if (isOpen) 
@@ -90,6 +117,12 @@ public class DoorManager : MonoBehaviour
             {
                 doorAnimation = StartCoroutine(CloseDoor());
            
+            }
+            else 
+            {
+
+                doorAnimation = StartCoroutine(CloseHorizontalDoor());
+            
             }
         
         }
@@ -113,6 +146,23 @@ public class DoorManager : MonoBehaviour
 
         }
 
+    }
+
+    private IEnumerator CloseHorizontalDoor() 
+    {
+        Vector3 endPosition = initialPosition;
+        Vector3 startPosition = transform.position;
+        float time = 0;
+        isOpen = false;
+        while (time < 1) 
+        {
+        transform.position = Vector3.Lerp(startPosition, endPosition, time);
+            yield return null;
+            time += Time.deltaTime * doorSpeed;
+
+        
+        }
+    
     }
 
 }
