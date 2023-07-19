@@ -6,7 +6,7 @@ using UnityEngine;
 public class BouncePad : MonoBehaviour {
 
     [SerializeField] float jumpForce;
-    private void OnTriggerEnter(Collider other) {
+    private void OnTriggerStay(Collider other) {
 
         if (other.TryGetComponent<Rigidbody>(out var rb))
             rb.GetComponent<Rigidbody>().AddForce(Vector3.up * jumpForce, ForceMode.VelocityChange);
