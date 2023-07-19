@@ -23,7 +23,9 @@ public class Levels : MonoBehaviour
 
     public void LevelJoin(int levelID)
     {
-        string LevelN = "Level " + levelID;
-        SceneManager.LoadScene(LevelN);  
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        Time.timeScale = 1;
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 }

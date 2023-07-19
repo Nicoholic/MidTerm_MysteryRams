@@ -12,6 +12,7 @@ public class AggroEnemy : MonoBehaviour, IDamage {
 
     [SerializeField] GameObject projectile;
 
+    [SerializeField] float attackDelay;
     [SerializeField] float timeBetweenAttacks;
     [SerializeField] float spread;
     [SerializeField] float timeBetweenShots;
@@ -23,6 +24,8 @@ public class AggroEnemy : MonoBehaviour, IDamage {
     [SerializeField] float upwardForce;
 
     [SerializeField] Transform attackPoint;
+
+    [SerializeField] Animator animator;
 
     [Header("Debug")]
     [SerializeField] bool playerInAttackRange;
@@ -48,13 +51,17 @@ public class AggroEnemy : MonoBehaviour, IDamage {
     }
 
     void FixedUpdate() {
+        if (animator != null && animator.gameObject.activeSelf)
+            animator.SetFloat("Speed", agent.velocity.normalized.magnitude);
 
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
         canSeePlayer = Physics.Raycast(attackPoint.position, player.position - attackPoint.position, out var hit) && hit.collider.CompareTag("Player");
 
-        if (playerInAttackRange && canSeePlayer)
-            AttackPlayer();
-        else if (!attacking)
+        if (playerInAttackRange && canSeePlayer) {
+            if (animator != null)
+                animator.SetTrigger("Attack");
+            Invoke(nameof(AttackPlayer), attackDelay);
+        } else if (!attacking)
             ChasePlayer();
     }
 
@@ -71,6 +78,9 @@ public class AggroEnemy : MonoBehaviour, IDamage {
 
         if (!attacking) {
             bulletsShot = 0;
+
+
+
             Shoot();
 
             attacking = true;
@@ -104,9 +114,12 @@ public class AggroEnemy : MonoBehaviour, IDamage {
     }
 
     IEnumerator FlashDamage() {
-        model.material.color = Color.red;
-        yield return new WaitForSeconds(0.1f);
-        model.material.color = Color.white;
+        if (model != null) {
+            model.material.color = Color.red;
+            yield return new WaitForSeconds(0.1f);
+            model.material.color = Color.white;
+        }
+
     }
 
     private void DelayedDestroy() => Destroy(gameObject);
@@ -120,8 +133,14 @@ public class AggroEnemy : MonoBehaviour, IDamage {
 
         HP -= damage;
         StartCoroutine(FlashDamage());
+        StartCoroutine(GameManager.instance.Hitmark());
 
-        if (HP <= 0)
+
+        if (HP <= 0) {
             Invoke(nameof(DelayedDestroy), 0.025f);
+            Invoke(nameof(DelayRemoveHit), 0.02f);
+        }
     }
+          
+    private void DelayRemoveHit() => GameManager.instance.hitmarker.SetActive(false);
 }

@@ -5,9 +5,9 @@ using UnityEngine.UI;
 
 public class ColorSlider : MonoBehaviour
 {
-    [SerializeField] Slider sliderRed;
-    [SerializeField] Slider sliderGreen;
-    [SerializeField] Slider sliderBlue;
+    [SerializeField] public Slider sliderRed;
+    [SerializeField] public Slider sliderGreen;
+    [SerializeField] public Slider sliderBlue;
 
     Image colorImage;
     void Start()

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
     public static GameManager instance;
@@ -24,12 +25,20 @@ public class GameManager : MonoBehaviour {
     [SerializeField] public TextMeshProUGUI heathTxt;
     [SerializeField] public TextMeshProUGUI currentAmmoTxt;
     [SerializeField] public TextMeshProUGUI maxAmmoTxt;
+    [SerializeField] public TextMeshProUGUI StaminaTxt;
     [SerializeField] public Image PHealthBar;
+    [SerializeField] public Image PStaminaBar;
     [SerializeField] GameObject playerDamageIndicator;
+    [SerializeField] public GameObject hitmarker;
 
     int enemiesRemaining;
     public bool isPaused;
-    float originalTimeScale;
+    public float originalTimeScale;
+
+    public float Stamina;
+    public float mStamina;
+    public float Rcharge;
+    public Coroutine recharge;
 
     void Awake() {
         instance = this;
@@ -97,6 +106,17 @@ public class GameManager : MonoBehaviour {
         PauseGame();
     }
 
+    public void LevelUnlocked()
+    {
+        int currentLevel = SceneManager.GetActiveScene().buildIndex;
+        int nextLevel = currentLevel + 1;
+
+        int OpenLevel = PlayerPrefs.GetInt("OpenLevel", 1);
+        if (nextLevel > OpenLevel)
+        {
+            PlayerPrefs.SetInt("OpenLevel", nextLevel);
+        }
+    }
 
     public IEnumerator PlayerHurtFlash() {
         playerDamageIndicator.SetActive(true);
@@ -104,4 +124,25 @@ public class GameManager : MonoBehaviour {
         playerDamageIndicator.SetActive(false);
     }
 
+    public IEnumerator StaminaCharge()
+    {
+        yield return new WaitForSeconds(1f);
+        while(Stamina < mStamina) 
+        {
+            Stamina += Rcharge / 10f;
+            if(Stamina > mStamina)
+            {
+                Stamina = mStamina;
+            }
+            PStaminaBar.fillAmount = Stamina / mStamina;
+            GameManager.instance.StaminaTxt.text = Stamina.ToString("F0");
+            yield return new WaitForSeconds(.1f);
+        }
+    }
+    public IEnumerator Hitmark()
+    {
+    hitmarker.SetActive(true);
+    yield return new WaitForSeconds(0.2f);
+    hitmarker.SetActive(false);
+    }
 }

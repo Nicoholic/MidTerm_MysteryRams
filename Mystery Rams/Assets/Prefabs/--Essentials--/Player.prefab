@@ -81,7 +81,7 @@ MonoBehaviour:
   crouchKey: 306
   HP: 100
   healRate: 0.75
-  healAmount: 2
+  healAmount: 1
   maxHP: 0
   walkSpeed: 13
   sprintSpeed: 20
@@ -148,7 +148,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 1
   m_Constraints: 0
-  m_CollisionDetection: 3
+  m_CollisionDetection: 1
 --- !u!136 &6594424429324237041
 CapsuleCollider:
   m_ObjectHideFlags: 0
