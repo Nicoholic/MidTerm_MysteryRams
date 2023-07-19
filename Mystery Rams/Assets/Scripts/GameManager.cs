@@ -126,7 +126,7 @@ public class GameManager : MonoBehaviour {
 
     public IEnumerator StaminaCharge()
     {
-        yield return new WaitForSeconds(1f);
+        //yield return new WaitForSeconds(1f);
         while(Stamina < mStamina) 
         {
             Stamina += Rcharge / 10f;
