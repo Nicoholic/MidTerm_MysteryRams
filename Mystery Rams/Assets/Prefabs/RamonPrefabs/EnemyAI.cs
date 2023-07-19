@@ -170,7 +170,11 @@ public class EnemyAI : MonoBehaviour, IDamage
         else
         {
             anim.SetTrigger("Damage");
-            agent.SetDestination(GameManager.instance.player.transform.position);
+            if (!isdead)
+            {
+                agent.SetDestination(GameManager.instance.player.transform.position);
+            }
+            
             StartCoroutine(flashdmg());
         }
     }
