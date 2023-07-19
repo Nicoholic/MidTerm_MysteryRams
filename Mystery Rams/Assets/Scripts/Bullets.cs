@@ -6,7 +6,7 @@ public class Bullets : MonoBehaviour
 {
     [Header("Components")]
     [SerializeField] Rigidbody rb;
-   
+    public ParticleSystem bulletEffect;
 
     [Header("Bullet Stats")]
     [SerializeField] int bulletDamage;

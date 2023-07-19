@@ -24,6 +24,8 @@ public class AggroEnemy : MonoBehaviour, IDamage {
 
     [SerializeField] Transform attackPoint;
 
+    [SerializeField] Animator animator;
+
     [Header("Debug")]
     [SerializeField] bool playerInAttackRange;
     [SerializeField] bool canSeePlayer;
@@ -48,6 +50,8 @@ public class AggroEnemy : MonoBehaviour, IDamage {
     }
 
     void FixedUpdate() {
+        if (animator != null && animator.gameObject.activeSelf)
+            animator.SetFloat("Speed", agent.velocity.normalized.magnitude);
 
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
         canSeePlayer = Physics.Raycast(attackPoint.position, player.position - attackPoint.position, out var hit) && hit.collider.CompareTag("Player");
@@ -104,9 +108,11 @@ public class AggroEnemy : MonoBehaviour, IDamage {
     }
 
     IEnumerator FlashDamage() {
-        model.material.color = Color.red;
-        yield return new WaitForSeconds(0.1f);
-        model.material.color = Color.white;
+        if (model != null) {
+            model.material.color = Color.red;
+            yield return new WaitForSeconds(0.1f);
+            model.material.color = Color.white;
+        }
     }
 
     private void DelayedDestroy() => Destroy(gameObject);
