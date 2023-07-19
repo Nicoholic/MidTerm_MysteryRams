@@ -36,6 +36,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     Vector3 startingPos;
     bool destinationChosen;
     int hporig;
+    bool ishurt;
     bool isdead;
 
     // Start is called before the first frame update
@@ -169,18 +170,19 @@ public class EnemyAI : MonoBehaviour, IDamage
             agent.enabled = false;
             GetComponent<CapsuleCollider>().enabled = false;
             Invoke("Kill", 5f);
-            //Destroy(gameObject);
         }
-        else
+        else if (!isdead)
         {
-            anim.SetTrigger("Damage");
-            if (!isdead)
+            if (!ishurt)
             {
-                agent.SetDestination(GameManager.instance.player.transform.position);
+                anim.SetTrigger("Damage");
+                ishurt = true;
             }
-            
+            agent.SetDestination(GameManager.instance.player.transform.position);
+            StartCoroutine(playHurtAnim());
             StartCoroutine(flashdmg());
         }
+        
     }
 
     IEnumerator flashdmg()
@@ -192,6 +194,11 @@ public class EnemyAI : MonoBehaviour, IDamage
     public void updateUI()
     {
         HPBar.fillAmount = (float)HP / hporig;
+    }
+    IEnumerator playHurtAnim()
+    {
+        yield return new WaitForSeconds(0.5f);
+        ishurt = false;
     }
     private void Kill()
     {
