@@ -26,11 +26,18 @@ public class GameManager : MonoBehaviour {
     [SerializeField] public TextMeshProUGUI currentAmmoTxt;
     [SerializeField] public TextMeshProUGUI maxAmmoTxt;
     [SerializeField] public Image PHealthBar;
+    [SerializeField] public Image PStaminaBar;
     [SerializeField] GameObject playerDamageIndicator;
+    [SerializeField] public GameObject hitmarker;
 
     int enemiesRemaining;
     public bool isPaused;
     public float originalTimeScale;
+
+    public float Stamina;
+    public float mStamina;
+    public float Rcharge;
+    private Coroutine recharge;
 
     void Awake() {
         instance = this;
@@ -116,4 +123,24 @@ public class GameManager : MonoBehaviour {
         playerDamageIndicator.SetActive(false);
     }
 
+    private IEnumerator StaminaCharge()
+    {
+        yield return new WaitForSeconds(1f);
+        while(Stamina < mStamina) 
+        {
+            Stamina += Rcharge / 10f;
+            if(Stamina > mStamina)
+            {
+                Stamina = mStamina;
+            }
+            PStaminaBar.fillAmount = Stamina / mStamina;
+            yield return new WaitForSeconds(.1f);
+        }
+    }
+    public IEnumerator Hitmark()
+    {
+    hitmarker.SetActive(true);
+    yield return new WaitForSeconds(0.2f);
+    hitmarker.SetActive(false);
+    }
 }
