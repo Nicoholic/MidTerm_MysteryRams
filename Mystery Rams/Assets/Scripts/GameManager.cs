@@ -123,7 +123,7 @@ public class GameManager : MonoBehaviour {
         playerDamageIndicator.SetActive(false);
     }
 
-    private IEnumerator StaminaCharge()
+    public IEnumerator StaminaCharge()
     {
         yield return new WaitForSeconds(1f);
         while(Stamina < mStamina) 
