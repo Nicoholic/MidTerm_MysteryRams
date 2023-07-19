@@ -160,10 +160,10 @@ public class EnemyAI : MonoBehaviour, IDamage
 
         if (HP <= 0)
         {
-            if (!isdead)
+            /*if (!isdead)
             {
                 GameManager.instance.UpdateGameGoal(-1);
-            }
+            }*/
             isdead = true;
             StopAllCoroutines();
             GameManager.instance.hitmarker.SetActive(false);
