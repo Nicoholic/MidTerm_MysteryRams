@@ -8,17 +8,15 @@ public class DoorManager : MonoBehaviour
     [SerializeField] bool isDoor;
 
     [Header("Vertical Door Settings")]//doors that open vertically
-    [SerializeField] float doorSpeed = 1F;
-    [SerializeField] float doorRotationAngle = 90F;
-    [SerializeField] float openingDirection = 0F;
+    [SerializeField] float doorSpeed;
+    [SerializeField] float doorRotationAngle;
+    [SerializeField] float openingDirection;
 
-    [Header("Horizontal Door Settings")]//doors that open horizontally
-    [SerializeField] Vector3 horizontalOpeningDirection = Vector3.back;
-    [SerializeField] float openingAmount = 2F;
+    
 
 
     private Vector3 initialRotation;
-    private Vector3 initialPosition;
+   
     private Vector3 forward;
 
     private Coroutine doorAnimation;
@@ -28,7 +26,7 @@ public class DoorManager : MonoBehaviour
     {
         initialRotation = transform.rotation.eulerAngles;
         forward = transform.right;
-        initialPosition = transform.position;
+        
     }
 
     public void Open(Vector3 playerPosition)
@@ -49,12 +47,7 @@ public class DoorManager : MonoBehaviour
                 doorAnimation = StartCoroutine(OpenDoor(dotProduct));
 
             }
-            else 
-            {
-
-                doorAnimation = StartCoroutine(OpenHorizontalDoor());
             
-            }
 
         }
 
@@ -87,82 +80,47 @@ public class DoorManager : MonoBehaviour
 
     }
 
-    private IEnumerator OpenHorizontalDoor() 
-    {
-        Vector3 endPosition = initialPosition + openingAmount * horizontalOpeningDirection;
-        Vector3 startPosition = transform.position;
-
-        float time = 0;
-        isOpen = true;
-        while (time < 1) 
-        {
-        transform.position = Vector3.Lerp(startPosition, endPosition, time);
-            yield return null;
-            time += Time.deltaTime * doorSpeed;
-        
-        }
     
-    }
 
-    public void Close() 
+    public void Close()
     {
-        if (isOpen) 
+        if (isOpen)
         {
-        if(doorAnimation != null) 
+            if (doorAnimation != null)
             {
                 StopCoroutine(doorAnimation);
-            
+
             }
-        if(isDoor) 
+            if (isDoor)
             {
                 doorAnimation = StartCoroutine(CloseDoor());
-           
+
             }
-            else 
+               
+              
+              }
+
+        }
+
+         IEnumerator CloseDoor()
+        {
+
+            Quaternion startRotation_ = transform.rotation;
+            Quaternion endRotation = Quaternion.Euler(initialRotation);
+
+            isOpen = false;
+            float time = 0;
+            while (time < 1)
             {
 
-                doorAnimation = StartCoroutine(CloseHorizontalDoor());
-            
+                transform.rotation = Quaternion.Slerp(startRotation_, endRotation, time);
+                yield return null;
+                time += Time.deltaTime * doorSpeed;
+
             }
-        
-        }
 
-    }
+        } 
 
-    private IEnumerator CloseDoor() 
-    {
-
-        Quaternion startRotation_ = transform.rotation;
-        Quaternion endRotation = Quaternion.Euler(initialRotation);
-
-        isOpen = false;
-        float time = 0;
-        while (time < 1)
-        {
-
-            transform.rotation = Quaternion.Slerp(startRotation_, endRotation, time);
-            yield return null;
-            time += Time.deltaTime * doorSpeed;
-
-        }
-
-    }
-
-    private IEnumerator CloseHorizontalDoor() 
-    {
-        Vector3 endPosition = initialPosition;
-        Vector3 startPosition = transform.position;
-        float time = 0;
-        isOpen = false;
-        while (time < 1) 
-        {
-        transform.position = Vector3.Lerp(startPosition, endPosition, time);
-            yield return null;
-            time += Time.deltaTime * doorSpeed;
-
-        
-        }
-    
-    }
+   
 
 }
