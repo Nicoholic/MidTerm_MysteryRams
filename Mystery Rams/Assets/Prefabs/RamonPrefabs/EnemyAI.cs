@@ -164,6 +164,7 @@ public class EnemyAI : MonoBehaviour, IDamage
             }
             isdead = true;
             StopAllCoroutines();
+            model.material.color = Color.white;
             anim.SetBool("Death", true);
             agent.enabled = false;
             GetComponent<CapsuleCollider>().enabled = false;
