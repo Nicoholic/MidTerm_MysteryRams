@@ -7,12 +7,16 @@ public class DoorManager : MonoBehaviour
     public bool isOpen = false;
     [SerializeField] bool isDoor;
 
-    [Header("Door Settings")]
-    [SerializeField] float doorSpeed = 1F;
-    [SerializeField] float doorRotationAngle = 90F;
-    [SerializeField] float openingDirection = 0F;
+    [Header("Vertical Door Settings")]//doors that open vertically
+    [SerializeField] float doorSpeed;
+    [SerializeField] float doorRotationAngle;
+    [SerializeField] float openingDirection;
+
+    
+
 
     private Vector3 initialRotation;
+   
     private Vector3 forward;
 
     private Coroutine doorAnimation;
@@ -22,6 +26,7 @@ public class DoorManager : MonoBehaviour
     {
         initialRotation = transform.rotation.eulerAngles;
         forward = transform.right;
+        
     }
 
     public void Open(Vector3 playerPosition)
@@ -42,6 +47,7 @@ public class DoorManager : MonoBehaviour
                 doorAnimation = StartCoroutine(OpenDoor(dotProduct));
 
             }
+            
 
         }
 
@@ -74,42 +80,47 @@ public class DoorManager : MonoBehaviour
 
     }
 
-    public void Close() 
+    
+
+    public void Close()
     {
-        if (isOpen) 
+        if (isOpen)
         {
-        if(doorAnimation != null) 
+            if (doorAnimation != null)
             {
                 StopCoroutine(doorAnimation);
-            
+
             }
-        if(isDoor) 
+            if (isDoor)
             {
                 doorAnimation = StartCoroutine(CloseDoor());
-           
+
             }
-        
+               
+              
+              }
+
         }
 
-    }
-
-    private IEnumerator CloseDoor() 
-    {
-
-        Quaternion startRotation_ = transform.rotation;
-        Quaternion endRotation = Quaternion.Euler(initialRotation);
-
-        isOpen = false;
-        float time = 0;
-        while (time < 1)
+         IEnumerator CloseDoor()
         {
 
-            transform.rotation = Quaternion.Slerp(startRotation_, endRotation, time);
-            yield return null;
-            time += Time.deltaTime * doorSpeed;
+            Quaternion startRotation_ = transform.rotation;
+            Quaternion endRotation = Quaternion.Euler(initialRotation);
 
-        }
+            isOpen = false;
+            float time = 0;
+            while (time < 1)
+            {
 
-    }
+                transform.rotation = Quaternion.Slerp(startRotation_, endRotation, time);
+                yield return null;
+                time += Time.deltaTime * doorSpeed;
+
+            }
+
+        } 
+
+   
 
 }
