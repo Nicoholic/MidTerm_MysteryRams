@@ -46,8 +46,15 @@ public class Dashing : MonoBehaviour {
 
     private void Update() {
         if (Input.GetKeyDown(dashKey))
+        {
             TryDash();
+           
+            if(GameManager.instance.Stamina < 0) GameManager.instance.Stamina = 0;
+            GameManager.instance.PStaminaBar.fillAmount = GameManager.instance.Stamina / GameManager.instance.mStamina;
 
+            if (GameManager.instance.recharge != null) StopCoroutine(GameManager.instance.recharge);
+            GameManager.instance.recharge = StartCoroutine(GameManager.instance.StaminaCharge());
+        }
         if (dashCooldownTimer > 0)
             dashCooldownTimer -= Time.deltaTime;
     }
@@ -64,6 +71,8 @@ public class Dashing : MonoBehaviour {
         pm.dashing = true;
         pm.maxYSpeed = maxDashYSpeed;
         isDashing = true;
+
+        GameManager.instance.Stamina -= 100;
 
         StartCoroutine(playerCamera.LerpFov(dashingFov));
 

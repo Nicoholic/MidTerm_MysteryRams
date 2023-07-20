@@ -4508,7 +4508,7 @@ RectTransform:
   - {fileID: 2939193674722064784}
   - {fileID: 6255633128193339519}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -4539,15 +4539,16 @@ MonoBehaviour:
   heathTxt: {fileID: 668582661753128754}
   currentAmmoTxt: {fileID: 4888506075203524398}
   maxAmmoTxt: {fileID: 0}
+  StaminaTxt: {fileID: 2271390381521502176}
   PHealthBar: {fileID: 2417866656239641087}
-  PStaminaBar: {fileID: 6478648169356900934}
+  PStaminaBar: {fileID: 2359446722891140172}
   playerDamageIndicator: {fileID: 5279282140857721025}
   hitmarker: {fileID: 5122926245499085979}
   isPaused: 0
   originalTimeScale: 0
-  Stamina: 0
-  mStamina: 0
-  Rcharge: 0
+  Stamina: 100
+  mStamina: 100
+  Rcharge: 100
 --- !u!114 &7912413758818853616
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8211,7 +8212,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8168627559081728172
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8260,7 +8261,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 00
+  m_text: 100
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

@@ -15,7 +15,7 @@ public class Spawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GameManager.instance.UpdateGameGoal(maxobj);
+        //GameManager.instance.UpdateGameGoal(maxobj);
     }
 
     // Update is called once per frame
