@@ -84,16 +84,6 @@ public class GameManager : MonoBehaviour {
         activeMenu = null;
     }
 
-    public void UpdateGameGoal(int amount) {
-        enemiesRemaining += amount;
-        enemiesRemainingText.text = enemiesRemaining.ToString("F0");
-        if (enemiesRemaining <= 0) {
-            activeMenu = winMenu;
-            activeMenu.SetActive(true);
-            PauseGame();
-        }
-    }
-
     public void GameLoss() {
         PauseGame();
         activeMenu = loseMenu;
