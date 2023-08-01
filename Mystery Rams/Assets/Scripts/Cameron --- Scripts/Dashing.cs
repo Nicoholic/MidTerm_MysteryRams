@@ -48,7 +48,7 @@ public class Dashing : MonoBehaviour {
         if (Input.GetKeyDown(dashKey))
         {
             TryDash();
-            GameManager.instance.Stamina -= 25;
+           
             if(GameManager.instance.Stamina < 0) GameManager.instance.Stamina = 0;
             GameManager.instance.PStaminaBar.fillAmount = GameManager.instance.Stamina / GameManager.instance.mStamina;
 
@@ -71,6 +71,8 @@ public class Dashing : MonoBehaviour {
         pm.dashing = true;
         pm.maxYSpeed = maxDashYSpeed;
         isDashing = true;
+
+        GameManager.instance.Stamina -= 100;
 
         StartCoroutine(playerCamera.LerpFov(dashingFov));
 

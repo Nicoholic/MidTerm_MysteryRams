@@ -41,7 +41,6 @@ public class EnemyTest : MonoBehaviour, IDamage
 
     void Start()
     {
-        GameManager.instance.UpdateGameGoal(1);
         originalStoppingDistance = agent.stoppingDistance;
         startingPos = transform.position;
         isDead = false;
@@ -179,7 +178,6 @@ public class EnemyTest : MonoBehaviour, IDamage
             if (isDead == false)
             {
                 isDead = true;
-                GameManager.instance.UpdateGameGoal(-1);
                 GameManager.instance.hitmarker.SetActive(false);
             }
             Destroy(gameObject);

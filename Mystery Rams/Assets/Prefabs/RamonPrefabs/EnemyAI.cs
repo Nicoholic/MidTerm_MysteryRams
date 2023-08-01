@@ -154,17 +154,19 @@ public class EnemyAI : MonoBehaviour, IDamage
     void IDamage.TakeDamage(int amount)
     {
         HP -= amount;
+        StartCoroutine(GameManager.instance.Hitmark());
         updateUI();
         
 
         if (HP <= 0)
         {
-            if (!isdead)
+            /*if (!isdead)
             {
                 GameManager.instance.UpdateGameGoal(-1);
-            }
+            }*/
             isdead = true;
             StopAllCoroutines();
+            GameManager.instance.hitmarker.SetActive(false);
             model.material.color = Color.white;
             anim.SetBool("Death", true);
             agent.enabled = false;
@@ -181,6 +183,7 @@ public class EnemyAI : MonoBehaviour, IDamage
             agent.SetDestination(GameManager.instance.player.transform.position);
             StartCoroutine(playHurtAnim());
             StartCoroutine(flashdmg());
+            
         }
         
     }

@@ -84,16 +84,6 @@ public class GameManager : MonoBehaviour {
         activeMenu = null;
     }
 
-    public void UpdateGameGoal(int amount) {
-        enemiesRemaining += amount;
-        enemiesRemainingText.text = enemiesRemaining.ToString("F0");
-        if (enemiesRemaining <= 0) {
-            activeMenu = winMenu;
-            activeMenu.SetActive(true);
-            PauseGame();
-        }
-    }
-
     public void GameLoss() {
         PauseGame();
         activeMenu = loseMenu;
@@ -126,7 +116,7 @@ public class GameManager : MonoBehaviour {
 
     public IEnumerator StaminaCharge()
     {
-        yield return new WaitForSeconds(1f);
+        //yield return new WaitForSeconds(1f);
         while(Stamina < mStamina) 
         {
             Stamina += Rcharge / 10f;
