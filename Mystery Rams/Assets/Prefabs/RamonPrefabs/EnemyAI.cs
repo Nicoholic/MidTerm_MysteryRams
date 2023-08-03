@@ -22,6 +22,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     [SerializeField] int playerFaceSpeed;
     [SerializeField] int roamtime;
     [SerializeField] int roamdist;
+    [SerializeField] float Range;
 
     [Header("Weaponry")]
     [SerializeField] float ShotRate;
@@ -56,6 +57,7 @@ public class EnemyAI : MonoBehaviour, IDamage
         if (agent.isActiveAndEnabled)
         {
             anim.SetFloat("Blend", agent.velocity.normalized.magnitude);
+            playerInRange = Physics.CheckSphere(transform.position, Range, LayerMask.GetMask("Player"));
 
             if (playerInRange && !canSeePlayer())
             {
@@ -95,13 +97,13 @@ public class EnemyAI : MonoBehaviour, IDamage
         transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * playerFaceSpeed);
     }
 
-    void OnTriggerEnter(Collider other)
+    /*void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
             playerInRange = true;
         }
-    }
+    }*/
 
     IEnumerator shoot()
     {
@@ -151,7 +153,8 @@ public class EnemyAI : MonoBehaviour, IDamage
         return false;
     }
 
-    void IDamage.TakeDamage(int amount)
+    //void IDamage.TakeDamage
+    public void TakeDamage(int amount)
     {
         HP -= amount;
         StartCoroutine(GameManager.instance.Hitmark());
