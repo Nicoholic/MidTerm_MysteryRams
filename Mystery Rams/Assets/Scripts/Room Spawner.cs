@@ -21,6 +21,7 @@ public class RoomSpawner : MonoBehaviour
         Invoke("Spawn", 0.5f);
     }
 
+
     void Spawn()
     {
         if (spawned == false)
@@ -56,7 +57,7 @@ public class RoomSpawner : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("SpawnPoint") && other.GetComponent<RoomSpawner>().spawned == true)
+        if (other.CompareTag("SpawnPoint"))
         {
             Destroy(gameObject);
         }

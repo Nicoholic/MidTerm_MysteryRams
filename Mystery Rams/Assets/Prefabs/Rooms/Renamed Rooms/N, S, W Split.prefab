@@ -399,6 +399,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   openingDirection: 3
+  rand: 0
 --- !u!65 &4358440194199575550
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1198,6 +1199,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   openingDirection: 2
+  rand: 0
 --- !u!65 &2406182348265446895
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1997,6 +1999,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   openingDirection: 1
+  rand: 0
 --- !u!65 &5106385407166346635
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2760,7 +2763,7 @@ GameObject:
   - component: {fileID: 5256252751654955309}
   m_Layer: 0
   m_Name: N, S, W Split
-  m_TagString: Rooms
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

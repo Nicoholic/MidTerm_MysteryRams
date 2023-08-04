@@ -1419,7 +1419,7 @@ GameObject:
   - component: {fileID: 7758034940502966610}
   m_Layer: 0
   m_Name: S, E, W  Split
-  m_TagString: Rooms
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1498,6 +1498,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   openingDirection: 2
+  rand: 0
 --- !u!65 &921126911733562399
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3001,6 +3002,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   openingDirection: 4
+  rand: 0
 --- !u!65 &5382158551146393924
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3096,6 +3098,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   openingDirection: 1
+  rand: 0
 --- !u!65 &8888535342903234578
 BoxCollider:
   m_ObjectHideFlags: 0

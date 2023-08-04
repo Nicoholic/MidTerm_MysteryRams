@@ -47,6 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   openingDirection: 1
+  rand: 0
 --- !u!65 &5597112640016259122
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -494,6 +495,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   openingDirection: 2
+  rand: 0
 --- !u!65 &2532089568587226437
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2313,7 +2315,7 @@ GameObject:
   - component: {fileID: 7053277453709900378}
   m_Layer: 0
   m_Name: S,W Corner
-  m_TagString: Rooms
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
