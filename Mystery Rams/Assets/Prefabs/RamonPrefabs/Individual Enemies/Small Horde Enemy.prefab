@@ -1806,9 +1806,11 @@ MonoBehaviour:
   roamtime: 1
   roamdist: 10
   Range: 50
+  canAim: 1
   ShotRate: 1
   bullet: {fileID: 7376743039494293501, guid: b6289620e3828a84494d17af1b078a87, type: 3}
   ShootPos: {fileID: 6429688573914736361}
+  bulletSpeed: 0
 --- !u!195 &779598352184166021
 NavMeshAgent:
   m_ObjectHideFlags: 0

@@ -10,10 +10,15 @@ public class EnemyAI : MonoBehaviour, IDamage
 {
     //Apologies for the wait. This is the new enemy script.
     [Header("Components")]
+    [Tooltip("The enemy model.")]
     [SerializeField] Renderer model;
+    [Tooltip("Navagation Agent.")]
     [SerializeField] NavMeshAgent agent;
+    [Tooltip("Head Position.")]
     [SerializeField] Transform headpos;
+    //[Tooltip("Health Display")]
     //[SerializeField] Image HPBar;
+    [Tooltip("Animator.")]
     [SerializeField] Animator anim;
 
     [Header("Stats")]
@@ -26,11 +31,16 @@ public class EnemyAI : MonoBehaviour, IDamage
     [SerializeField] float Range;
 
     [Header("Weaponry")]
-    [SerializeField] bool isRigid;
-    [SerializeField] float ShotRate;
+    [Tooltip("What the enemy shoots.")]
     [SerializeField] GameObject bullet;
+    [Tooltip("Toggle if you're using a rigidbody bullet. Allows bullets to aim.")]
+    [SerializeField] bool canAim;
+    [Tooltip("How long an enemy takes to fire a bullet.")]
+    [SerializeField] float ShotRate;
+    [Tooltip("Where the enemy shoots from.")]
     [SerializeField] Transform ShootPos;
-    [SerializeField] float bulletSpeed;
+    [Tooltip("Required to utilize Rigidbody Bullets. If using the old system, change BulletSpeed on the old bullet.")]
+    [SerializeField] float bulletSpeed; 
 
     bool playerInRange;
     Vector3 playerDir;
@@ -111,7 +121,7 @@ public class EnemyAI : MonoBehaviour, IDamage
 
     IEnumerator shoot()
     {
-        if (!isRigid)
+        if (!canAim)
         {
             isShooting = true;
             anim.SetTrigger("Shoot");
@@ -122,10 +132,11 @@ public class EnemyAI : MonoBehaviour, IDamage
         else
         {
             isShooting = true;
+            anim.SetTrigger("Shoot");
             direction = GameManager.instance.player.transform.position - ShootPos.position;
-            GameObject currentBullet = Instantiate(bullet, ShootPos.position, Quaternion.identity);
-            currentBullet.transform.forward = direction.normalized;
-            currentBullet.GetComponent<Rigidbody>().AddForce(direction.normalized * bulletSpeed, ForceMode.Impulse);
+            GameObject spawnedBullet = Instantiate(bullet, ShootPos.position, Quaternion.identity);
+            spawnedBullet.transform.forward = direction.normalized;
+            spawnedBullet.GetComponent<Rigidbody>().AddForce(direction.normalized * bulletSpeed, ForceMode.Impulse);
             yield return new WaitForSeconds(ShotRate);
             isShooting = false;
         }
