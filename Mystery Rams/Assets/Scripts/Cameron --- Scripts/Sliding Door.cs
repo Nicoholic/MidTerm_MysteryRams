@@ -16,7 +16,9 @@ public class SlidingDoor : MonoBehaviour {
     [SerializeField] bool isOpening = false;
     [SerializeField] bool isClosing = false;
 
-    private float elapsedTime = 0.0f;
+    [SerializeField] bool locked = false;
+
+    [SerializeField] float elapsedTime = 0.0f;
 
 
     private void Start() {
@@ -35,7 +37,7 @@ public class SlidingDoor : MonoBehaviour {
     }
 
     private void OnTriggerEnter(Collider other) {
-        if (other.gameObject.CompareTag("Player") && !isOpening && !isClosing)
+        if (other.gameObject.CompareTag("Player") && !isOpening && !isClosing && !locked)
             StartOpen();
     }
 
@@ -98,5 +100,15 @@ public class SlidingDoor : MonoBehaviour {
         if (doorsAreClosed) {
             isClosing = false;
         }
+    }
+
+    public void LockDoor() {
+        locked = true;
+        //set image
+    }
+
+    public void UnlockDoor() {
+        locked = false;
+        //unset image
     }
 }

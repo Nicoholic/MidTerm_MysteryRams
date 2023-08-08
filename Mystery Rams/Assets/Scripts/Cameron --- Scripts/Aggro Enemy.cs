@@ -27,7 +27,7 @@ public class AggroEnemy : MonoBehaviour, IDamage {
 
     [SerializeField] Animator animator;
 
-    [SerializeField] DungeonSpawner spawner;
+    public TriggerSpawn spawner;
 
     [Header("Debug")]
     [SerializeField] bool playerInAttackRange;
@@ -142,8 +142,7 @@ public class AggroEnemy : MonoBehaviour, IDamage {
             Invoke(nameof(DelayedDestroy), 0.025f);
             Invoke(nameof(DelayRemoveHit), 0.02f);
             if (spawner != null) {
-                spawner.enemiesAlive--;
-                spawner.CheckEnemiesAlive();
+                spawner.enemyCount--;
             }
         }
     }
