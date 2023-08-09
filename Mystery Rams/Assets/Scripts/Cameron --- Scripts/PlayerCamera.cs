@@ -25,6 +25,7 @@ public class PlayerCamera : MonoBehaviour {
         Cursor.visible = false;
         sensitivity = PlayerPrefs.GetFloat("currentSensitivity", 100);
         slider.value = (sensitivity - 10) / 90;
+        slider.onValueChanged.AddListener(delegate {ChangeSpeed(slider.value); });
     }
 
 
