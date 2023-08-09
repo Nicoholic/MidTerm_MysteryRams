@@ -46,6 +46,7 @@ public class PlayerMovement : MonoBehaviour, IDamage {
     [SerializeField] float jumpForce;
     [SerializeField] float jumpCooldown;
     [Range(0, 2)][SerializeField] float airMultiplier;
+    [SerializeField] float coyoteTime;
 
     [Header("Crouching")]
     [SerializeField] float crouchSpeed;
@@ -131,7 +132,11 @@ public class PlayerMovement : MonoBehaviour, IDamage {
 
     private void Update() {
 
-        grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, whatIsGround);
+        if (Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, whatIsGround)) {
+            grounded = true;
+        } else {
+            Invoke(nameof(DelayUngrounded), coyoteTime);
+        }
 
         MyInput();
         SpeedControl();
@@ -144,6 +149,8 @@ public class PlayerMovement : MonoBehaviour, IDamage {
             rb.drag = 0;
 
     }
+
+    private void DelayUngrounded() => grounded = false;
 
     private void FixedUpdate() {
         MovePlayer();

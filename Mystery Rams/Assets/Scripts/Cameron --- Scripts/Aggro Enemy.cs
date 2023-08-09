@@ -27,6 +27,8 @@ public class AggroEnemy : MonoBehaviour, IDamage {
 
     [SerializeField] Animator animator;
 
+    public TriggerSpawn spawner;
+
     [Header("Debug")]
     [SerializeField] bool playerInAttackRange;
     [SerializeField] bool canSeePlayer;
@@ -139,6 +141,9 @@ public class AggroEnemy : MonoBehaviour, IDamage {
         if (HP <= 0) {
             Invoke(nameof(DelayedDestroy), 0.025f);
             Invoke(nameof(DelayRemoveHit), 0.02f);
+            if (spawner != null) {
+                spawner.enemyCount--;
+            }
         }
     }
           

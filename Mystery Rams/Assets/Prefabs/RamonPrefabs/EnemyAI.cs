@@ -3,16 +3,22 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.ProBuilder;
 using UnityEngine.UI;
 
 public class EnemyAI : MonoBehaviour, IDamage
 {
     //Apologies for the wait. This is the new enemy script.
     [Header("Components")]
+    [Tooltip("The enemy model.")]
     [SerializeField] Renderer model;
+    [Tooltip("Navagation Agent.")]
     [SerializeField] NavMeshAgent agent;
+    [Tooltip("Head Position.")]
     [SerializeField] Transform headpos;
-    [SerializeField] Image HPBar;
+    //[Tooltip("Health Display")]
+    //[SerializeField] Image HPBar;
+    [Tooltip("Animator.")]
     [SerializeField] Animator anim;
 
     [Header("Stats")]
@@ -22,11 +28,19 @@ public class EnemyAI : MonoBehaviour, IDamage
     [SerializeField] int playerFaceSpeed;
     [SerializeField] int roamtime;
     [SerializeField] int roamdist;
+    [SerializeField] float Range;
 
     [Header("Weaponry")]
-    [SerializeField] float ShotRate;
+    [Tooltip("What the enemy shoots.")]
     [SerializeField] GameObject bullet;
+    [Tooltip("Toggle if you're using a rigidbody bullet. Allows bullets to aim.")]
+    [SerializeField] bool canAim;
+    [Tooltip("How long an enemy takes to fire a bullet.")]
+    [SerializeField] float ShotRate;
+    [Tooltip("Where the enemy shoots from.")]
     [SerializeField] Transform ShootPos;
+    [Tooltip("Required to utilize Rigidbody Bullets. If using the old system, change BulletSpeed on the old bullet.")]
+    [SerializeField] float bulletSpeed; 
 
     bool playerInRange;
     Vector3 playerDir;
@@ -38,6 +52,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     int hporig;
     bool ishurt;
     bool isdead;
+    Vector3 direction;
 
     // Start is called before the first frame update
     void Start()
@@ -47,7 +62,7 @@ public class EnemyAI : MonoBehaviour, IDamage
         hporig = HP;
         startingPos = transform.position;
         isdead = false;
-        updateUI();
+        //updateUI();
     }
 
     // Update is called once per frame
@@ -56,6 +71,7 @@ public class EnemyAI : MonoBehaviour, IDamage
         if (agent.isActiveAndEnabled)
         {
             anim.SetFloat("Blend", agent.velocity.normalized.magnitude);
+            playerInRange = Physics.CheckSphere(transform.position, Range, LayerMask.GetMask("Player"));
 
             if (playerInRange && !canSeePlayer())
             {
@@ -95,30 +111,44 @@ public class EnemyAI : MonoBehaviour, IDamage
         transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * playerFaceSpeed);
     }
 
-    void OnTriggerEnter(Collider other)
+    /*void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
             playerInRange = true;
         }
-    }
+    }*/
 
     IEnumerator shoot()
     {
-        isShooting = true;
-        anim.SetTrigger("Shoot");
-        Instantiate(bullet, ShootPos.position, transform.rotation);
-        yield return new WaitForSeconds(ShotRate);
-        isShooting = false;
+        if (!canAim)
+        {
+            isShooting = true;
+            anim.SetTrigger("Shoot");
+            Instantiate(bullet, ShootPos.position, transform.rotation);
+            yield return new WaitForSeconds(ShotRate);
+            isShooting = false;
+        }
+        else
+        {
+            isShooting = true;
+            anim.SetTrigger("Shoot");
+            direction = GameManager.instance.player.transform.position - ShootPos.position;
+            GameObject spawnedBullet = Instantiate(bullet, ShootPos.position, Quaternion.identity);
+            spawnedBullet.transform.forward = direction.normalized;
+            spawnedBullet.GetComponent<Rigidbody>().AddForce(direction.normalized * bulletSpeed, ForceMode.Impulse);
+            yield return new WaitForSeconds(ShotRate);
+            isShooting = false;
+        }
     }
 
-    private void OnTriggerExit(Collider other)
+    /*private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))
         {
             playerInRange = false;
         }
-    }
+    }*/
 
     bool canSeePlayer()
     {
@@ -151,11 +181,12 @@ public class EnemyAI : MonoBehaviour, IDamage
         return false;
     }
 
-    void IDamage.TakeDamage(int amount)
+    //void IDamage.TakeDamage
+    public void TakeDamage(int amount)
     {
         HP -= amount;
         StartCoroutine(GameManager.instance.Hitmark());
-        updateUI();
+        //updateUI();
         
 
         if (HP <= 0)
@@ -194,10 +225,10 @@ public class EnemyAI : MonoBehaviour, IDamage
         yield return new WaitForSeconds(0.1f);
         model.material.color = Color.white;
     }
-    public void updateUI()
+    /*public void updateUI()
     {
         HPBar.fillAmount = (float)HP / hporig;
-    }
+    }*/
     IEnumerator playHurtAnim()
     {
         yield return new WaitForSeconds(0.5f);

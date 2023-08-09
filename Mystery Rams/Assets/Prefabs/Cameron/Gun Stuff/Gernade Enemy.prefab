@@ -53,11 +53,11 @@ MonoBehaviour:
   explosion: {fileID: 466863138485084077, guid: ed953e9a21d4b724c8785b855f6fd746, type: 3}
   targetTag: Player
   bounciness: 1
-  useGravity: 1
-  explosionDamage: 50
-  explosionRange: 3
+  useGravity: 0
+  explosionDamage: 10
+  explosionRange: 5
   explosionForce: 2400
-  maxCollisions: 10
+  maxCollisions: 3
   maxLifetime: 4
   explodeOnTouch: 1
 --- !u!33 &766551831096718841
