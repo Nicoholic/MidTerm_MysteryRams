@@ -9,8 +9,10 @@ public class TriggerSpawn : MonoBehaviour {
     public int enemyCount;
     void Awake() {
         foreach (var enemy in enemyList) {
-            enemy.SetActive(false);
-            enemyCount++;
+            if (enemy != null) {
+                enemy.SetActive(false);
+                enemyCount++;
+            }
         }
     }
 
@@ -23,10 +25,11 @@ public class TriggerSpawn : MonoBehaviour {
     private void OnTriggerEnter(Collider other) {
         if (other.gameObject.CompareTag("Player")) {
             foreach (var enemy in enemyList) {
-                if (enemy != null)
-                enemy.SetActive(true);
-                if(enemy.TryGetComponent<AggroEnemy>(out var aggroEnemy))
-                    aggroEnemy.spawner = this;
+                if (enemy != null) {
+                    enemy.SetActive(true);
+                    if (enemy.TryGetComponent<AggroEnemy>(out var aggroEnemy))
+                        aggroEnemy.spawner = this;
+                }
             }
 
             foreach (var door in doorList)
