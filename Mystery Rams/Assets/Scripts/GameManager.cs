@@ -31,6 +31,7 @@ public class GameManager : MonoBehaviour {
     [SerializeField] public Image PStaminaBar;
     [SerializeField] GameObject playerDamageIndicator;
     [SerializeField] public GameObject hitmarker;
+    [SerializeField] public Slider senSlider;
 
     int enemiesRemaining;
     public bool isPaused;

@@ -20,6 +20,7 @@ public class PlayerCamera : MonoBehaviour {
     float mouseY;
 
     void Start() {
+        slider = GameManager.instance.senSlider;
         orientation = GameManager.instance.player.transform.GetChild(0);
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
