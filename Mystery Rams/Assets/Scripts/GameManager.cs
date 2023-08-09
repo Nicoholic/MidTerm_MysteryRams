@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour {
     [Header("Menu UI")]
     [SerializeField] GameObject activeMenu;
     [SerializeField] GameObject pauseMenu;
+    [SerializeField] GameObject statsMenu;
     [SerializeField] GameObject winMenu;
     [SerializeField] GameObject loseMenu;
     [SerializeField] TextMeshProUGUI enemiesRemainingText;
@@ -33,6 +34,7 @@ public class GameManager : MonoBehaviour {
 
     int enemiesRemaining;
     public bool isPaused;
+    public bool isStats;
     public float originalTimeScale;
 
     public float Stamina;
@@ -64,8 +66,17 @@ public class GameManager : MonoBehaviour {
             activeMenu = pauseMenu;
             activeMenu.SetActive(isPaused);
         }
+        if (Input.GetKeyDown(KeyCode.Tab) && activeMenu == null)
+        {
+            activeMenu = statsMenu;
+            activeMenu.SetActive(true);
+        }
+        else if (Input.GetKeyUp(KeyCode.Tab))
+        {
+            activeMenu.SetActive(false);
+            activeMenu = null;
+        }
     }
-
 
 
     public void PauseGame() {

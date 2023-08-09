@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerCamera : MonoBehaviour {
 
@@ -9,9 +10,10 @@ public class PlayerCamera : MonoBehaviour {
     [SerializeField] private Transform orientation;
 
     [Header("Sensitivity")]
-    [SerializeField] public float sensitivity;
+    [SerializeField] public float sensitivity = 100f;
+    [SerializeField] private Slider slider;
 
-    private float xRotation;
+    private float xRotation = 0f;
     private float yRotation;
 
     float mouseX;
@@ -21,13 +23,17 @@ public class PlayerCamera : MonoBehaviour {
         orientation = GameManager.instance.player.transform.GetChild(0);
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        sensitivity = PlayerPrefs.GetFloat("currentSensitivity", 100);
+        slider.value = (sensitivity - 10) / 90;
     }
+
 
     void Update() {
 
+        PlayerPrefs.SetFloat("currentSensitivity", sensitivity);
         if (!GameManager.instance.isPaused) {
-            mouseX = Input.GetAxis("Mouse X") * sensitivity;
-            mouseY = Input.GetAxis("Mouse Y") * sensitivity;
+            mouseX = Input.GetAxis("Mouse X") * sensitivity * Time.deltaTime;
+            mouseY = Input.GetAxis("Mouse Y") * sensitivity * Time.deltaTime;
 
 
             yRotation += mouseX;
@@ -40,6 +46,11 @@ public class PlayerCamera : MonoBehaviour {
             orientation.rotation = Quaternion.Euler(0, yRotation, 0);
         }
     }
+
+    public void ChangeSpeed(float newspeed) 
+    {
+        sensitivity = newspeed * 90 + 10;
+    }    
 
     public IEnumerator LerpFov(float endValue, float duration = 0.1f) {
         float startValue = GetComponent<Camera>().fieldOfView;
