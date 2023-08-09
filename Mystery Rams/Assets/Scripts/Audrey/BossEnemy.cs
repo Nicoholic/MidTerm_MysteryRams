@@ -7,20 +7,8 @@ using UnityEngine.UI;
 public class BossEnemy : MonoBehaviour
 {
 
-    [SerializeField] enum bossPhases
-    {
-
-    phaseOne,
-    phaseTwo,
-    phaseThree,
-    
-    
-    }
-
     [Header("Stats")]
     [SerializeField] int HP;
-    [SerializeField] GameObject shield;
-    [SerializeField] int shieldHP;
 
     [SerializeField] GameObject projectile;
 
@@ -39,10 +27,7 @@ public class BossEnemy : MonoBehaviour
 
     [SerializeField] Animator animator;
 
-
-
-
-
+    public TriggerSpawn spawner;
 
     [Header("Debug")]
     [SerializeField] bool playerInAttackRange;
@@ -58,7 +43,6 @@ public class BossEnemy : MonoBehaviour
     private LayerMask whatIsGround;
     private LayerMask whatIsPlayer;
 
-    
 
     void Start()
     {
@@ -71,7 +55,6 @@ public class BossEnemy : MonoBehaviour
 
     void FixedUpdate()
     {
-      
         if (animator != null && animator.gameObject.activeSelf)
             animator.SetFloat("Speed", agent.velocity.normalized.magnitude);
 
@@ -86,41 +69,6 @@ public class BossEnemy : MonoBehaviour
         }
         else if (!attacking)
             ChasePlayer();
-        
-    }
-
-    private void OnCollisionEnter(Collision collision)//shield stuff
-    {
-        if (collision.gameObject.CompareTag("Player")) 
-        {
-            if(shieldHP > 0) 
-            {
-                shieldHP--;
-                if (shieldHP == 0)
-                {
-
-                    Destroy(shield);
-
-                }
-            
-            
-            }
-
-            else 
-            {
-
-                HP--;
-              if (HP == 0) 
-                {
-
-                    Destroy(gameObject);
-                
-                }
-            
-            }
-        
-        
-        }
     }
 
     private void ChasePlayer()
@@ -207,6 +155,10 @@ public class BossEnemy : MonoBehaviour
         {
             Invoke(nameof(DelayedDestroy), 0.025f);
             Invoke(nameof(DelayRemoveHit), 0.02f);
+            if (spawner != null)
+            {
+                spawner.enemyCount--;
+            }
         }
     }
 
