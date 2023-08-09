@@ -18,8 +18,10 @@ public class TriggerSpawn : MonoBehaviour {
 
     private void FixedUpdate() {
         if (enemyCount <= 0)
-            foreach (var door in doorList)
-                door.UnlockDoor();
+            foreach (var door in doorList) {
+                if (door != null)
+                    door.UnlockDoor();
+            }
     }
 
     private void OnTriggerEnter(Collider other) {
@@ -33,7 +35,8 @@ public class TriggerSpawn : MonoBehaviour {
             }
 
             foreach (var door in doorList)
-                door.LockDoor();
+                if (door != null)
+                    door.LockDoor();
         }
     }
 }
