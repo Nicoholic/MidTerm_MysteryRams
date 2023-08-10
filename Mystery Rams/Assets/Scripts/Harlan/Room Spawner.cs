@@ -30,25 +30,25 @@ public class RoomSpawner : MonoBehaviour
             if (openingDirection == 1)
             {
                 rand = Random.Range(0, templetes.northRooms.Length);
-                Instantiate(templetes.northRooms[rand], transform.position, templetes.northRooms[rand].transform.rotation);
+                Instantiate(templetes.northRooms[rand], transform.position, Quaternion.identity);
             }
             // 2 = East opening 
             else if (openingDirection == 2)
             {
                 rand = Random.Range(0, templetes.eastRooms.Length);
-                Instantiate(templetes.eastRooms[rand], transform.position, templetes.eastRooms[rand].transform.rotation);
+                Instantiate(templetes.eastRooms[rand], transform.position, Quaternion.identity);
             }
             // 3 = South opening
             else if (openingDirection == 3)
             {
                 rand = Random.Range(0, templetes.southRooms.Length);
-                Instantiate(templetes.southRooms[rand], transform.position, templetes.southRooms[rand].transform.rotation);
+                Instantiate(templetes.southRooms[rand], transform.position, Quaternion.identity);
             }
             // 4 = West opening 
             else if (openingDirection == 4)
             {
                 rand = Random.Range(0, templetes.westRooms.Length);
-                Instantiate(templetes.westRooms[rand], transform.position, templetes.westRooms[rand].transform.rotation);
+                Instantiate(templetes.westRooms[rand], transform.position, Quaternion.identity);
             }
             spawned = true;
         }
@@ -59,7 +59,12 @@ public class RoomSpawner : MonoBehaviour
     {
         if (other.CompareTag("SpawnPoint"))
         {
-            Destroy(gameObject);
+            if (other.TryGetComponent<RoomSpawner>(out var closedRoomSpawn) && closedRoomSpawn.spawned == false && spawned == false)
+            {
+                Instantiate(templetes.closedRooms, transform.position, Quaternion.identity);
+                Destroy(gameObject);
+            }
+            spawned = true;
         }
     }
 }

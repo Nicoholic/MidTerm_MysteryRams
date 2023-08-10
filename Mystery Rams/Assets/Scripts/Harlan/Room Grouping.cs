@@ -8,4 +8,6 @@ public class RoomGrouping : ScriptableObject {
     public GameObject[] eastRooms;
     public GameObject[] southRooms;
     public GameObject[] westRooms;
+
+    public GameObject closedRooms;
 }
