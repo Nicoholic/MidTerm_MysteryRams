@@ -18,7 +18,7 @@ public class RoomSpawner : MonoBehaviour
     private void Start()
     {
         templetes = GameObject.FindGameObjectWithTag("Rooms").GetComponent<RoomTempletes>();
-        Invoke("Spawn", 3.0f);
+        Invoke("Spawn", 0.1f);
     }
 
 
