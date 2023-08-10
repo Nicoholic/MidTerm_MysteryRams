@@ -10,11 +10,17 @@ public class RoomTempletes : MonoBehaviour {
     public GameObject[] southRooms;
     public GameObject[] westRooms;
 
+    public GameObject closedRooms;
+
+    public List<GameObject> rooms;
+
     private void Start() {
         northRooms = group.northRooms;
         eastRooms = group.eastRooms;
         southRooms = group.southRooms;
         westRooms = group.westRooms;
+        closedRooms = group.closedRooms;
+
     }
    
 }
