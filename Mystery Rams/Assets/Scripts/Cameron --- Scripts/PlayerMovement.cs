@@ -110,6 +110,16 @@ public class PlayerMovement : MonoBehaviour, IDamage {
         air
     }
 
+    [Header("Sounds")]
+    [SerializeField] private AudioSource WalkSound;
+    [SerializeField] private AudioSource DashSound;
+    [SerializeField] private AudioSource JumpSound;
+    [SerializeField] private AudioSource PickUpSound;
+    [SerializeField] private AudioSource LandSound;
+    [SerializeField] public AudioSource DamagedSound;
+    [SerializeField] public AudioSource DeathSound;
+    [SerializeField] private AudioSource ThrowingSound;
+
 
     private void Start() {
 
@@ -299,7 +309,6 @@ public class PlayerMovement : MonoBehaviour, IDamage {
     }
 
     private void MovePlayer() {
-
         moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
 
         if (OnSlope() && !exitingSlope) {
