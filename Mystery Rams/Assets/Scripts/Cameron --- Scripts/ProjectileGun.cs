@@ -21,12 +21,16 @@ public class ProjectileGun : MonoBehaviour {
     public float bulletsPerTap;
     public bool allowButtonHold;
 
+
     public float recoilForce;
 
     public Transform attackPoint;
     public GameObject muzzleFlash;
 
     public Vector3 offset;
+
+    [Header("Gun Image")]
+    public Sprite gunImage;
 
     [Header("Debug")]
     [SerializeField] bool allowInvoke = true;

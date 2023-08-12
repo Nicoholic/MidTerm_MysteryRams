@@ -56,6 +56,7 @@ public class PickUpController : MonoBehaviour {
     }
 
     private void PickUp() {
+        pm.PickUpSound.Play();
         equipped = true;
 
         //slotFull = true;
@@ -79,6 +80,7 @@ public class PickUpController : MonoBehaviour {
     }
 
     private void Drop() {
+        pm.ThrowingSound.Play();
         equipped = false;
 
         //slotFull = false;

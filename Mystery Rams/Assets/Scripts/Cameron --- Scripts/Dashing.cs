@@ -67,6 +67,7 @@ public class Dashing : MonoBehaviour {
     }
 
     private void Dash() {
+        pm.DashSound.Play();
         dashCooldownTimer = dashCooldown;
         pm.dashing = true;
         pm.maxYSpeed = maxDashYSpeed;

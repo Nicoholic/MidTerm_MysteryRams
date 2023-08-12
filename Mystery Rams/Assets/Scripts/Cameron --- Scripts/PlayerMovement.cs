@@ -111,14 +111,16 @@ public class PlayerMovement : MonoBehaviour, IDamage {
     }
 
     [Header("Sounds")]
-    [SerializeField] private AudioSource WalkSound;
-    [SerializeField] private AudioSource DashSound;
+    //[SerializeField] private AudioSource WalkSound;
+    [SerializeField] public AudioSource DashSound;
     [SerializeField] private AudioSource JumpSound;
-    [SerializeField] private AudioSource PickUpSound;
     [SerializeField] private AudioSource LandSound;
-    [SerializeField] public AudioSource DamagedSound;
-    [SerializeField] public AudioSource DeathSound;
-    [SerializeField] private AudioSource ThrowingSound;
+    [SerializeField] private AudioSource DamagedSound;
+    [SerializeField] private AudioSource DeathSound;
+    [SerializeField] public AudioSource PickUpSound;
+    [SerializeField] public AudioSource ThrowingSound;
+    //[SerializeField] private AudioSource SlideSound;
+    //[SerializeField] private AudioSource HealSound;
 
 
     private void Start() {
@@ -169,6 +171,7 @@ public class PlayerMovement : MonoBehaviour, IDamage {
 
         if (grounded && slamming) {
             slamming = false;
+            LandSound.Play();
             Instantiate(slamEffect, new Vector3(gameObject.transform.position.x, gameObject.transform.position.y - 1, gameObject.transform.position.z), Quaternion.identity);
         }
     }
@@ -309,6 +312,7 @@ public class PlayerMovement : MonoBehaviour, IDamage {
     }
 
     private void MovePlayer() {
+        //WalkSound.Play();
         moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
 
         if (OnSlope() && !exitingSlope) {
@@ -349,6 +353,7 @@ public class PlayerMovement : MonoBehaviour, IDamage {
     }
 
     private void Jump() {
+        JumpSound.Play();
         exitingSlope = true;
 
         rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
@@ -376,7 +381,7 @@ public class PlayerMovement : MonoBehaviour, IDamage {
     /// Shrinks player into crouched state and starts slide
     /// </summary>
     private void StartSlide() {
-
+        //SlideSound.Play();
         sliding = true;
         if (!crouched) {
             crouched = true;
@@ -420,6 +425,7 @@ public class PlayerMovement : MonoBehaviour, IDamage {
     }
 
     public void TakeDamage(int damage) {
+        DamagedSound.Play();
         HP -= damage;
 
         UpdateUI();
@@ -428,6 +434,7 @@ public class PlayerMovement : MonoBehaviour, IDamage {
         Invoke(nameof(HealAfterDelay), healRate);
 
         if (HP <= 0)
+            DeathSound.Play();
             GameManager.instance.GameLoss();
     }
 
@@ -489,6 +496,7 @@ public class PlayerMovement : MonoBehaviour, IDamage {
     }
 
     private void Heal() {
+        //HealSound.Play();
         HP += healAmount;
         if (HP >= maxHP) {
             HP = maxHP;
