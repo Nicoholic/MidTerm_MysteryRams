@@ -23,6 +23,7 @@ public class BossEnemy : MonoBehaviour
     [SerializeField] float shootForce;
     [SerializeField] float upwardForce;
 
+ 
     [SerializeField] Transform attackPoint;
 
     [SerializeField] Animator animator;
@@ -55,6 +56,7 @@ public class BossEnemy : MonoBehaviour
 
     void FixedUpdate()
     {
+       
         if (animator != null && animator.gameObject.activeSelf)
             animator.SetFloat("Speed", agent.velocity.normalized.magnitude);
 
