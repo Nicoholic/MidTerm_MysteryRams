@@ -1,49 +1,50 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
 
-public class BossEnemy : MonoBehaviour
+public class BossEnemy : MonoBehaviour, IDamage
 {
 
     [Header("Stats")]
     [SerializeField] int HP;
+    [SerializeField] AttackPattern[] patterns;
 
+    [Header("Components")]
+    [SerializeField] Transform attackPoint;
+    [SerializeField] Animator animator;
+    [SerializeField] Renderer model;
+
+    [Header("Current Attack Patterns")]
     [SerializeField] GameObject projectile;
-
     [SerializeField] float attackDelay;
     [SerializeField] float timeBetweenAttacks;
     [SerializeField] float spread;
     [SerializeField] float timeBetweenShots;
     [SerializeField] float bulletsPerShot;
-
     [SerializeField] float attackRange;
-
     [SerializeField] float shootForce;
     [SerializeField] float upwardForce;
 
- 
-    [SerializeField] Transform attackPoint;
-
-    [SerializeField] Animator animator;
-
-    public TriggerSpawn spawner;
 
     [Header("Debug")]
+    [SerializeField] int currentPhase;
     [SerializeField] bool playerInAttackRange;
     [SerializeField] bool canSeePlayer;
     [SerializeField] bool attacking;
     [SerializeField] int bulletsShot;
+    public TriggerSpawn spawner;
 
-    [SerializeField] Renderer model;
-
+    
     private NavMeshAgent agent;
     private Transform player;
 
     private LayerMask whatIsGround;
     private LayerMask whatIsPlayer;
 
+    private float maxHP;
 
     void Start()
     {
@@ -52,6 +53,7 @@ public class BossEnemy : MonoBehaviour
         whatIsGround = 10;
         whatIsPlayer = LayerMask.GetMask("Player");
         attacking = false;
+        maxHP = HP;
     }
 
     void FixedUpdate()
@@ -161,8 +163,30 @@ public class BossEnemy : MonoBehaviour
             {
                 spawner.enemyCount--;
             }
-        }
+            
+        }else
+            UpdateAttackPattern((patterns.Count()-Mathf.FloorToInt((HP/maxHP)*patterns.Count()))-1);
     }
 
     private void DelayRemoveHit() => GameManager.instance.hitmarker.SetActive(false);
+    private void UpdateAttackPattern(int newPattern) 
+    {
+        projectile = patterns[newPattern].projectile;
+
+        attackDelay = patterns[newPattern].attackDelay;
+        timeBetweenAttacks = patterns[newPattern].timeBetweenAttacks;
+        spread = patterns[newPattern].spread;
+        timeBetweenShots = patterns[newPattern].timeBetweenShots;
+        bulletsPerShot = patterns[newPattern].bulletsPerShot;
+
+        attackRange = patterns[newPattern].attackRange;
+
+        shootForce = patterns[newPattern].shootForce;
+        upwardForce = patterns[newPattern].upwardForce;
+
+        currentPhase = newPattern;
+
+
+
+    }
 }

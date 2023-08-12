@@ -2,18 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AttackPattern : MonoBehaviour
+[CreateAssetMenu]
+public class AttackPattern : ScriptableObject
 {
-    [SerializeField] GameObject projectile;
-
-    [SerializeField] float attackDelay;
-    [SerializeField] float timeBetweenAttacks;
-    [SerializeField] float spread;
-    [SerializeField] float timeBetweenShots;
-    [SerializeField] float bulletsPerShot;
-
-    [SerializeField] float attackRange;
-
-    [SerializeField] float shootForce;
-    [SerializeField] float upwardForce;
+   public GameObject projectile;
+   
+   public float attackDelay;
+   public float timeBetweenAttacks;
+   public float spread;
+   public float timeBetweenShots;
+   public float bulletsPerShot;
+    
+   public float attackRange;
+   
+   public float shootForce;
+   public float upwardForce;
 }
