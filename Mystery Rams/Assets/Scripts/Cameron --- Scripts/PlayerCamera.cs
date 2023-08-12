@@ -25,7 +25,7 @@ public class PlayerCamera : MonoBehaviour {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         sensitivity = PlayerPrefs.GetFloat("currentSensitivity", 100);
-        slider.value = (sensitivity - 10) / 90;
+        slider.value = (sensitivity / 10);
         slider.onValueChanged.AddListener(delegate {ChangeSpeed(slider.value); });
     }
 
@@ -34,8 +34,8 @@ public class PlayerCamera : MonoBehaviour {
 
         PlayerPrefs.SetFloat("currentSensitivity", sensitivity);
         if (!GameManager.instance.isPaused) {
-            mouseX = Input.GetAxis("Mouse X") * sensitivity * Time.deltaTime;
-            mouseY = Input.GetAxis("Mouse Y") * sensitivity * Time.deltaTime;
+            mouseX = Input.GetAxis("Mouse X") * sensitivity;
+            mouseY = Input.GetAxis("Mouse Y") * sensitivity;
 
 
             yRotation += mouseX;
@@ -51,7 +51,7 @@ public class PlayerCamera : MonoBehaviour {
 
     public void ChangeSpeed(float newspeed) 
     {
-        sensitivity = newspeed * 90 + 10;
+        sensitivity = newspeed * 10;
     }    
 
     public IEnumerator LerpFov(float endValue, float duration = 0.1f) {
