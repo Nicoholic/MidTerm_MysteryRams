@@ -68,8 +68,7 @@ public class BossEnemy : MonoBehaviour, IDamage
 
         if (playerInAttackRange && canSeePlayer)
         {
-            if (animator != null)
-                animator.SetTrigger("Attack");
+          
             Invoke(nameof(AttackPlayer), attackDelay);
         }
         else if (!attacking)
@@ -93,7 +92,8 @@ public class BossEnemy : MonoBehaviour, IDamage
         {
             bulletsShot = 0;
 
-
+            if (animator != null)
+                animator.SetTrigger("Attack");
 
             Shoot();
 
@@ -163,10 +163,15 @@ public class BossEnemy : MonoBehaviour, IDamage
             if (spawner != null)
             {
                 spawner.enemyCount--;
+                if (animator != null)
+                    animator.SetTrigger("Dead");
             }
-            
-        }else
+
+        } else {
             UpdateAttackPattern((patterns.Count()-Mathf.FloorToInt((HP/maxHP)*patterns.Count()))-1);
+            if (animator != null)
+                animator.SetTrigger("Hurt");
+        }
     }
 
     private void DelayRemoveHit() => GameManager.instance.hitmarker.SetActive(false);
