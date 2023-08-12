@@ -54,6 +54,7 @@ public class BossEnemy : MonoBehaviour, IDamage
         whatIsPlayer = LayerMask.GetMask("Player");
         attacking = false;
         maxHP = HP;
+        UpdateAttackPattern(0);
     }
 
     void FixedUpdate()
