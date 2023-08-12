@@ -20630,7 +20630,7 @@ Transform:
   m_GameObject: {fileID: 5533993444017800338}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4270467206528292751}
@@ -36338,7 +36338,7 @@ GameObject:
   - component: {fileID: 5734250133879175830}
   - component: {fileID: 4377075176943480560}
   - component: {fileID: 6033840293143917040}
-  - component: {fileID: 9138817081233871780}
+  - component: {fileID: 1688558302818873209}
   m_Layer: 14
   m_Name: Silly Billy
   m_TagString: Enemy
@@ -36361,7 +36361,7 @@ Transform:
   - {fileID: 2225919479304294591}
   - {fileID: 4931354033921419380}
   m_Father: {fileID: 0}
-  m_RootOrder: 18
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4377075176943480560
 MonoBehaviour:
@@ -36375,7 +36375,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4856e7f5d365215419d714d418996de6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HP: 500
+  HP: 999
   patterns:
   - {fileID: 11400000, guid: c349f954826fd4e42919ac901d56dc6d, type: 2}
   - {fileID: 11400000, guid: a0292db129ce84f4bb9ea273748955f0, type: 2}
@@ -36420,7 +36420,7 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!136 &9138817081233871780
+--- !u!136 &1688558302818873209
 CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -36439,10 +36439,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.6
-  m_Height: 2.2
+  m_Radius: 1.21
+  m_Height: 6.02
   m_Direction: 1
-  m_Center: {x: 0, y: 1, z: 0}
+  m_Center: {x: 0, y: 3.9, z: 0}
 --- !u!1 &8641291612382326793
 GameObject:
   m_ObjectHideFlags: 0
