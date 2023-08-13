@@ -68,7 +68,7 @@ public class RoomTempletes : MonoBehaviour {
         Debug.Log("last: " + lastListSize);
         Debug.Log("cur: " + rooms.Count);
         if (lastListSize == rooms.Count) {
-            if (rooms[rooms.Count - 1].transform.GetChild(2).GetChild(0).GetChild(4).TryGetComponent<RoomSpawner>(out var roomToReplace)) {
+            if (rooms[rooms.Count - 1].transform.GetChild(3).TryGetComponent<RoomSpawner>(out var roomToReplace)) {
                 roomToReplace.DestroyRoom(boss);
                 return;
             } else {
