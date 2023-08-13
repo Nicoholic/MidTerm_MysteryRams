@@ -158,6 +158,7 @@ public class BossEnemy : MonoBehaviour, IDamage
 
         if (HP <= 0)
         {
+            GameManager.instance.GameWin();
             Invoke(nameof(DelayedDestroy), 0.025f);
             Invoke(nameof(DelayRemoveHit), 0.02f);
             if (spawner != null)
