@@ -747,7 +747,7 @@ GameObject:
   - component: {fileID: 2518975717289581445}
   - component: {fileID: 2462122990895215669}
   - component: {fileID: 4223699971083735021}
-  m_Layer: 0
+  m_Layer: 22
   m_Name: Spawn Point (4)
   m_TagString: SpawnPoint
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
@@ -782,6 +782,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   openingDirection: 3
+  bossSpawned: 0
+  waitTime: 4
 --- !u!65 &2462122990895215669
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3061,7 +3063,7 @@ GameObject:
   - component: {fileID: 6594384771157026536}
   - component: {fileID: 1070213617194647775}
   - component: {fileID: 2991263902473419460}
-  m_Layer: 0
+  m_Layer: 22
   m_Name: Spawn Point (2)
   m_TagString: SpawnPoint
   m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
@@ -3096,6 +3098,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   openingDirection: 2
+  bossSpawned: 0
+  waitTime: 4
 --- !u!65 &1070213617194647775
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3156,7 +3160,7 @@ GameObject:
   - component: {fileID: 2126689273815757587}
   - component: {fileID: 5227321148323203561}
   - component: {fileID: 406857673944256046}
-  m_Layer: 0
+  m_Layer: 22
   m_Name: Spawn Point (3)
   m_TagString: SpawnPoint
   m_Icon: {fileID: -1412012063857583412, guid: 0000000000000000d000000000000000, type: 0}
@@ -3191,6 +3195,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   openingDirection: 4
+  bossSpawned: 0
+  waitTime: 4
 --- !u!65 &5227321148323203561
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5185,7 +5191,7 @@ Transform:
   - {fileID: 992256716438123158}
   - {fileID: 7547951849654804228}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5427042395286069349
 GameObject:
@@ -5199,7 +5205,7 @@ GameObject:
   - component: {fileID: 8464081633134979373}
   - component: {fileID: 8688164089525290639}
   - component: {fileID: 6720444973736152716}
-  m_Layer: 0
+  m_Layer: 22
   m_Name: Spawn Point (1)
   m_TagString: SpawnPoint
   m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
@@ -5234,6 +5240,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   openingDirection: 1
+  bossSpawned: 0
+  waitTime: 4
 --- !u!65 &8688164089525290639
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6456,7 +6464,7 @@ GameObject:
   - component: {fileID: 8951280622489874048}
   - component: {fileID: 7895452942026022111}
   - component: {fileID: 3520897767198764755}
-  m_Layer: 0
+  m_Layer: 22
   m_Name: Spawn Point
   m_TagString: SpawnPoint
   m_Icon: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000, type: 0}
@@ -6491,6 +6499,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   openingDirection: 0
+  bossSpawned: 0
+  waitTime: 4
 --- !u!65 &7895452942026022111
 BoxCollider:
   m_ObjectHideFlags: 0
