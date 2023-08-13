@@ -43,6 +43,9 @@ public class ProjectileGun : MonoBehaviour {
     private Rigidbody rb;
     private Camera playerCamera;
 
+    [Header("Sounds")]
+    [SerializeField] private AudioSource iStartedBlastin;
+
 
     void Start() {
         bulletsLeft = magazineSize;
@@ -78,6 +81,9 @@ public class ProjectileGun : MonoBehaviour {
     }
 
     private void Shoot() {
+        {
+            
+        }
         readyToShoot = false;
 
         Ray ray = playerCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
@@ -103,6 +109,11 @@ public class ProjectileGun : MonoBehaviour {
 
         if (muzzleFlash != null)
             Instantiate(muzzleFlash, attackPoint.position, Quaternion.identity);
+
+        if (iStartedBlastin != null && bulletsShot == 0)
+        {
+            iStartedBlastin.PlayOneShot(iStartedBlastin.clip);
+        }
 
         bulletsLeft--;
         bulletsShot++;

@@ -12,8 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 461484c2e55415b48911a4127db4ce0b, type: 3}
   m_Name: Fraser Floor
   m_EditorClassIdentifier: 
-  northRooms: []
-  eastRooms: []
-  southRooms: []
-  westRooms: []
+  northRooms:
+  - {fileID: 5633925070328629157, guid: 9eab395d026339541b57ec30b2dfa627, type: 3}
+  - {fileID: 6538464901072658832, guid: d8a60141c34cbd6449cbc43b760042aa, type: 3}
+  eastRooms:
+  - {fileID: 2021718004578228417, guid: ecabdeec60104ae4585f5b97f4eb673f, type: 3}
+  southRooms:
+  - {fileID: 1307346057585403907, guid: d820ff016c1ca2d41b28e482b7efb33a, type: 3}
+  - {fileID: 5528772546947415864, guid: 7ddb05889ba7f4343b8140e2f72c8ff0, type: 3}
+  westRooms:
+  - {fileID: 7743599436402065333, guid: 21d743c66a4cad549bb06afb709f376f, type: 3}
   closedRooms: {fileID: 4340324168453662202, guid: 6b93cf9310751454cb50ca523a476865, type: 3}

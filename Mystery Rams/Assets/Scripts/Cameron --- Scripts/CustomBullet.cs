@@ -25,6 +25,7 @@ public class CustomBullet : MonoBehaviour {
     public float maxLifetime;
     public bool explodeOnTouch = true;
 
+
     bool exploded;
 
     int collisions;
@@ -61,7 +62,7 @@ public class CustomBullet : MonoBehaviour {
         if (explosion != null)
             Instantiate(explosion, transform.position, Quaternion.identity);
 
-        Collider[] enemies = Physics.OverlapSphere(transform.position, explosionRange);
+            Collider[] enemies = Physics.OverlapSphere(transform.position, explosionRange);
         foreach (var item in enemies) {
 
             if (item.TryGetComponent<Rigidbody>(out var itemRB))
