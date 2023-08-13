@@ -14,9 +14,12 @@ public class RoomSpawner : MonoBehaviour
     private RoomTempletes templetes;
     private int rand;
     private bool spawned = false;
+    public bool bossSpawned = false;
+    public float waitTime = 4f;
 
     private void Start()
     {
+        Destroy(gameObject, waitTime);
         templetes = GameObject.FindGameObjectWithTag("Rooms").GetComponent<RoomTempletes>();
         Invoke("Spawn", 0.1f);
     }
@@ -31,29 +34,41 @@ public class RoomSpawner : MonoBehaviour
             {
                 rand = Random.Range(0, templetes.northRooms.Length);
                 Instantiate(templetes.northRooms[rand], transform.position, Quaternion.identity);
+                
+
             }
             // 2 = East opening 
             else if (openingDirection == 2)
             {
                 rand = Random.Range(0, templetes.eastRooms.Length);
                 Instantiate(templetes.eastRooms[rand], transform.position, Quaternion.identity);
+               
             }
             // 3 = South opening
             else if (openingDirection == 3)
             {
                 rand = Random.Range(0, templetes.southRooms.Length);
                 Instantiate(templetes.southRooms[rand], transform.position, Quaternion.identity);
+                
             }
             // 4 = West opening 
             else if (openingDirection == 4)
             {
                 rand = Random.Range(0, templetes.westRooms.Length);
                 Instantiate(templetes.westRooms[rand], transform.position, Quaternion.identity);
+                
             }
             spawned = true;
+            //if (bossSpawned == false)
+            //{
+            //    StartCoroutine(nameof(templetes.spawnBoss));
+            //    spawned = true;
+            //}
+            
+            
         }
+        
 
-       
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -67,4 +82,6 @@ public class RoomSpawner : MonoBehaviour
             spawned = true;
         }
     }
+
+    
 }
