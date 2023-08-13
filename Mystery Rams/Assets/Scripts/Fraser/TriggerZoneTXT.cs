@@ -7,6 +7,7 @@ public class TriggerZoneTXT : MonoBehaviour
     public GameObject uiTxt;
     void Start()
     {
+        uiTxt = GameManager.instance.gunPickUpGUI;
         uiTxt.SetActive(false);
     }
     private void OnTriggerEnter(Collider player)

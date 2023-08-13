@@ -433,9 +433,10 @@ public class PlayerMovement : MonoBehaviour, IDamage {
 
         Invoke(nameof(HealAfterDelay), healRate);
 
-        if (HP <= 0)
+        if (HP <= 0) {
             DeathSound.Play();
             GameManager.instance.GameLoss();
+        }
     }
 
     public void UpdateUI() {

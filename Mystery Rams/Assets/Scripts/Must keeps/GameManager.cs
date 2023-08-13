@@ -32,6 +32,7 @@ public class GameManager : MonoBehaviour {
     [SerializeField] GameObject playerDamageIndicator;
     [SerializeField] public GameObject hitmarker;
     [SerializeField] public Slider senSlider;
+    [SerializeField] public GameObject gunPickUpGUI;
 
     int enemiesRemaining;
     public bool isPaused;
