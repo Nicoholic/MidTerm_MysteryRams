@@ -72,6 +72,7 @@ public class RoomSpawner : MonoBehaviour
             {
                 Instantiate(templetes.closedRooms, transform.position, Quaternion.identity);
                 Destroy(gameObject);
+                //fix here
             }
             spawned = true;
         }
@@ -80,7 +81,8 @@ public class RoomSpawner : MonoBehaviour
     public void DestroyRoom(GameObject roomToSpawn)
     {
         Instantiate(roomToSpawn, transform.position, Quaternion.identity);
-        Destroy(templetes.rooms[templetes.rooms.Count -1 ].gameObject);
+        Destroy(templetes.rooms[^1]);
+
     }
     
 }
