@@ -79,11 +79,7 @@ public class CustomBullet1 : MonoBehaviour {
 
     private void DelayedDestroy() => Destroy(gameObject);
 
-    private void OnCollisionEnter(Collision collision) {
-        collisions++;
-        if (collision.collider.CompareTag(targetTag) && explodeOnTouch)
-            Explode();
-    }
+    
 
     private void OnDrawGizmosSelected() {
         Gizmos.color = Color.red;
