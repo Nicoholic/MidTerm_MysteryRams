@@ -59,12 +59,6 @@ public class RoomSpawner : MonoBehaviour
                 
             }
             spawned = true;
-            //if (bossSpawned == false)
-            //{
-            //    StartCoroutine(nameof(templetes.spawnBoss));
-            //    spawned = true;
-            //}
-            
             
         }
         
@@ -83,5 +77,11 @@ public class RoomSpawner : MonoBehaviour
         }
     }
 
+    public void DestroyRoom()
+    {
+        Destroy(this.transform.parent.parent.parent);
+        Instantiate(templetes.boss, transform.position, Quaternion.identity);
+
+    }
     
 }
