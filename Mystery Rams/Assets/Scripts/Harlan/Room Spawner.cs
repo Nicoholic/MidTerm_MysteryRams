@@ -77,10 +77,10 @@ public class RoomSpawner : MonoBehaviour
         }
     }
 
-    public void DestroyRoom()
+    public void DestroyRoom(GameObject roomToSpawn)
     {
+        Instantiate(roomToSpawn, transform.position, Quaternion.identity);
         Destroy(this.transform.parent.parent.parent);
-        Instantiate(templetes.boss, transform.position, Quaternion.identity);
 
     }
     

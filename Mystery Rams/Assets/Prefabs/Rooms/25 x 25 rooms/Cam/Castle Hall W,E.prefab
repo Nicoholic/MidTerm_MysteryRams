@@ -1455,6 +1455,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   openingDirection: 4
+  bossSpawned: 0
+  waitTime: 4
 --- !u!65 &8405102135723584483
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3189,6 +3191,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7461119010798456331}
+  - component: {fileID: 799575535635262693}
   m_Layer: 0
   m_Name: Castle Hall W,E
   m_TagString: Untagged
@@ -3219,6 +3222,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &799575535635262693
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4248596575578611142}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2d6b64e0060c794795d52868f08d97a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4487689633302358831
 GameObject:
   m_ObjectHideFlags: 0
@@ -6575,6 +6590,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   openingDirection: 0
+  bossSpawned: 0
+  waitTime: 4
 --- !u!65 &8080713975252672234
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7418,6 +7435,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   openingDirection: 2
+  bossSpawned: 0
+  waitTime: 4
 --- !u!65 &541477587058751936
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -4401,6 +4401,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   openingDirection: 3
+  bossSpawned: 0
+  waitTime: 4
 --- !u!65 &8384469821238824986
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13818,6 +13820,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3646189519764237761}
+  - component: {fileID: 1013718839228135802}
   m_Layer: 0
   m_Name: Castle Corner S,E
   m_TagString: Untagged
@@ -13843,8 +13846,20 @@ Transform:
   - {fileID: 1250285658455858103}
   - {fileID: 8436887788392968375}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1013718839228135802
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4572326091269336064}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2d6b64e0060c794795d52868f08d97a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4589893048831908687
 GameObject:
   m_ObjectHideFlags: 0
@@ -21984,6 +21999,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   openingDirection: 0
+  bossSpawned: 0
+  waitTime: 4
 --- !u!65 &6512467997201097418
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -27430,6 +27447,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   openingDirection: 2
+  bossSpawned: 0
+  waitTime: 4
 --- !u!65 &5037332210195437703
 BoxCollider:
   m_ObjectHideFlags: 0
