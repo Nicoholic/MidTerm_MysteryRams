@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4722f884dad1714ab63717ccd3da005, type: 3}
+  m_Name: Phase2
+  m_EditorClassIdentifier: 
+  projectile: {fileID: 2809463482995139570, guid: de1b0e705a55fb24f9e6bc17e4180d58, type: 3}
+  attackDelay: 0.5
+  timeBetweenAttacks: 2
+  spread: 0
+  timeBetweenShots: 0.05
+  bulletsPerShot: 6
+  attackRange: 10
+  shootForce: 35
+  upwardForce: 5
