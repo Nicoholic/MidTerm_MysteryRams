@@ -129,7 +129,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh71376
+  m_Name: pb_Mesh81470
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -1181,7 +1181,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 874272282724060903, guid: 57947b46a7313e74ebbeb38ed0fdc9b0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -24.89
       objectReference: {fileID: 0}
     - target: {fileID: 874272282724060903, guid: 57947b46a7313e74ebbeb38ed0fdc9b0, type: 3}
       propertyPath: m_LocalPosition.y
@@ -4820,6 +4820,17 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!114 &1736740956 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8887216805487463753, guid: 6198effc6cb9aff4aafb50bdb704aeab, type: 3}
+  m_PrefabInstance: {fileID: 6088919835076812699}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!43 &1754646387
 Mesh:
   m_ObjectHideFlags: 0
@@ -5321,7 +5332,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh71566
+  m_Name: pb_Mesh123070
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -7274,6 +7285,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   openingDirection: 0
+  bossSpawned: 0
+  waitTime: 4
 --- !u!23 &395479128171813733
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -12716,6 +12729,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   openingDirection: 1
+  bossSpawned: 0
+  waitTime: 4
 --- !u!23 &3409586458303660794
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -16988,6 +17003,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 230581020473067775, guid: 6198effc6cb9aff4aafb50bdb704aeab, type: 3}
+      propertyPath: sensSlider
+      value: 
+      objectReference: {fileID: 1736740956}
+    - target: {fileID: 230581020473067775, guid: 6198effc6cb9aff4aafb50bdb704aeab, type: 3}
       propertyPath: playerSpawnPoint
       value: 
       objectReference: {fileID: 1601899289}
@@ -17078,6 +17097,10 @@ PrefabInstance:
     - target: {fileID: 7045276371396487804, guid: 6198effc6cb9aff4aafb50bdb704aeab, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7912413758818853616, guid: 6198effc6cb9aff4aafb50bdb704aeab, type: 3}
+      propertyPath: playerCamera
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -19224,6 +19247,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   openingDirection: 3
+  bossSpawned: 0
+  waitTime: 4
 --- !u!64 &7230778137416948519
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -21346,6 +21371,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   openingDirection: 4
+  bossSpawned: 0
+  waitTime: 4
 --- !u!114 &9057159130377010494
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21359,6 +21386,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   openingDirection: 2
+  bossSpawned: 0
+  waitTime: 4
 --- !u!114 &9060145422956584392
 MonoBehaviour:
   m_ObjectHideFlags: 0

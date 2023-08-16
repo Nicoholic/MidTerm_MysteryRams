@@ -11,7 +11,7 @@ public class PlayerCamera : MonoBehaviour {
 
     [Header("Sensitivity")]
     [SerializeField] public float sensitivity = 100f;
-    [SerializeField] private Slider slider;
+    [SerializeField] public Slider senSlider;
 
     private float xRotation = 0f;
     private float yRotation;
@@ -20,13 +20,13 @@ public class PlayerCamera : MonoBehaviour {
     float mouseY;
 
     void Start() {
-        slider = GameManager.instance.senSlider;
+        senSlider = GameManager.instance.sensSlider;
         orientation = GameManager.instance.player.transform.GetChild(0);
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         sensitivity = PlayerPrefs.GetFloat("currentSensitivity", 100);
-        slider.value = (sensitivity / 10);
-        slider.onValueChanged.AddListener(delegate {ChangeSpeed(slider.value); });
+        senSlider.value = (sensitivity / 10);
+        senSlider.onValueChanged.AddListener(delegate {ChangeSpeed(senSlider.value); });
     }
 
 
@@ -34,8 +34,8 @@ public class PlayerCamera : MonoBehaviour {
 
         PlayerPrefs.SetFloat("currentSensitivity", sensitivity);
         if (!GameManager.instance.isPaused) {
-            mouseX = Input.GetAxis("Mouse X") * sensitivity;
-            mouseY = Input.GetAxis("Mouse Y") * sensitivity;
+            mouseX = Input.GetAxis("Mouse X") * (sensitivity / 10f);
+            mouseY = Input.GetAxis("Mouse Y") * (sensitivity / 10f);
 
 
             yRotation += mouseX;

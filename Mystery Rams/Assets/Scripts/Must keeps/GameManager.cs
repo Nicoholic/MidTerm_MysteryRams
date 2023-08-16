@@ -29,10 +29,11 @@ public class GameManager : MonoBehaviour {
     [SerializeField] public TextMeshProUGUI StaminaTxt;
     [SerializeField] public Image PHealthBar;
     [SerializeField] public Image PStaminaBar;
+    [SerializeField] public Slider sensSlider;
     [SerializeField] GameObject playerDamageIndicator;
     [SerializeField] public GameObject hitmarker;
-    [SerializeField] public Slider senSlider;
     [SerializeField] public GameObject gunPickUpGUI;
+    [SerializeField] public GameObject PausedGame;
 
     int enemiesRemaining;
     public bool isPaused;
@@ -77,6 +78,11 @@ public class GameManager : MonoBehaviour {
         {
             activeMenu.SetActive(false);
             activeMenu = null;
+        }
+        if (PausedGame != null && !isPaused && PausedGame.activeSelf)
+        {
+            PauseGame(); activeMenu = pauseMenu;
+            activeMenu.SetActive(true);
         }
     }
 

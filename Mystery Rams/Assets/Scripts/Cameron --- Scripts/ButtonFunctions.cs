@@ -8,10 +8,6 @@ public class ButtonFunctions : MonoBehaviour {
         GameManager.instance.UnpauseGame();
     }
 
-    public void Respawn() {
-        GameManager.instance.player.GetComponent<PlayerMovement>().SpawnPlayer();
-    }
-
     public void Restart() {
         GameManager.instance.UnpauseGame();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
@@ -21,9 +17,16 @@ public class ButtonFunctions : MonoBehaviour {
         SceneManager.LoadScene(0);
     }
 
-    public void NextLevel()
+    public void PlayGame()
     {
-        GameManager.instance.LevelUnlocked();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 2);
+        GameManager.instance.player.GetComponent<PlayerMovement>().SpawnPlayer();
+        GameManager.instance.player.GetComponent<PlayerMovement>().HP = GameManager.instance.player.GetComponent<PlayerMovement>().maxHP;
+        GameManager.instance.player.GetComponent<PlayerMovement>().UpdateUI();
+    }
+
+    public void TutorialLevel()
+    {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         GameManager.instance.player.GetComponent<PlayerMovement>().SpawnPlayer();
         GameManager.instance.player.GetComponent<PlayerMovement>().HP = GameManager.instance.player.GetComponent<PlayerMovement>().maxHP;
