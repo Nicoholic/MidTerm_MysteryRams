@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SubsystemsImplementation;
 
@@ -35,7 +36,7 @@ public class TriggerSpawn : MonoBehaviour {
             }
 
             foreach (var door in doorList)
-                if (door != null)
+                if (door != null && enemyCount > 0)
                     door.LockDoor();
         }
     }
