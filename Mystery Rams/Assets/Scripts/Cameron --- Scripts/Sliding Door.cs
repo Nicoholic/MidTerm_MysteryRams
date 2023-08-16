@@ -9,6 +9,7 @@ public class SlidingDoor : MonoBehaviour {
     [Header("Components")]
     public Transform[] endPositions;    
     public Transform[] objectsToMove;
+    [SerializeField] GameObject lockImage;
 
     [Header("Debug")]
     [SerializeField] Vector3[] startPositions;
@@ -26,6 +27,8 @@ public class SlidingDoor : MonoBehaviour {
 
         for (int i = 0; i < objectsToMove.Length; i++)
             startPositions[i] = objectsToMove[i].position;
+
+        lockImage.SetActive(false);
     }
 
     private void Update() {
@@ -104,11 +107,12 @@ public class SlidingDoor : MonoBehaviour {
 
     public void LockDoor() {
         locked = true;
-        //set image
+        lockImage.SetActive(true);
+        StartClose();
     }
 
     public void UnlockDoor() {
         locked = false;
-        //unset image
+        lockImage.SetActive(false);
     }
 }
