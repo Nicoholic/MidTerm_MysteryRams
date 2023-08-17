@@ -86810,7 +86810,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2070365790457878048}
-  - component: {fileID: 5024389840545325120}
+  - component: {fileID: 8447264810453244075}
+  - component: {fileID: -3524531827986226158}
   m_Layer: 0
   m_Name: Tiny Corner S,W
   m_TagString: Untagged
@@ -86857,7 +86858,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5024389840545325120
+--- !u!114 &8447264810453244075
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -86866,7 +86867,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 8916982701570472882}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d2d6b64e0060c794795d52868f08d97a, type: 3}
+  m_Script: {fileID: 11500000, guid: 55a7a45e407fad641855378e56e18821, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destroyed: 0
+--- !u!114 &-3524531827986226158
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8916982701570472882}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 768c2d688a5bc4d4f8ed221b5257c328, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &8932229938806234120
