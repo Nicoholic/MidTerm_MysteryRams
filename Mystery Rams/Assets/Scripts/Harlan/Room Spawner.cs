@@ -15,13 +15,13 @@ public class RoomSpawner : MonoBehaviour
     private int rand;
     private bool spawned = false;
     public bool bossSpawned = false;
-    public float waitTime = 4f;
+    public float waitTime = 1.0f;
 
     private void Start()
     {
         Destroy(gameObject, waitTime);
         templetes = GameObject.FindGameObjectWithTag("Rooms").GetComponent<RoomTempletes>();
-        Invoke("Spawn", 0.1f);
+        Invoke("Spawn", 0.2f);
     }
 
 
@@ -71,7 +71,7 @@ public class RoomSpawner : MonoBehaviour
             if (other.TryGetComponent<RoomSpawner>(out var closedRoomSpawn) && closedRoomSpawn.spawned == false && spawned == false)
             {
                 Instantiate(templetes.closedRooms, transform.position, Quaternion.identity);
-                Destroy(gameObject);
+                Destroy(this.gameObject);
                 //fix here
             }
             spawned = true;

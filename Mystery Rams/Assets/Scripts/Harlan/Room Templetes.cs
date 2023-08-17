@@ -33,40 +33,24 @@ public class RoomTempletes : MonoBehaviour {
     public GameObject boss;
 
 
-    //public IEnumerator spawnBoss()
-    // {
-
-    //     yield return new WaitForSeconds(1.0f);
-
-    //     for (int i = 0; i < rooms.Count; i++)
-    //     {
-    //         rooms.RemoveAt(rooms.Count - 1);
-    //         Instantiate(boss, transform.position, Quaternion.identity);
-
-    //     }
-
-
-    // }
 
     private void StartRoomCheck() {
         if (initializing)
             return;
-        Debug.Log("start");
+        
         StartCoroutine(RoomCheckLoop());
         initializing = true;
     }
 
     private IEnumerator RoomCheckLoop() {
         lastListSize = rooms.Count;
-        Debug.Log("update");
+        
         yield return new WaitForSeconds(0.5f);
         RoomCheck();
     }
 
     private void RoomCheck() {
-        Debug.Log("check");
-        Debug.Log("last: " + lastListSize);
-        Debug.Log("cur: " + rooms.Count);
+       
         if (lastListSize == rooms.Count) {
             if (rooms[rooms.Count - 1].transform.GetChild(3).TryGetComponent<RoomSpawner>(out var roomToReplace)) {
                 roomToReplace.DestroyRoom(boss);
