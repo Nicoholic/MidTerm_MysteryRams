@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.Audio;
 
 public class GameManager : MonoBehaviour {
     public static GameManager instance;
@@ -30,6 +31,9 @@ public class GameManager : MonoBehaviour {
     [SerializeField] public Image PHealthBar;
     [SerializeField] public Image PStaminaBar;
     [SerializeField] public Slider sensSlider;
+    [SerializeField] public AudioMixer ogMixer;
+    [SerializeField] public Slider musicSlider;
+    [SerializeField] public Slider soundSlider;
     [SerializeField] GameObject playerDamageIndicator;
     [SerializeField] public GameObject hitmarker;
     [SerializeField] public GameObject gunPickUpGUI;
@@ -61,6 +65,9 @@ public class GameManager : MonoBehaviour {
             Debug.LogError("GameManager - No PlayerCamera object with tag 'PlayerCamera' found.");
 
         originalTimeScale = Time.timeScale;
+
+        MusicVolume();
+        SoundVolume();
     }
 
     void Update() {
@@ -152,5 +159,17 @@ public class GameManager : MonoBehaviour {
     hitmarker.SetActive(true);
     yield return new WaitForSeconds(0.2f);
     hitmarker.SetActive(false);
+    }
+
+    public void MusicVolume()
+    {
+        float volume = musicSlider.value;
+        ogMixer.SetFloat("MusicPar", Mathf.Log10(volume)*20);
+    }
+
+    public void SoundVolume()
+    {
+        float volume = soundSlider.value;
+        ogMixer.SetFloat("SoundPar", Mathf.Log10(volume) * 20);
     }
 }
