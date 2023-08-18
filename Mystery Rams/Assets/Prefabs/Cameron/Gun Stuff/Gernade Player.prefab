@@ -35,7 +35,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4208102023288426197
 MonoBehaviour:
@@ -60,6 +60,7 @@ MonoBehaviour:
   maxCollisions: 10
   maxLifetime: 4
   explodeOnTouch: 1
+  ExplosionSound: {fileID: 3139135328922243902, guid: c84a770b52cd1494fa933ff309500be8, type: 3}
 --- !u!33 &766551831096718841
 MeshFilter:
   m_ObjectHideFlags: 0

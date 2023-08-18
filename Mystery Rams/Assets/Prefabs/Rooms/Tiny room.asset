@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 461484c2e55415b48911a4127db4ce0b, type: 3}
+  m_Name: Tiny room
+  m_EditorClassIdentifier: 
+  northRooms:
+  - {fileID: 6539082596942163937, guid: 8514ba6cfeed72343bb77e425a0a09f9, type: 3}
+  - {fileID: 8270010513881543654, guid: cedc065181d6a3c4e88010db58b0f5a1, type: 3}
+  - {fileID: 8017252655203704630, guid: c7d5c19ec2d8cdd47bd35ce01eccaae4, type: 3}
+  - {fileID: 7689876689943096802, guid: f0f97c5b23e9a6843b904814fa40e8ce, type: 3}
+  - {fileID: 8916982701570472882, guid: 91c989dcde9fa5e4ea71a91ee50ff024, type: 3}
+  eastRooms:
+  - {fileID: 2621384082062226819, guid: 8ca76ecaf3fba9646931b469c025754f, type: 3}
+  - {fileID: 8444436327281192396, guid: 93bd92508cb4f3143bd1c036b6556fe9, type: 3}
+  - {fileID: 7582954684017594512, guid: 373a0371ac7a4c14088f85e8cb4ec770, type: 3}
+  - {fileID: 3765630840525800429, guid: 8f62c8a3792fd3f43bbfac95fbab1aa7, type: 3}
+  - {fileID: 8916982701570472882, guid: 91c989dcde9fa5e4ea71a91ee50ff024, type: 3}
+  southRooms:
+  - {fileID: 7974476112448225646, guid: f6754d1b95d6adb4685202e453abb58a, type: 3}
+  - {fileID: 8270010513881543654, guid: cedc065181d6a3c4e88010db58b0f5a1, type: 3}
+  - {fileID: 2364090902620737587, guid: 53ed815287edabf44aaf0b29ccb603b6, type: 3}
+  - {fileID: 5075115970075786835, guid: 9380d3ba05aa2c041a24c6f63c9fe823, type: 3}
+  - {fileID: 3765630840525800429, guid: 8f62c8a3792fd3f43bbfac95fbab1aa7, type: 3}
+  westRooms:
+  - {fileID: 6731835416852075741, guid: 3f602885d93dc7c4dab1b6608f0ae0e0, type: 3}
+  - {fileID: 8444436327281192396, guid: 93bd92508cb4f3143bd1c036b6556fe9, type: 3}
+  - {fileID: 7106678402325667282, guid: 0c55236d55ea4294ca403e18af812633, type: 3}
+  - {fileID: 5075115970075786835, guid: 9380d3ba05aa2c041a24c6f63c9fe823, type: 3}
+  - {fileID: 7689876689943096802, guid: f0f97c5b23e9a6843b904814fa40e8ce, type: 3}
+  closedRooms: {fileID: 0}
+  bossRoom: {fileID: 0}

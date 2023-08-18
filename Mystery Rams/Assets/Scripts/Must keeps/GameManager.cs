@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.Audio;
 
 public class GameManager : MonoBehaviour {
     public static GameManager instance;
@@ -17,8 +18,8 @@ public class GameManager : MonoBehaviour {
     public GameObject playerCamera;
 
     [Header("Menu UI")]
-    [SerializeField] GameObject activeMenu;
-    [SerializeField] GameObject pauseMenu;
+    [SerializeField] public GameObject activeMenu;
+    [SerializeField] public GameObject pauseMenu;
     [SerializeField] GameObject statsMenu;
     [SerializeField] GameObject winMenu;
     [SerializeField] GameObject loseMenu;
@@ -31,7 +32,6 @@ public class GameManager : MonoBehaviour {
     [SerializeField] public Image PStaminaBar;
     [SerializeField] GameObject playerDamageIndicator;
     [SerializeField] public GameObject hitmarker;
-    [SerializeField] public Slider senSlider;
     [SerializeField] public GameObject gunPickUpGUI;
 
     int enemiesRemaining;
@@ -43,6 +43,9 @@ public class GameManager : MonoBehaviour {
     public float mStamina;
     public float Rcharge;
     public Coroutine recharge;
+
+    public PlayerMovement playerMovement;
+
 
     void Awake() {
         instance = this;
@@ -60,7 +63,11 @@ public class GameManager : MonoBehaviour {
             Debug.LogError("GameManager - No PlayerCamera object with tag 'PlayerCamera' found.");
 
         originalTimeScale = Time.timeScale;
+
+        playerMovement = GameManager.instance.player.GetComponent<PlayerMovement>();
+
     }
+
 
     void Update() {
         if (Input.GetKeyDown(back) && activeMenu == null) {
@@ -82,7 +89,7 @@ public class GameManager : MonoBehaviour {
 
     public void PauseGame() {
         Time.timeScale = 0;
-     Cursor.visible = true;
+        Cursor.visible = true;
         Cursor.lockState = CursorLockMode.Confined;
         isPaused = !isPaused;
     }
@@ -147,4 +154,5 @@ public class GameManager : MonoBehaviour {
     yield return new WaitForSeconds(0.2f);
     hitmarker.SetActive(false);
     }
+
 }

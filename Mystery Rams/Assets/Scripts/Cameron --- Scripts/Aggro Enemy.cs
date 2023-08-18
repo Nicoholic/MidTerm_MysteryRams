@@ -29,6 +29,13 @@ public class AggroEnemy : MonoBehaviour, IDamage {
 
     public TriggerSpawn spawner;
 
+    [Header("Sounds")]
+    [SerializeField] public AudioSource WalkSound;
+    [SerializeField] private AudioSource AttackSound;
+    [SerializeField] private AudioSource HurtSound;
+    [SerializeField] private AudioSource DeathSound;
+
+
     [Header("Debug")]
     [SerializeField] bool playerInAttackRange;
     [SerializeField] bool canSeePlayer;
@@ -50,6 +57,8 @@ public class AggroEnemy : MonoBehaviour, IDamage {
         whatIsGround = 10;
         whatIsPlayer = LayerMask.GetMask("Player");
         attacking = false;
+        if (WalkSound != null)
+            WalkSound.Play();
     }
 
     void FixedUpdate() {
@@ -77,6 +86,8 @@ public class AggroEnemy : MonoBehaviour, IDamage {
             agent.SetDestination(transform.position);
 
         transform.LookAt(new Vector3(player.position.x, 0, player.position.z));
+        if (AttackSound != null)
+            AttackSound.Play();
 
         if (!attacking) {
             bulletsShot = 0;
@@ -134,11 +145,15 @@ public class AggroEnemy : MonoBehaviour, IDamage {
     public void TakeDamage(int damage) {
 
         HP -= damage;
+        if (HurtSound != null)
+            HurtSound.Play();
         StartCoroutine(FlashDamage());
         StartCoroutine(GameManager.instance.Hitmark());
 
 
         if (HP <= 0) {
+            if (DeathSound != null)
+                DeathSound.Play();
             Invoke(nameof(DelayedDestroy), 0.025f);
             Invoke(nameof(DelayRemoveHit), 0.02f);
             if (spawner != null) {
@@ -146,6 +161,6 @@ public class AggroEnemy : MonoBehaviour, IDamage {
             }
         }
     }
-          
+
     private void DelayRemoveHit() => GameManager.instance.hitmarker.SetActive(false);
 }
