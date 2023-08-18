@@ -18,8 +18,8 @@ public class GameManager : MonoBehaviour {
     public GameObject playerCamera;
 
     [Header("Menu UI")]
-    [SerializeField] GameObject activeMenu;
-    [SerializeField] GameObject pauseMenu;
+    [SerializeField] public GameObject activeMenu;
+    [SerializeField] public GameObject pauseMenu;
     [SerializeField] GameObject statsMenu;
     [SerializeField] GameObject winMenu;
     [SerializeField] GameObject loseMenu;
@@ -30,14 +30,9 @@ public class GameManager : MonoBehaviour {
     [SerializeField] public TextMeshProUGUI StaminaTxt;
     [SerializeField] public Image PHealthBar;
     [SerializeField] public Image PStaminaBar;
-    [SerializeField] public Slider sensSlider;
-    [SerializeField] public AudioMixer ogMixer;
-    [SerializeField] public Slider musicSlider;
-    [SerializeField] public Slider soundSlider;
     [SerializeField] GameObject playerDamageIndicator;
     [SerializeField] public GameObject hitmarker;
     [SerializeField] public GameObject gunPickUpGUI;
-    [SerializeField] public GameObject PausedGame;
 
     int enemiesRemaining;
     public bool isPaused;
@@ -48,6 +43,9 @@ public class GameManager : MonoBehaviour {
     public float mStamina;
     public float Rcharge;
     public Coroutine recharge;
+
+    public PlayerMovement playerMovement;
+
 
     void Awake() {
         instance = this;
@@ -66,9 +64,10 @@ public class GameManager : MonoBehaviour {
 
         originalTimeScale = Time.timeScale;
 
-        MusicVolume();
-        SoundVolume();
+        playerMovement = GameManager.instance.player.GetComponent<PlayerMovement>();
+
     }
+
 
     void Update() {
         if (Input.GetKeyDown(back) && activeMenu == null) {
@@ -86,16 +85,11 @@ public class GameManager : MonoBehaviour {
             activeMenu.SetActive(false);
             activeMenu = null;
         }
-        if (PausedGame != null && !isPaused && PausedGame.activeSelf)
-        {
-            PauseGame(); activeMenu = pauseMenu;
-            activeMenu.SetActive(true);
-        }
     }
 
     public void PauseGame() {
         Time.timeScale = 0;
-     Cursor.visible = true;
+        Cursor.visible = true;
         Cursor.lockState = CursorLockMode.Confined;
         isPaused = !isPaused;
     }
@@ -161,15 +155,4 @@ public class GameManager : MonoBehaviour {
     hitmarker.SetActive(false);
     }
 
-    public void MusicVolume()
-    {
-        float volume = musicSlider.value;
-        ogMixer.SetFloat("MusicPar", Mathf.Log10(volume)*20);
-    }
-
-    public void SoundVolume()
-    {
-        float volume = soundSlider.value;
-        ogMixer.SetFloat("SoundPar", Mathf.Log10(volume) * 20);
-    }
 }

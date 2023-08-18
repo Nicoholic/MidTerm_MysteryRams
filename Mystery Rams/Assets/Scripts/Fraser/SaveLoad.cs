@@ -8,24 +8,12 @@ public class PlayerSettingsManager : MonoBehaviour
     [SerializeField] private SetFullScreen setFullScreen;
     [SerializeField] private ColorSlider colorSlider;
     [SerializeField] private CrosshairDrop crosshairDrop;
-    [SerializeField] private PlayerCamera playerCamera;
-    [SerializeField] private Slider musicSlider;
-    [SerializeField] private Slider soundSlider;
+    [SerializeField] private SenVolSettings SensSlider;
+    [SerializeField] private SenVolSettings musicSlider;
+    [SerializeField] private SenVolSettings soundSlider;
 
     private void Start()
     {
-        playerCamera = GameManager.instance.playerCamera.GetComponent<PlayerCamera>();
-        if (playerCamera == null)
-        {
-            Debug.LogError("GameManager - No PlayerCamera object with tag 'PlayerCamera' found.");
-        }
-
-        StartCoroutine(DelayedLoadSettings());
-    }
-
-    private IEnumerator DelayedLoadSettings()
-    {
-        yield return new WaitForSeconds(2.0f); 
         LoadSettings();
     }
 
@@ -36,9 +24,9 @@ public class PlayerSettingsManager : MonoBehaviour
         float greenValue = colorSlider.sliderGreen.value;
         float blueValue = colorSlider.sliderBlue.value;
         int crosshairIndex = crosshairDrop.CHDD.value;
-        float sensitivityValue = playerCamera.senSlider.value;
-        float musicValue = GameManager.instance.musicSlider.value;
-        float soundValue = GameManager.instance.soundSlider.value;
+        float sensitivityValue = SensSlider.sensSlider.value;
+        float musicValue = musicSlider.musicSlider.value;
+        float soundValue = soundSlider.soundSlider.value;
 
         PlayerPrefs.SetInt("IsFullScreen", isFullScreen ? 1 : 0);
         PlayerPrefs.SetFloat("RedValue", redValue);
@@ -70,9 +58,9 @@ public class PlayerSettingsManager : MonoBehaviour
         colorSlider.sliderGreen.value = greenValue;
         colorSlider.sliderBlue.value = blueValue;
         crosshairDrop.CHDD.value = crosshairIndex;
-        playerCamera.senSlider.value = sensitivityValue;
-        GameManager.instance.musicSlider.value = musicValue;
-        GameManager.instance.soundSlider.value = soundValue;
+        SensSlider.sensSlider.value = sensitivityValue;
+        musicSlider.musicSlider.value = musicValue;
+        soundSlider.soundSlider.value = soundValue;
     }
     public void OnSaveClick()
     {

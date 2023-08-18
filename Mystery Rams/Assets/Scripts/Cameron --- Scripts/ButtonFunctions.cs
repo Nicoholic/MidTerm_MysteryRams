@@ -15,6 +15,7 @@ public class ButtonFunctions : MonoBehaviour {
 
     public void MainMenu() {
         SceneManager.LoadScene(0);
+
     }
 
     public void PlayGame()
