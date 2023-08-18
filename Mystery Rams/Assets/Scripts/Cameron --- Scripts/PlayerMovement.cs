@@ -120,7 +120,6 @@ public class PlayerMovement : MonoBehaviour, IDamage {
     [SerializeField] public AudioSource ThrowingSound;
     [SerializeField] public AudioSource GameMusic;
     [SerializeField] public AudioSource BossMusic;
-    [SerializeField] public AudioSource MenuMusic;
 
 
     private void Start() {
