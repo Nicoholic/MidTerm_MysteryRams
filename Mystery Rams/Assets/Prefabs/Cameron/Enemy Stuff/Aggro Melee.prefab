@@ -5048,7 +5048,7 @@ Transform:
   - {fileID: 3342148098933622019}
   - {fileID: 2144866628836520178}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5760980239611899516
 MonoBehaviour:
@@ -5088,6 +5088,7 @@ MonoBehaviour:
   upwardForce: 0
   attackPoint: {fileID: 2144866628836520178}
   animator: {fileID: 3412445662003662868}
+  spawner: {fileID: 0}
   playerInAttackRange: 0
   canSeePlayer: 0
   attacking: 0
@@ -5103,7 +5104,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 12
+  m_Speed: 7
   m_Acceleration: 9999
   avoidancePriority: 50
   m_AngularSpeed: 9999
@@ -10844,7 +10845,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 585901dad4c09564db67dc1e08787f0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnEffectTime: 3
+  spawnEffectTime: 5
   pause: 1
   fadeIn:
     serializedVersion: 2
