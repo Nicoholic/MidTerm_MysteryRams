@@ -1,13 +1,31 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class Timer : MonoBehaviour
+public class StatsManager : MonoBehaviour
 {
+    private static StatsManager _instance;
+
+    public static StatsManager Instance { get { return _instance; } }
+
+
     int minutes;
     int seconds;
     public string formattedTime;
+
+    float shotsFired;
+    float shotsHit;
+    public string formattedAccurcy;
+
+    void Awake()
+    {
+        if (_instance != null && _instance != this)
+            Destroy(this.gameObject);
+        else
+            _instance = this;
+    }
+
 
     void Start()
     {
@@ -50,5 +68,22 @@ public class Timer : MonoBehaviour
         }
 
         formattedTime = formattedMinutes + ":" + formattedSeconds;
+    }
+
+    public void ShotFired()
+    {
+        shotsFired++;
+        FormatAccuracy();
+    }
+
+    public void ShotHit()
+    {
+        shotsHit++;
+        FormatAccuracy();
+    }
+
+    private void FormatAccuracy()
+    {
+        formattedAccurcy = "" + (Mathf.Round((shotsHit / shotsFired)*10000) / 100) + "%";
     }
 }
