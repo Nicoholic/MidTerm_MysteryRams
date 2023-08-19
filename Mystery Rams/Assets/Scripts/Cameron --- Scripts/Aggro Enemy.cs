@@ -159,6 +159,7 @@ public class AggroEnemy : MonoBehaviour, IDamage {
             if (spawner != null) {
                 spawner.enemyCount--;
             }
+            StatsManager.Instance.KilledEnemy();
         }
     }
 

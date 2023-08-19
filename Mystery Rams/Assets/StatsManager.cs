@@ -18,6 +18,12 @@ public class StatsManager : MonoBehaviour
     float shotsHit;
     public string formattedAccurcy;
 
+    int enemiesKilled;
+    public string formattedEnemiesKilled;
+
+    int playerDamage;
+    public string formattedPlayerDamage;
+
     void Awake()
     {
         if (_instance != null && _instance != this)
@@ -31,6 +37,16 @@ public class StatsManager : MonoBehaviour
     {
         seconds = 0;
         minutes = 0;
+        shotsFired = 0;
+        shotsHit = 0;
+        enemiesKilled = 0;
+        playerDamage = 0;
+
+        formattedTime = "00:00";
+        formattedAccurcy = "0.00%";
+        formattedEnemiesKilled = "0";
+        formattedPlayerDamage = "0";
+
         StartCoroutine(CountSecond());
     }
 
@@ -85,5 +101,17 @@ public class StatsManager : MonoBehaviour
     private void FormatAccuracy()
     {
         formattedAccurcy = "" + (Mathf.Round((shotsHit / shotsFired)*10000) / 100) + "%";
+    }
+
+    public void KilledEnemy()
+    {
+        enemiesKilled++;
+        formattedEnemiesKilled = "" + enemiesKilled;
+    }
+
+    public void PlayerTookDamage(int damageAmount)
+    {
+        playerDamage += damageAmount;
+        formattedPlayerDamage = "" + playerDamage;
     }
 }

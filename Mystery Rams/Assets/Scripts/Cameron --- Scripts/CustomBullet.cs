@@ -94,6 +94,7 @@ public class CustomBullet : MonoBehaviour {
                 enemyHit = true;
             }
         }
+
         if (enemyHit && targetTag == "Enemy")
         {
             StatsManager.Instance.ShotHit();
