@@ -11,4 +11,5 @@ public class RoomGrouping : ScriptableObject {
 
     public GameObject closedRooms;
     public GameObject bossRoom;
+    public GameObject bossExt;
 }
