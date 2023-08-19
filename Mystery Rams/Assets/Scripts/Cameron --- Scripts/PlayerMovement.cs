@@ -111,7 +111,6 @@ public class PlayerMovement : MonoBehaviour, IDamage {
     }
 
     [Header("Sounds")]
-    //[SerializeField] private AudioSource WalkSound;
     [SerializeField] public AudioSource DashSound;
     [SerializeField] private AudioSource JumpSound;
     [SerializeField] private AudioSource LandSound;
@@ -119,8 +118,8 @@ public class PlayerMovement : MonoBehaviour, IDamage {
     [SerializeField] private AudioSource DeathSound;
     [SerializeField] public AudioSource PickUpSound;
     [SerializeField] public AudioSource ThrowingSound;
-    //[SerializeField] private AudioSource SlideSound;
-    //[SerializeField] private AudioSource HealSound;
+    [SerializeField] public AudioSource GameMusic;
+    [SerializeField] public AudioSource BossMusic;
 
 
     private void Start() {
@@ -452,6 +451,8 @@ public class PlayerMovement : MonoBehaviour, IDamage {
 
         HP = maxHP;
         UpdateUI();
+        GameMusic.Play();
+        GameMusic.loop = true;
     }
 
     void GunChangeInput() {

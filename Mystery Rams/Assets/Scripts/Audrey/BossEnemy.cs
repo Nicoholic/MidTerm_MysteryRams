@@ -46,9 +46,12 @@ public class BossEnemy : MonoBehaviour, IDamage
 
     private float maxHP;
 
+    public PlayerMovement playerMovement;
+
     void Start()
     {
         player = GameManager.instance.player.transform;
+        playerMovement = GameManager.instance.player.GetComponent<PlayerMovement>();
         agent = GetComponent<NavMeshAgent>();
         whatIsGround = 10;
         whatIsPlayer = LayerMask.GetMask("Player");
@@ -161,6 +164,8 @@ public class BossEnemy : MonoBehaviour, IDamage
             GameManager.instance.GameWin();
             Invoke(nameof(DelayedDestroy), 0.025f);
             Invoke(nameof(DelayRemoveHit), 0.02f);
+            playerMovement.BossMusic.Stop();
+            playerMovement.BossMusic.loop = false;
             if (spawner != null)
             {
                 spawner.enemyCount--;

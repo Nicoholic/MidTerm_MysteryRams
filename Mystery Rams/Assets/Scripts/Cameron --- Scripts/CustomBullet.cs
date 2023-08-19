@@ -31,6 +31,9 @@ public class CustomBullet : MonoBehaviour {
     int collisions;
     PhysicMaterial physicalMaterial;
 
+    [Header("Sounds")]
+    [SerializeField] public GameObject ExplosionSound;
+
     private void Start() {
         Setup();
     }
@@ -49,11 +52,18 @@ public class CustomBullet : MonoBehaviour {
 
     private void FixedUpdate() {
         if (collisions > maxCollisions)
+        {
             Explode();
+        }
+            
+
 
         maxLifetime -= Time.deltaTime;
         if (maxLifetime <= 0 && !exploded)
+        {
             Explode();
+        }
+
     }
 
     private void Explode() {
@@ -61,8 +71,13 @@ public class CustomBullet : MonoBehaviour {
 
         if (explosion != null)
             Instantiate(explosion, transform.position, Quaternion.identity);
+            
+        if (ExplosionSound != null)
+        {
+            Instantiate(ExplosionSound);
+        }
 
-            Collider[] enemies = Physics.OverlapSphere(transform.position, explosionRange);
+        Collider[] enemies = Physics.OverlapSphere(transform.position, explosionRange);
         foreach (var item in enemies) {
 
             if (item.TryGetComponent<Rigidbody>(out var itemRB))
@@ -71,7 +86,6 @@ public class CustomBullet : MonoBehaviour {
             if (item.TryGetComponent<IDamage>(out var enemy) && item.CompareTag(targetTag))
                 enemy.TakeDamage(explosionDamage);
         }
-
         Invoke(nameof(DelayedDestroy), 0.005f);
     }
 
