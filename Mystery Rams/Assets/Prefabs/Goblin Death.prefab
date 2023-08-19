@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &3139135328922243902
+--- !u!1 &6186078035871459071
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,71 +8,71 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5164010587059633943}
-  - component: {fileID: 1124768831969010149}
-  - component: {fileID: 2444631577562732506}
-  - component: {fileID: 5997584791010754044}
+  - component: {fileID: 7006992563317474642}
+  - component: {fileID: 8673984292129254720}
+  - component: {fileID: 902112506576324889}
+  - component: {fileID: 8689900188762589599}
   m_Layer: 0
-  m_Name: Explosion
+  m_Name: Goblin Death
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &5164010587059633943
+--- !u!4 &7006992563317474642
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3139135328922243902}
+  m_GameObject: {fileID: 6186078035871459071}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -23.619427, y: 3.7986376, z: 0.7554028}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1124768831969010149
+--- !u!114 &8673984292129254720
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3139135328922243902}
+  m_GameObject: {fileID: 6186078035871459071}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 99d28ad96b270d345aa695123300293e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlaySound: {fileID: 5997584791010754044}
---- !u!114 &2444631577562732506
+  PlaySound: {fileID: 8689900188762589599}
+--- !u!114 &902112506576324889
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3139135328922243902}
+  m_GameObject: {fileID: 6186078035871459071}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 016b1077364b6fc40bac95604f99a153, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   timer: 4
---- !u!82 &5997584791010754044
+--- !u!82 &8689900188762589599
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3139135328922243902}
+  m_GameObject: {fileID: 6186078035871459071}
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -8431658575430159359, guid: fc2f6320f1424c743ba84246788fe0ea, type: 2}
-  m_audioClip: {fileID: 8300000, guid: 81346543b44bb654895aa216d619f3dc, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 1e80753ec4624e3488f0a8dffc46c1c2, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.5
+  m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0

@@ -21,6 +21,7 @@ public class ButtonFunctions : MonoBehaviour {
     public void PlayGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 2);
+        Time.timeScale = 1;
         GameManager.instance.player.GetComponent<PlayerMovement>().SpawnPlayer();
         GameManager.instance.player.GetComponent<PlayerMovement>().HP = GameManager.instance.player.GetComponent<PlayerMovement>().maxHP;
         GameManager.instance.player.GetComponent<PlayerMovement>().UpdateUI();
@@ -29,6 +30,7 @@ public class ButtonFunctions : MonoBehaviour {
     public void TutorialLevel()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        Time.timeScale = 1;
         GameManager.instance.player.GetComponent<PlayerMovement>().SpawnPlayer();
         GameManager.instance.player.GetComponent<PlayerMovement>().HP = GameManager.instance.player.GetComponent<PlayerMovement>().maxHP;
         GameManager.instance.player.GetComponent<PlayerMovement>().UpdateUI();

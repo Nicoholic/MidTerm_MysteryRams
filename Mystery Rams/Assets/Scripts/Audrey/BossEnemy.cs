@@ -28,6 +28,11 @@ public class BossEnemy : MonoBehaviour, IDamage
     [SerializeField] float shootForce;
     [SerializeField] float upwardForce;
 
+    [Header("Sounds")]
+    [SerializeField] private AudioSource AttackSound;
+    [SerializeField] private AudioSource HurtSound;
+    [SerializeField] public GameObject DeathSound;
+
 
     [Header("Debug")]
     [SerializeField] int currentPhase;
@@ -93,6 +98,10 @@ public class BossEnemy : MonoBehaviour, IDamage
 
         if (!attacking)
         {
+            attacking = true;
+            if (AttackSound != null)
+                AttackSound.Play();
+
             bulletsShot = 0;
 
             if (animator != null)
@@ -100,7 +109,7 @@ public class BossEnemy : MonoBehaviour, IDamage
 
             Shoot();
 
-            attacking = true;
+
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
         }
     }
@@ -155,12 +164,18 @@ public class BossEnemy : MonoBehaviour, IDamage
     {
 
         HP -= damage;
+        if (HurtSound != null)
+            HurtSound.Play();
         StartCoroutine(FlashDamage());
         StartCoroutine(GameManager.instance.Hitmark());
 
 
         if (HP <= 0)
         {
+            if (DeathSound != null)
+            {
+                Instantiate(DeathSound);
+            }
             GameManager.instance.GameWin();
             Invoke(nameof(DelayedDestroy), 0.025f);
             Invoke(nameof(DelayRemoveHit), 0.02f);

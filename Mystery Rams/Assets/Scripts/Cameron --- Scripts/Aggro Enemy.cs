@@ -30,10 +30,9 @@ public class AggroEnemy : MonoBehaviour, IDamage {
     public TriggerSpawn spawner;
 
     [Header("Sounds")]
-    [SerializeField] public AudioSource WalkSound;
     [SerializeField] private AudioSource AttackSound;
     [SerializeField] private AudioSource HurtSound;
-    [SerializeField] private AudioSource DeathSound;
+    [SerializeField] public GameObject DeathSound;
 
 
     [Header("Debug")]
@@ -57,8 +56,6 @@ public class AggroEnemy : MonoBehaviour, IDamage {
         whatIsGround = 10;
         whatIsPlayer = LayerMask.GetMask("Player");
         attacking = false;
-        if (WalkSound != null)
-            WalkSound.Play();
     }
 
     void FixedUpdate() {
@@ -68,35 +65,39 @@ public class AggroEnemy : MonoBehaviour, IDamage {
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
         canSeePlayer = Physics.Raycast(attackPoint.position, player.position - attackPoint.position, out var hit) && hit.collider.CompareTag("Player");
 
-        if (playerInAttackRange && canSeePlayer) {
+        if (playerInAttackRange && canSeePlayer)
+        {
             if (animator != null)
                 animator.SetTrigger("Attack");
             Invoke(nameof(AttackPlayer), attackDelay);
-        } else if (!attacking)
+        }
+        else if (!attacking)
+        {
             ChasePlayer();
+        }
     }
 
-    private void ChasePlayer() {
+    private void ChasePlayer()
+    {
         if (HP > 0)
+        {
             agent.SetDestination(player.position);
+        }
     }
-
     private void AttackPlayer() {
         if (HP > 0)
             agent.SetDestination(transform.position);
 
         transform.LookAt(new Vector3(player.position.x, 0, player.position.z));
-        if (AttackSound != null)
-            AttackSound.Play();
+        if (!attacking)
+        {
+            attacking = true;
+            if (AttackSound != null)
+                AttackSound.Play();
 
-        if (!attacking) {
             bulletsShot = 0;
-
-
-
             Shoot();
 
-            attacking = true;
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
         }
     }
@@ -153,7 +154,9 @@ public class AggroEnemy : MonoBehaviour, IDamage {
 
         if (HP <= 0) {
             if (DeathSound != null)
-                DeathSound.Play();
+            {
+                Instantiate(DeathSound);
+            }
             Invoke(nameof(DelayedDestroy), 0.025f);
             Invoke(nameof(DelayRemoveHit), 0.02f);
             if (spawner != null) {
