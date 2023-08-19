@@ -11,6 +11,7 @@ public class BossEnemy : MonoBehaviour, IDamage
     [Header("Stats")]
     [SerializeField] int HP;
     [SerializeField] AttackPattern[] patterns;
+    [SerializeField] Material[] materials;
 
     [Header("Components")]
     [SerializeField] Transform attackPoint;
@@ -62,12 +63,14 @@ public class BossEnemy : MonoBehaviour, IDamage
 
     void FixedUpdate()
     {
-       
+        
         if (animator != null && animator.gameObject.activeSelf)
             animator.SetFloat("Speed", agent.velocity.normalized.magnitude);
 
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
         canSeePlayer = Physics.Raycast(attackPoint.position, player.position - attackPoint.position, out var hit) && hit.collider.CompareTag("Player");
+        //Renderer rend = hit.transform.GetComponent<Renderer>();
+        //rend.material =
 
         if (playerInAttackRange && canSeePlayer)
         {
@@ -132,17 +135,6 @@ public class BossEnemy : MonoBehaviour, IDamage
         attacking = false;
     }
 
-    IEnumerator FlashDamage()
-    {
-        if (model != null)
-        {
-            model.material.color = Color.red;
-            yield return new WaitForSeconds(0.1f);
-            model.material.color = Color.white;
-        }
-
-    }
-
     private void DelayedDestroy() => Destroy(gameObject);
 
     private void OnDrawGizmosSelected()
@@ -155,7 +147,6 @@ public class BossEnemy : MonoBehaviour, IDamage
     {
 
         HP -= damage;
-        StartCoroutine(FlashDamage());
         StartCoroutine(GameManager.instance.Hitmark());
 
 
@@ -177,6 +168,7 @@ public class BossEnemy : MonoBehaviour, IDamage
             UpdateAttackPattern((patterns.Count()-Mathf.FloorToInt((HP/maxHP)*patterns.Count()))-1);
             if (animator != null)
                 animator.SetTrigger("Hurt");
+            
         }
     }
 
@@ -198,7 +190,12 @@ public class BossEnemy : MonoBehaviour, IDamage
 
         currentPhase = newPattern;
 
+        model.material = materials[newPattern];
 
+        if(this.TryGetComponent<MeshRenderer>(out var renderer))
+        {
+            renderer.material = materials[newPattern];
+        }
 
     }
 }
