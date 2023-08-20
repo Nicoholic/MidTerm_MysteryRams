@@ -15,8 +15,8 @@ public class RoomSpawner : MonoBehaviour
     private int rand;
     private bool spawned = false;
     public bool bossSpawned = false;
-    public float waitTime = 1.0f;
-    int bossRoomDirection;
+    public float waitTime = 2f;
+    [SerializeField] int bossRoomDirection;
 
 
 
@@ -27,8 +27,9 @@ public class RoomSpawner : MonoBehaviour
         bossRoomDirection = Random.Range(5, 8);
         templetes = GameObject.FindGameObjectWithTag("Rooms").GetComponent<RoomTempletes>();
         Invoke("Spawn", 0.2f);
+
     }
-   
+
 
 
     void Spawn()
@@ -64,16 +65,17 @@ public class RoomSpawner : MonoBehaviour
                 Instantiate(templetes.westRooms[rand], transform.position, Quaternion.identity);
 
             }
-            if (openingDirection == bossRoomDirection)
+            if (openingDirection == 5 || openingDirection == 6 || openingDirection == 7 || openingDirection == 8)
             {
-               
-                
-                if (!bossSpawned )
+                Debug.Log("Bossroom Direction: " + bossRoomDirection);
+                Debug.Log("Opening Direction: " + openingDirection);
+
+                if (!bossSpawned && openingDirection == bossRoomDirection)
                 {
                     Instantiate(templetes.boss, transform.position, Quaternion.identity);
                     bossSpawned = true;
                 }
-                
+
 
 
             }
@@ -84,18 +86,22 @@ public class RoomSpawner : MonoBehaviour
 
 
     }
+
+    
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("SpawnPoint"))
         {
-            if (other.TryGetComponent<RoomSpawner>(out var closedRoomSpawn) && closedRoomSpawn.spawned == false && spawned == false)
+            if (other.TryGetComponent<RoomSpawner>(out var closedRoomSpawn) && closedRoomSpawn.spawned == false && spawned == false )
             {
                 Instantiate(templetes.closedRooms, transform.position, Quaternion.identity);
                 Destroy(this.gameObject);
-                //fix here
+
             }
             spawned = true;
         }
+
+
     }
 
     public void DestroyRoom(GameObject roomToSpawn)
@@ -104,7 +110,7 @@ public class RoomSpawner : MonoBehaviour
         Destroy(templetes.rooms[^1]);
     }
 
-   
 
-    
+
+
 }
