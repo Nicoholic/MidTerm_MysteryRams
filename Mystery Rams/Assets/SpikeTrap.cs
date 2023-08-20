@@ -7,69 +7,66 @@ using UnityEngine.UIElements;
 public class SpikeTrap : MonoBehaviour
 {
     [Header("Stats")]
-    [SerializeField] float moveDuration;
+    [SerializeField] float moveDurationUp;
+    [SerializeField] float moveDurationDown;
     [SerializeField] float pauseDuration;
 
-    [Header("Componets")]
+    [Header("Components")]
     [SerializeField] GameObject startingPoint;
     [SerializeField] GameObject spikes;
 
     Vector3 endPoint;
     Vector3 startPoint;
 
-    float elapsedTimeUp = 0.0f;
-    float elapsedTimeDown = 0.0f;
-
-    bool goingUp;
+    float elapsedTime = 0.0f;
+    bool goingUp = true;
 
     void Start()
     {
         endPoint = spikes.transform.position;
         startPoint = startingPoint.transform.position;
         spikes.transform.position = startPoint;
-        goingUp = true;
     }
 
-    private void Update()
+    void Update()
     {
+        elapsedTime += Time.deltaTime;
+
         if (goingUp)
         {
-            SpikesUp();
+            MoveSpikes(startPoint, endPoint, moveDurationUp);
         }
         else
         {
-            SpikesDown();
+            MoveSpikes(endPoint, startPoint, moveDurationDown);
         }
     }
 
-    private void SpikesUp()
+    private void MoveSpikes(Vector3 Movefrom, Vector3 Moveto, float duration)
     {
-        elapsedTimeUp += Time.deltaTime;
-        float t = Mathf.Clamp01(elapsedTimeUp / moveDuration);
-        spikes.transform.position = Vector3.Lerp(startPoint, endPoint, t);
+        float t = Mathf.Clamp01(elapsedTime / duration);
+        spikes.transform.position = Vector3.Lerp(Movefrom, Moveto, t);
 
-        if (Vector3.Distance(spikes.transform.position, endPoint) < 0.001f)
+        if (t >= 1.0f)
         {
-            FlipState();
+            if (goingUp)
+                StartCoroutine(PauseCoroutine());
+            else
+                StartCoroutine(MoveDownCoroutine());
         }
     }
 
-    private void SpikesDown()
+    IEnumerator PauseCoroutine()
     {
-        elapsedTimeDown += Time.deltaTime;
-        float t = Mathf.Clamp01(elapsedTimeDown / moveDuration);
-        spikes.transform.position = Vector3.Lerp(endPoint, startPoint, t);
-
-        if (Vector3.Distance(spikes.transform.position, startPoint) < 0.001f)
-        {
-            FlipState();
-        }
+        yield return new WaitForSeconds(pauseDuration);
+        goingUp = false;
+        elapsedTime = 0.0f;
     }
 
-    private void FlipState()
+    IEnumerator MoveDownCoroutine()
     {
-        goingUp = !goingUp;
-        elapsedTimeUp = 0.0f;
-        elapsedTimeDown = 0.0f;
+        yield return new WaitForSeconds(pauseDuration);
+        goingUp = true;
+        elapsedTime = 0.0f;
     }
 }
