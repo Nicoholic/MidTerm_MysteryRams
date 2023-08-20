@@ -11,6 +11,7 @@ public class BossEnemy : MonoBehaviour, IDamage
     [Header("Stats")]
     [SerializeField] int HP;
     [SerializeField] AttackPattern[] patterns;
+    [SerializeField] Material[] materials;
 
     [Header("Components")]
     [SerializeField] Transform attackPoint;
@@ -28,11 +29,6 @@ public class BossEnemy : MonoBehaviour, IDamage
     [SerializeField] float shootForce;
     [SerializeField] float upwardForce;
 
-    [Header("Sounds")]
-    [SerializeField] private AudioSource AttackSound;
-    [SerializeField] private AudioSource HurtSound;
-    [SerializeField] public GameObject DeathSound;
-
 
     [Header("Debug")]
     [SerializeField] int currentPhase;
@@ -40,9 +36,15 @@ public class BossEnemy : MonoBehaviour, IDamage
     [SerializeField] bool canSeePlayer;
     [SerializeField] bool attacking;
     [SerializeField] int bulletsShot;
+
+    [Header("Sounds")]
+    [SerializeField] private AudioSource AttackSound;
+    [SerializeField] private AudioSource HurtSound;
+    [SerializeField] public GameObject DeathSound;
+
     public TriggerSpawn spawner;
 
-    
+
     private NavMeshAgent agent;
     private Transform player;
 
@@ -67,16 +69,18 @@ public class BossEnemy : MonoBehaviour, IDamage
 
     void FixedUpdate()
     {
-       
+
         if (animator != null && animator.gameObject.activeSelf)
             animator.SetFloat("Speed", agent.velocity.normalized.magnitude);
 
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
         canSeePlayer = Physics.Raycast(attackPoint.position, player.position - attackPoint.position, out var hit) && hit.collider.CompareTag("Player");
+        //Renderer rend = hit.transform.GetComponent<Renderer>();
+        //rend.material =
 
         if (playerInAttackRange && canSeePlayer)
         {
-          
+
             Invoke(nameof(AttackPlayer), attackDelay);
         }
         else if (!attacking)
@@ -141,17 +145,6 @@ public class BossEnemy : MonoBehaviour, IDamage
         attacking = false;
     }
 
-    IEnumerator FlashDamage()
-    {
-        if (model != null)
-        {
-            model.material.color = Color.red;
-            yield return new WaitForSeconds(0.1f);
-            model.material.color = Color.white;
-        }
-
-    }
-
     private void DelayedDestroy() => Destroy(gameObject);
 
     private void OnDrawGizmosSelected()
@@ -166,7 +159,6 @@ public class BossEnemy : MonoBehaviour, IDamage
         HP -= damage;
         if (HurtSound != null)
             HurtSound.Play();
-        StartCoroutine(FlashDamage());
         StartCoroutine(GameManager.instance.Hitmark());
 
 
@@ -188,15 +180,18 @@ public class BossEnemy : MonoBehaviour, IDamage
                     animator.SetTrigger("Dead");
             }
 
-        } else {
-            UpdateAttackPattern((patterns.Count()-Mathf.FloorToInt((HP/maxHP)*patterns.Count()))-1);
+        }
+        else
+        {
+            UpdateAttackPattern((patterns.Count() - Mathf.FloorToInt((HP / maxHP) * patterns.Count())) - 1);
             if (animator != null)
                 animator.SetTrigger("Hurt");
+
         }
     }
 
     private void DelayRemoveHit() => GameManager.instance.hitmarker.SetActive(false);
-    private void UpdateAttackPattern(int newPattern) 
+    private void UpdateAttackPattern(int newPattern)
     {
         projectile = patterns[newPattern].projectile;
 
@@ -213,7 +208,12 @@ public class BossEnemy : MonoBehaviour, IDamage
 
         currentPhase = newPattern;
 
+        model.material = materials[newPattern];
 
+        if (this.TryGetComponent<MeshRenderer>(out var renderer))
+        {
+            renderer.material = materials[newPattern];
+        }
 
     }
 }

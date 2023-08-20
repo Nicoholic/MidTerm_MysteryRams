@@ -46,6 +46,8 @@ public class ProjectileGun : MonoBehaviour {
     [Header("Sounds")]
     [SerializeField] private AudioSource iStartedBlastin;
 
+    [Header("Animation")]
+    public Animator reloadAni;
 
     void Start() {
         bulletsLeft = magazineSize;
@@ -136,9 +138,14 @@ public class ProjectileGun : MonoBehaviour {
 
     private void Reload() {
         reloading = true;
+        
+        reloadAni.SetBool("Reloading", true);
+        
         Invoke(nameof(ReloadFinished), reloadTime);
+        
     }
     private void ReloadFinished() {
+        reloadAni.SetBool("Reloading", false);
         bulletsLeft = magazineSize;
         reloading = false;
     }

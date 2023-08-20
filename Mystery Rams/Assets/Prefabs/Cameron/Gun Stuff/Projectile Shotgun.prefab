@@ -97,6 +97,7 @@ GameObject:
   - component: {fileID: 7668002751447781374}
   - component: {fileID: 8994711215212838399}
   - component: {fileID: 6765667051130646004}
+  - component: {fileID: 4900120634498470227}
   m_Layer: 0
   m_Name: Projectile Shotgun
   m_TagString: Untagged
@@ -119,7 +120,7 @@ Transform:
   - {fileID: 8357190854413137395}
   - {fileID: 8988622313420767254}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2228201821407956072
 MonoBehaviour:
@@ -155,6 +156,7 @@ MonoBehaviour:
   readyToShoot: 0
   reloading: 0
   iStartedBlastin: {fileID: 6765667051130646004}
+  reloadAni: {fileID: 4900120634498470227}
 --- !u!114 &3313829506631801057
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -322,6 +324,27 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!95 &4900120634498470227
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2334341074496186624}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6c94b2bf44c60fb45af2f4738845304c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &6327445756407518994
 GameObject:
   m_ObjectHideFlags: 0
