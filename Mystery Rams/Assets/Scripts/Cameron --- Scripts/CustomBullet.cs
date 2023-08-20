@@ -36,6 +36,9 @@ public class CustomBullet : MonoBehaviour {
 
     private void Start() {
         Setup();
+
+        if (targetTag == "Enemy")
+            StatsManager.Instance.ShotFired();
     }
 
     private void Setup() {
@@ -77,6 +80,8 @@ public class CustomBullet : MonoBehaviour {
             Instantiate(ExplosionSound);
         }
 
+        bool enemyHit = false;
+
         Collider[] enemies = Physics.OverlapSphere(transform.position, explosionRange);
         foreach (var item in enemies) {
 
@@ -84,8 +89,17 @@ public class CustomBullet : MonoBehaviour {
                 itemRB.AddExplosionForce(explosionForce, transform.position, explosionRange);
 
             if (item.TryGetComponent<IDamage>(out var enemy) && item.CompareTag(targetTag))
+            {
                 enemy.TakeDamage(explosionDamage);
+                enemyHit = true;
+            }
         }
+
+        if (enemyHit && targetTag == "Enemy")
+        {
+            StatsManager.Instance.ShotHit();
+        }
+
         Invoke(nameof(DelayedDestroy), 0.005f);
     }
 
