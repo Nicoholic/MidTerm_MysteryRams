@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -22,17 +23,22 @@ public class ButtonFunctions : MonoBehaviour {
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 2);
         Time.timeScale = 1;
-        GameManager.instance.player.GetComponent<PlayerMovement>().SpawnPlayer();
-        GameManager.instance.player.GetComponent<PlayerMovement>().HP = GameManager.instance.player.GetComponent<PlayerMovement>().maxHP;
-        GameManager.instance.player.GetComponent<PlayerMovement>().UpdateUI();
+
+        if (GameManager.instance.player.TryGetComponent<PlayerMovement>(out PlayerMovement player)) {
+            player.SpawnPlayer();
+            player.HP = player.maxHP;
+            player.UpdateUI();
+        }
     }
 
     public void TutorialLevel()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         Time.timeScale = 1;
-        GameManager.instance.player.GetComponent<PlayerMovement>().SpawnPlayer();
-        GameManager.instance.player.GetComponent<PlayerMovement>().HP = GameManager.instance.player.GetComponent<PlayerMovement>().maxHP;
-        GameManager.instance.player.GetComponent<PlayerMovement>().UpdateUI();
+        if (GameManager.instance.player.TryGetComponent<PlayerMovement>(out PlayerMovement player)) {
+            player.SpawnPlayer();
+            player.HP = player.maxHP;
+            player.UpdateUI();
+        }
     }
 }

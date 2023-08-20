@@ -19,13 +19,16 @@ public class PlayerCamera : MonoBehaviour {
     float mouseX;
     float mouseY;
 
-    void Start() { 
+    void Start() {
         orientation = GameManager.instance.player.transform.GetChild(0);
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         sensitivity = PlayerPrefs.GetFloat("currentSensitivity", 100);
-        senSlider.sensSlider.value = (sensitivity / 10);
-        senSlider.sensSlider.onValueChanged.AddListener(delegate { ChangeSpeed(senSlider.sensSlider.value); });
+        if (senSlider != null) {
+            senSlider.sensSlider.value = (sensitivity / 10);
+            senSlider.sensSlider.onValueChanged.AddListener(delegate { ChangeSpeed(senSlider.sensSlider.value); });
+        }
+
     }
 
 
@@ -48,10 +51,9 @@ public class PlayerCamera : MonoBehaviour {
         }
     }
 
-    public void ChangeSpeed(float newspeed) 
-    {
+    public void ChangeSpeed(float newspeed) {
         sensitivity = newspeed * 10;
-    }    
+    }
 
     public IEnumerator LerpFov(float endValue, float duration = 0.1f) {
         float startValue = GetComponent<Camera>().fieldOfView;
