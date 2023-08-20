@@ -36,9 +36,15 @@ public class BossEnemy : MonoBehaviour, IDamage
     [SerializeField] bool canSeePlayer;
     [SerializeField] bool attacking;
     [SerializeField] int bulletsShot;
+
+    [Header("Sounds")]
+    [SerializeField] private AudioSource AttackSound;
+    [SerializeField] private AudioSource HurtSound;
+    [SerializeField] public GameObject DeathSound;
+
     public TriggerSpawn spawner;
 
-    
+
     private NavMeshAgent agent;
     private Transform player;
 
@@ -63,7 +69,7 @@ public class BossEnemy : MonoBehaviour, IDamage
 
     void FixedUpdate()
     {
-        
+
         if (animator != null && animator.gameObject.activeSelf)
             animator.SetFloat("Speed", agent.velocity.normalized.magnitude);
 
@@ -74,7 +80,7 @@ public class BossEnemy : MonoBehaviour, IDamage
 
         if (playerInAttackRange && canSeePlayer)
         {
-          
+
             Invoke(nameof(AttackPlayer), attackDelay);
         }
         else if (!attacking)
@@ -96,6 +102,10 @@ public class BossEnemy : MonoBehaviour, IDamage
 
         if (!attacking)
         {
+            attacking = true;
+            if (AttackSound != null)
+                AttackSound.Play();
+
             bulletsShot = 0;
 
             if (animator != null)
@@ -103,7 +113,7 @@ public class BossEnemy : MonoBehaviour, IDamage
 
             Shoot();
 
-            attacking = true;
+
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
         }
     }
@@ -147,11 +157,17 @@ public class BossEnemy : MonoBehaviour, IDamage
     {
 
         HP -= damage;
+        if (HurtSound != null)
+            HurtSound.Play();
         StartCoroutine(GameManager.instance.Hitmark());
 
 
         if (HP <= 0)
         {
+            if (DeathSound != null)
+            {
+                Instantiate(DeathSound);
+            }
             GameManager.instance.GameWin();
             Invoke(nameof(DelayedDestroy), 0.025f);
             Invoke(nameof(DelayRemoveHit), 0.02f);
@@ -164,16 +180,18 @@ public class BossEnemy : MonoBehaviour, IDamage
                     animator.SetTrigger("Dead");
             }
 
-        } else {
-            UpdateAttackPattern((patterns.Count()-Mathf.FloorToInt((HP/maxHP)*patterns.Count()))-1);
+        }
+        else
+        {
+            UpdateAttackPattern((patterns.Count() - Mathf.FloorToInt((HP / maxHP) * patterns.Count())) - 1);
             if (animator != null)
                 animator.SetTrigger("Hurt");
-            
+
         }
     }
 
     private void DelayRemoveHit() => GameManager.instance.hitmarker.SetActive(false);
-    private void UpdateAttackPattern(int newPattern) 
+    private void UpdateAttackPattern(int newPattern)
     {
         projectile = patterns[newPattern].projectile;
 
@@ -192,7 +210,7 @@ public class BossEnemy : MonoBehaviour, IDamage
 
         model.material = materials[newPattern];
 
-        if(this.TryGetComponent<MeshRenderer>(out var renderer))
+        if (this.TryGetComponent<MeshRenderer>(out var renderer))
         {
             renderer.material = materials[newPattern];
         }

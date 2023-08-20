@@ -1,7 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 public class StatsManager : MonoBehaviour
 {
@@ -23,6 +26,11 @@ public class StatsManager : MonoBehaviour
 
     int playerDamage;
     public string formattedPlayerDamage;
+
+    public TextMeshProUGUI timeText;
+    public TextMeshProUGUI accuracyText;
+    public TextMeshProUGUI enemiesKilledText;
+    public TextMeshProUGUI playerDamageText;
 
     void Awake()
     {
@@ -49,6 +57,18 @@ public class StatsManager : MonoBehaviour
 
         StartCoroutine(CountSecond());
     }
+
+    private void ChangeUI()
+    {
+        timeText.text = formattedTime;
+
+        accuracyText.text = formattedAccurcy;
+
+        enemiesKilledText.text = formattedEnemiesKilled;
+
+        playerDamageText.text = formattedPlayerDamage;
+    }
+
 
     private IEnumerator CountSecond()
     {
@@ -84,6 +104,7 @@ public class StatsManager : MonoBehaviour
         }
 
         formattedTime = formattedMinutes + ":" + formattedSeconds;
+        ChangeUI();
     }
 
     public void ShotFired()
@@ -101,17 +122,20 @@ public class StatsManager : MonoBehaviour
     private void FormatAccuracy()
     {
         formattedAccurcy = "" + (Mathf.Round((shotsHit / shotsFired)*10000) / 100) + "%";
+        ChangeUI();
     }
 
     public void KilledEnemy()
     {
         enemiesKilled++;
         formattedEnemiesKilled = "" + enemiesKilled;
+        ChangeUI();
     }
 
     public void PlayerTookDamage(int damageAmount)
     {
         playerDamage += damageAmount;
         formattedPlayerDamage = "" + playerDamage;
+        ChangeUI();
     }
 }
