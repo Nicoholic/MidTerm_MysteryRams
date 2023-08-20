@@ -15,14 +15,21 @@ public class RoomSpawner : MonoBehaviour
     private int rand;
     private bool spawned = false;
     public bool bossSpawned = false;
-    public float waitTime = 1.0f;
+    public float waitTime = 2f;
+    [SerializeField] int bossRoomDirection;
+
+
+
 
     private void Start()
     {
         Destroy(gameObject, waitTime);
+        bossRoomDirection = Random.Range(5, 8);
         templetes = GameObject.FindGameObjectWithTag("Rooms").GetComponent<RoomTempletes>();
         Invoke("Spawn", 0.2f);
+
     }
+
 
 
     void Spawn()
@@ -34,7 +41,7 @@ public class RoomSpawner : MonoBehaviour
             {
                 rand = Random.Range(0, templetes.northRooms.Length);
                 Instantiate(templetes.northRooms[rand], transform.position, Quaternion.identity);
-                
+
 
             }
             // 2 = East opening 
@@ -42,47 +49,68 @@ public class RoomSpawner : MonoBehaviour
             {
                 rand = Random.Range(0, templetes.eastRooms.Length);
                 Instantiate(templetes.eastRooms[rand], transform.position, Quaternion.identity);
-               
+
             }
             // 3 = South opening
             else if (openingDirection == 3)
             {
                 rand = Random.Range(0, templetes.southRooms.Length);
                 Instantiate(templetes.southRooms[rand], transform.position, Quaternion.identity);
-                
+
             }
             // 4 = West opening 
             else if (openingDirection == 4)
             {
                 rand = Random.Range(0, templetes.westRooms.Length);
                 Instantiate(templetes.westRooms[rand], transform.position, Quaternion.identity);
-                
+
             }
+            if (openingDirection == 5 || openingDirection == 6 || openingDirection == 7 || openingDirection == 8)
+            {
+                Debug.Log("Bossroom Direction: " + bossRoomDirection);
+                Debug.Log("Opening Direction: " + openingDirection);
+
+                if (!bossSpawned && openingDirection == bossRoomDirection)
+                {
+                    Instantiate(templetes.boss, transform.position, Quaternion.identity);
+                    bossSpawned = true;
+                }
+
+
+
+            }
+
             spawned = true;
-            
+
         }
-        
+
 
     }
+
+    
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("SpawnPoint"))
         {
-            if (other.TryGetComponent<RoomSpawner>(out var closedRoomSpawn) && closedRoomSpawn.spawned == false && spawned == false)
+            if (other.TryGetComponent<RoomSpawner>(out var closedRoomSpawn) && closedRoomSpawn.spawned == false && spawned == false )
             {
                 Instantiate(templetes.closedRooms, transform.position, Quaternion.identity);
                 Destroy(this.gameObject);
-                //fix here
+
             }
             spawned = true;
         }
+
+
     }
 
     public void DestroyRoom(GameObject roomToSpawn)
     {
         Instantiate(roomToSpawn, transform.position, Quaternion.identity);
         Destroy(templetes.rooms[^1]);
-
     }
-    
+
+
+
+
 }

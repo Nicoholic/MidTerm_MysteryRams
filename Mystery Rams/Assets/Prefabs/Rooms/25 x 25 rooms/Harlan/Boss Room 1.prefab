@@ -3353,6 +3353,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9177016677875368387}
   - component: {fileID: 6721679346641288467}
+  - component: {fileID: -2431978942699362526}
   m_Layer: 0
   m_Name: Boss Room 1
   m_TagString: Untagged
@@ -3416,6 +3417,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d2d6b64e0060c794795d52868f08d97a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-2431978942699362526
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1403447877415393455}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb41e76aa57319145a2e39828710b538, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1899057092658106594
@@ -16174,6 +16187,7 @@ MonoBehaviour:
   openingDirection: 0
   bossSpawned: 0
   waitTime: 4
+  bossRoomDirection: 0
 --- !u!65 &562136991688176764
 BoxCollider:
   m_ObjectHideFlags: 0

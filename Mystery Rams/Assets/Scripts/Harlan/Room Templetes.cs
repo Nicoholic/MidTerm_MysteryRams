@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class RoomTempletes : MonoBehaviour {
+public class RoomTempletes : MonoBehaviour
+{
     [SerializeField] RoomGrouping group;
 
     public GameObject[] northRooms;
@@ -18,48 +19,57 @@ public class RoomTempletes : MonoBehaviour {
     bool initializing;
     int lastListSize;
 
-    private void Start() {
+    private void Start()
+    {
         northRooms = group.northRooms;
         eastRooms = group.eastRooms;
         southRooms = group.southRooms;
         westRooms = group.westRooms;
         closedRooms = group.closedRooms;
         boss = group.bossRoom;
+        bossRoomExt = group.bossExt;
         lastListSize = 0;
         StartRoomCheck();
     }
     public float waitTime;
     // private bool spawnedBoss;
     public GameObject boss;
+    public GameObject bossRoomExt;
+   
 
 
 
-    private void StartRoomCheck() {
+    private void StartRoomCheck()
+    {
         if (initializing)
             return;
-        
+
         StartCoroutine(RoomCheckLoop());
         initializing = true;
     }
 
-    private IEnumerator RoomCheckLoop() {
+    private IEnumerator RoomCheckLoop()
+    {
         lastListSize = rooms.Count;
-        
+
         yield return new WaitForSeconds(0.5f);
         RoomCheck();
     }
 
-    private void RoomCheck() {
-       
-        if (lastListSize == rooms.Count) {
-            if (rooms[rooms.Count - 1].transform.GetChild(3).TryGetComponent<RoomSpawner>(out var roomToReplace)) {
-                roomToReplace.DestroyRoom(boss);
+    private void RoomCheck()
+    {
+
+        if (lastListSize == rooms.Count)
+        {
+            if (rooms[rooms.Count - 1].transform.GetChild(3).TryGetComponent<RoomSpawner>(out var roomToReplace))
+            {
+               roomToReplace.DestroyRoom(bossRoomExt);
                 return;
-            } else {
-                Debug.Log("wrong thing here");
             }
-           
-        } else
+            
+
+        }
+        else
             StartCoroutine(RoomCheckLoop());
     }
 }

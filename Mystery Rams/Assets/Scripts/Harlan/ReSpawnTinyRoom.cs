@@ -6,18 +6,18 @@ public class ReSpawnTinyRoom : MonoBehaviour
 {
     [SerializeField] GameObject RoomToSpawn;
     public List<GameObject> tinyRooms;
-    private bool reSpawned = true;
-    
-    
+    //private bool reSpawned = true;
+
+
     // Start is called before the first frame update
     private void Start()
     {
         Debug.Log("start");
         StartCoroutine(nameof(ReSpawnLoop));
-          
-       
+
+
     }
-    
+
     IEnumerator ReSpawnLoop()
     {
         Debug.Log("Respawn");
@@ -36,9 +36,9 @@ public class ReSpawnTinyRoom : MonoBehaviour
         {
             StartCoroutine(nameof(ReSpawnLoop));
         }
-        
+
     }
-    
+
 
     // Update is called once per frame
 
