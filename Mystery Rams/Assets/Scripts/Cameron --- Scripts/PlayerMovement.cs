@@ -427,6 +427,8 @@ public class PlayerMovement : MonoBehaviour, IDamage {
         DamagedSound.Play();
         HP -= damage;
 
+        StatsManager.Instance.PlayerTookDamage(damage);
+
         UpdateUI();
         StartCoroutine(GameManager.instance.PlayerHurtFlash());
 

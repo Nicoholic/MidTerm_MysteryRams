@@ -46,6 +46,7 @@ GameObject:
   - component: {fileID: 4464387184893162391}
   - component: {fileID: 2092125252217993416}
   - component: {fileID: 1650826970182669130}
+  - component: {fileID: 5604953792755923584}
   m_Layer: 0
   m_Name: Pistol
   m_TagString: Untagged
@@ -68,7 +69,7 @@ Transform:
   - {fileID: 6979040263718284959}
   - {fileID: 7326933952735627053}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: -16.864, y: 96.037, z: 69.971}
 --- !u!114 &1017369628263101993
 MonoBehaviour:
@@ -104,6 +105,7 @@ MonoBehaviour:
   readyToShoot: 0
   reloading: 0
   iStartedBlastin: {fileID: 1650826970182669130}
+  reloadAni: {fileID: 5604953792755923584}
 --- !u!114 &3103766210930227688
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -292,6 +294,27 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!95 &5604953792755923584
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2407171136666188833}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3d9c78908b7e69d469cb8d42ba9c624a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &7781199141772435963
 GameObject:
   m_ObjectHideFlags: 0

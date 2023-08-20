@@ -211,6 +211,7 @@ GameObject:
   - component: {fileID: 9045104324264617561}
   - component: {fileID: 1514013789730419629}
   - component: {fileID: 1055266291439331780}
+  - component: {fileID: 4659265536584869172}
   m_Layer: 0
   m_Name: AK74
   m_TagString: Untagged
@@ -232,7 +233,7 @@ Transform:
   m_Children:
   - {fileID: 6183763441682425176}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: -6.317, y: 82.291, z: -39.105}
 --- !u!114 &7330730850599627515
 MonoBehaviour:
@@ -268,6 +269,7 @@ MonoBehaviour:
   readyToShoot: 0
   reloading: 0
   iStartedBlastin: {fileID: 1055266291439331780}
+  reloadAni: {fileID: 4659265536584869172}
 --- !u!114 &6274255907507177197
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -435,6 +437,27 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!95 &4659265536584869172
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5810561115672688750}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1d907ec887e0320409e93438f7ae597a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &7610328168296462364
 GameObject:
   m_ObjectHideFlags: 0

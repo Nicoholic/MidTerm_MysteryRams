@@ -1,29 +1,54 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class Timer : MonoBehaviour
 {
-    [SerializeField] float timerStart;
-    [SerializeField] float timeTaken;
-    [SerializeField] int minutes;
-    [SerializeField] int seconds;
-    [SerializeField] string time;
+    int minutes;
+    int seconds;
+    public string formattedTime;
 
-    // Start is called before the first frame update
     void Start()
     {
-        timerStart = Time.time; 
+        seconds = 0;
+        minutes = 0;
+        StartCoroutine(CountSecond());
     }
 
-    // Update is called once per frame
-    void Update()
+    private IEnumerator CountSecond()
     {
-        timeTaken = Time.time - timerStart;
+        yield return new WaitForSeconds(1);
+        seconds++;
+        minutes = Mathf.FloorToInt(seconds / 60);
+        FormatTime();
 
-        minutes = Mathf.FloorToInt(timeTaken / 60F);
-        seconds = Mathf.FloorToInt(timeTaken - 60F * minutes);
-        time = string.Format("{ 0:0}:{ 1:00}", minutes, seconds);
+        StartCoroutine(CountSecond());
+    }
+
+    private void FormatTime()
+    {
+        string formattedSeconds;
+        string formattedMinutes;
+
+        if (seconds % 60 < 10)
+        {
+            formattedSeconds = "0" + seconds % 60;
+        }
+        else
+        {
+            formattedSeconds = "" + seconds % 60;
+        }
+
+        if (minutes < 10)
+        {
+            formattedMinutes = "0" + minutes;
+        }
+        else
+        {
+            formattedMinutes = "" + minutes;
+        }
+
+        formattedTime = formattedMinutes + ":" + formattedSeconds;
     }
 }
- 
