@@ -442,7 +442,10 @@ public class PlayerMovement : MonoBehaviour, IDamage {
 
     public void UpdateUI() {
         GameManager.instance.PHealthBar.fillAmount = (float)HP / maxHP;
-        GameManager.instance.heathTxt.text = HP.ToString("F0");
+        if (HP >= 0)
+            GameManager.instance.heathTxt.text = HP.ToString("F0");
+        else
+            GameManager.instance.heathTxt.text = 0.ToString("F0");
     }
 
     public void SpawnPlayer() {
