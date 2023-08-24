@@ -16,9 +16,9 @@ public class RoomSpawner : MonoBehaviour
     private int rand;
     [SerializeField] private bool spawned = false;
     public bool bossSpawned = false;
-    public float waitTime = 5f;
-    bool isGround = false;
-    [SerializeField] GameObject[] spawnPointObjects;
+    public float waitTime = 5.0f;
+    
+    
 
 
 
@@ -29,13 +29,8 @@ public class RoomSpawner : MonoBehaviour
 
         Destroy(gameObject, waitTime);
         templetes = GameObject.FindGameObjectWithTag("Rooms").GetComponent<RoomTempletes>();
-        spawnPointObjects = GameObject.FindGameObjectsWithTag("SpawnPoint");
-        Invoke(nameof(Spawn), 0.2f);
-
-
-
-
-
+        //spawnPointObjects = GameObject.FindGameObjectsWithTag("SpawnPoint");
+        Invoke(nameof(Spawn), 0.1f);
     }
 
 
@@ -56,7 +51,7 @@ public class RoomSpawner : MonoBehaviour
 
                 rand = Random.Range(0, templetes.northRooms.Length);
                 Instantiate(templetes.northRooms[rand], transform.position, Quaternion.identity);
-                //AreAllSpawnPointsOverEmptySpace();
+                
 
 
             }
@@ -65,25 +60,25 @@ public class RoomSpawner : MonoBehaviour
             {
                 rand = Random.Range(0, templetes.eastRooms.Length);
                 Instantiate(templetes.eastRooms[rand], transform.position, Quaternion.identity);
-                //AreAllSpawnPointsOverEmptySpace();
+                
             }
             // 3 = South opening
             else if (openingDirection == 3)
             {
                 rand = Random.Range(0, templetes.southRooms.Length);
                 Instantiate(templetes.southRooms[rand], transform.position, Quaternion.identity);
-                // AreAllSpawnPointsOverEmptySpace();
+                
             }
             // 4 = West opening 
             else if (openingDirection == 4)
             {
                 rand = Random.Range(0, templetes.westRooms.Length);
                 Instantiate(templetes.westRooms[rand], transform.position, Quaternion.identity);
-                //AreAllSpawnPointsOverEmptySpace();
+                
             }
 
             spawned = true;
-            //AreAllSpawnPointsOverEmptySpace(spawnPointObject);
+           
         }
 
 
@@ -107,7 +102,7 @@ public class RoomSpawner : MonoBehaviour
             if (other.TryGetComponent<RoomSpawner>(out var closedRoomSpawn) && closedRoomSpawn.spawned == false && spawned == false)
             {
 
-                if (templetes.closedRooms != null)
+                if (templetes.closedRooms.gameObject != null)
                 {
                     Instantiate(templetes.closedRooms, transform.position, Quaternion.identity);
                     Destroy(gameObject);
@@ -130,36 +125,10 @@ public class RoomSpawner : MonoBehaviour
         Destroy(templetes.rooms[^1]);
     }
 
-    private void DrawRay(Vector3 origin, Vector3 end, Vector3 direction, Color color)
-    {
-        Debug.DrawLine(origin, end, color, 10);
-        Debug.DrawLine(origin, end + (Vector3.up + Vector3.right) * 0.2f, color, 10);
-        Debug.DrawLine(origin, end + (Vector3.up + Vector3.left) * 0.2f, color, 10);
-    }
+    
 
 
-    /* private bool AreAllSpawnPointsOverEmptySpace(GameObject spawnPointObject) {
-         foreach (GameObject spawnPointObject in spawnPointObjects) {
-
-             if (spawnPointObject != null)
-                 Transform spawnPointTransform = spawnPointObject.transform;
-
-             RaycastHit hit;
-
-             if (Physics.Raycast(spawnPointTransform.position, Vector3.down, out hit, 10f) && Physics.Raycast(spawnPointTransform.position, Vector3.up, out hit, 10f)) {
-                 if (hit.collider.gameObject.layer == 10) {
-                     DrawRay(spawnPointTransform.position, hit.point, Vector3.down, Color.green);
-                     DrawRay(spawnPointTransform.position, hit.point, Vector3.up, Color.green);
-                     return false;
-                 }
-             } else {
-                 DrawRay(spawnPointTransform.position, spawnPointTransform.position + Vector3.down * 10f, Vector3.down, Color.red);
-                 DrawRay(spawnPointTransform.position, spawnPointTransform.position + Vector3.up * 10f, Vector3.down, Color.red);
-             }
-         }
-
-         return true;
-     }*/
+   
 }
 
 
