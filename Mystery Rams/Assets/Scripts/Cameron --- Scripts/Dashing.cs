@@ -45,7 +45,7 @@ public class Dashing : MonoBehaviour {
     }
 
     private void Update() {
-        if (Input.GetKeyDown(dashKey))
+        if (Input.GetKeyDown(dashKey) && !GameManager.instance.isPaused)
         {
             TryDash();
            

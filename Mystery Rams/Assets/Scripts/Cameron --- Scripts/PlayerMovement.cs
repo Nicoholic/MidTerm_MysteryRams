@@ -149,7 +149,9 @@ public class PlayerMovement : MonoBehaviour, IDamage {
             grounded = false;
         }
 
-        MyInput();
+        if (!GameManager.instance.isPaused)
+            MyInput();
+
         SpeedControl();
         StateHandler();
         GunChangeInput();
