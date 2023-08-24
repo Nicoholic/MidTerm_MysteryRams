@@ -52,14 +52,14 @@ public class RoomTempletes : MonoBehaviour
     {
         lastListSize = rooms.Count;
 
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1.0f);
         RoomCheck();
     }
 
     private void RoomCheck()
     {
 
-        if (lastListSize == rooms.Count)
+        if (lastListSize == rooms.Count )
         {
             if (rooms[^1].transform.GetChild(3).TryGetComponent<RoomSpawner>(out var roomToReplace))
             {
