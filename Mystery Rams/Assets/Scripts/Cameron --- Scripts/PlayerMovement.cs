@@ -146,7 +146,7 @@ public class PlayerMovement : MonoBehaviour, IDamage {
         if (Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, whatIsGround)) {
             grounded = true;
         } else {
-            Invoke(nameof(DelayUngrounded), coyoteTime);
+            grounded = false;
         }
 
         MyInput();
