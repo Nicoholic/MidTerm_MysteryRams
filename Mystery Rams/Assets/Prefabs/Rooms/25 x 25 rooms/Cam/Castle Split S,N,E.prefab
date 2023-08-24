@@ -6357,8 +6357,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   openingDirection: 1
+  spawned: 0
   bossSpawned: 0
   waitTime: 4
+  spawnPointObjects: []
 --- !u!65 &8981149568903669784
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -12920,8 +12922,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   openingDirection: 0
+  spawned: 0
   bossSpawned: 0
   waitTime: 4
+  spawnPointObjects: []
 --- !u!65 &5315471140027369887
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -18785,8 +18789,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   openingDirection: 3
+  spawned: 0
   bossSpawned: 0
   waitTime: 4
+  spawnPointObjects: []
 --- !u!65 &8100392553751407956
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -23472,8 +23478,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   openingDirection: 2
+  spawned: 0
   bossSpawned: 0
   waitTime: 4
+  spawnPointObjects: []
 --- !u!65 &507025261719247913
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -23573,7 +23581,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyList:
-  - {fileID: 0}
   - {fileID: 7351106139122833121}
   - {fileID: 1682739848707302544}
   - {fileID: 7288491403941853712}

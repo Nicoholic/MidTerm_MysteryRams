@@ -47,8 +47,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   openingDirection: 1
+  spawned: 0
   bossSpawned: 0
   waitTime: 4
+  spawnPointObjects: []
 --- !u!65 &6150208009148362393
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -728,8 +730,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   openingDirection: 3
+  spawned: 0
   bossSpawned: 0
   waitTime: 4
+  spawnPointObjects: []
 --- !u!65 &1961978659949409853
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -20465,7 +20469,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyList:
-  - {fileID: 0}
   - {fileID: 4725121624459491425}
   - {fileID: 7815834545592591835}
   - {fileID: 4312936512505498164}
@@ -42977,6 +42980,9 @@ MonoBehaviour:
   attackPoint: {fileID: 7640051788961274327}
   animator: {fileID: 340636761077974839}
   spawner: {fileID: 0}
+  AttackSound: {fileID: 0}
+  HurtSound: {fileID: 0}
+  DeathSound: {fileID: 0}
   playerInAttackRange: 0
   canSeePlayer: 0
   attacking: 0
@@ -43654,6 +43660,9 @@ MonoBehaviour:
   attackPoint: {fileID: 4363392946595713684}
   animator: {fileID: 5547402938992825232}
   spawner: {fileID: 0}
+  AttackSound: {fileID: 0}
+  HurtSound: {fileID: 0}
+  DeathSound: {fileID: 0}
   playerInAttackRange: 0
   canSeePlayer: 0
   attacking: 0
@@ -63384,6 +63393,9 @@ MonoBehaviour:
   attackPoint: {fileID: 6574249306106324625}
   animator: {fileID: 809899224623860117}
   spawner: {fileID: 0}
+  AttackSound: {fileID: 0}
+  HurtSound: {fileID: 0}
+  DeathSound: {fileID: 0}
   playerInAttackRange: 0
   canSeePlayer: 0
   attacking: 0
@@ -69939,8 +69951,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   openingDirection: 0
+  spawned: 0
   bossSpawned: 0
   waitTime: 4
+  spawnPointObjects: []
 --- !u!65 &3349074669559571279
 BoxCollider:
   m_ObjectHideFlags: 0

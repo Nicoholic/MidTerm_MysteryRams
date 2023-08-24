@@ -57,7 +57,8 @@ public class ProjectileGun : MonoBehaviour {
     }
 
     void Update() {
-        MyInput();
+        if (!GameManager.instance.isPaused)
+            MyInput();
     }
 
     private void FixedUpdate() {
@@ -84,7 +85,7 @@ public class ProjectileGun : MonoBehaviour {
 
     private void Shoot() {
         {
-            
+
         }
         readyToShoot = false;
 
@@ -112,8 +113,7 @@ public class ProjectileGun : MonoBehaviour {
         if (muzzleFlash != null)
             Instantiate(muzzleFlash, attackPoint.position, Quaternion.identity);
 
-        if (iStartedBlastin != null && bulletsShot == 0)
-        {
+        if (iStartedBlastin != null && bulletsShot == 0) {
             iStartedBlastin.PlayOneShot(iStartedBlastin.clip);
         }
 
@@ -138,11 +138,11 @@ public class ProjectileGun : MonoBehaviour {
 
     private void Reload() {
         reloading = true;
-        
+
         reloadAni.SetBool("Reloading", true);
-        
+
         Invoke(nameof(ReloadFinished), reloadTime);
-        
+
     }
     private void ReloadFinished() {
         reloadAni.SetBool("Reloading", false);

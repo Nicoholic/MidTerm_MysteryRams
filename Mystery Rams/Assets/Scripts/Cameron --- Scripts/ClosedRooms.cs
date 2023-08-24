@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class ClosedRooms : MonoBehaviour
 {
-    private void OnCollisionEnter(UnityEngine.Collision collision)
+    private void OnTriggerEnter(Collider collision)
     {
 
         if (collision.gameObject.layer == 10)

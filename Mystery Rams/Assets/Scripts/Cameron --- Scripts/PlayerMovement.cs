@@ -146,10 +146,12 @@ public class PlayerMovement : MonoBehaviour, IDamage {
         if (Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, whatIsGround)) {
             grounded = true;
         } else {
-            Invoke(nameof(DelayUngrounded), coyoteTime);
+            grounded = false;
         }
 
-        MyInput();
+        if (!GameManager.instance.isPaused)
+            MyInput();
+
         SpeedControl();
         StateHandler();
         GunChangeInput();
@@ -442,7 +444,10 @@ public class PlayerMovement : MonoBehaviour, IDamage {
 
     public void UpdateUI() {
         GameManager.instance.PHealthBar.fillAmount = (float)HP / maxHP;
-        GameManager.instance.heathTxt.text = HP.ToString("F0");
+        if (HP >= 0)
+            GameManager.instance.heathTxt.text = HP.ToString("F0");
+        else
+            GameManager.instance.heathTxt.text = 0.ToString("F0");
     }
 
     public void SpawnPlayer() {

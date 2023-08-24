@@ -32,11 +32,15 @@ public class SlidingDoor : MonoBehaviour {
     }
 
     private void Update() {
-        if (isOpening)
-            OpenDoor();
 
-        if (isClosing)
-            CloseDoor();
+        if (!GameManager.instance.isPaused) {
+            if (isOpening)
+                OpenDoor();
+
+            if (isClosing)
+                CloseDoor();
+        }
+        
     }
 
     private void OnTriggerEnter(Collider other) {
