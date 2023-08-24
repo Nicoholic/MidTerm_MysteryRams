@@ -2431,7 +2431,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyList:
-  - {fileID: 0}
   - {fileID: 5468379007181670363}
   - {fileID: 3097776601611781035}
   - {fileID: 5778783783216095485}
@@ -2851,8 +2850,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   openingDirection: 3
+  spawned: 0
   bossSpawned: 0
   waitTime: 4
+  spawnPointObjects: []
 --- !u!65 &3891298702888523845
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5221,8 +5222,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   openingDirection: 0
+  spawned: 0
   bossSpawned: 0
   waitTime: 4
+  spawnPointObjects: []
 --- !u!65 &4712863914619958543
 BoxCollider:
   m_ObjectHideFlags: 0

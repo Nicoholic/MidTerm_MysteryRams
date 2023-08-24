@@ -1455,8 +1455,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   openingDirection: 4
+  spawned: 0
   bossSpawned: 0
   waitTime: 4
+  spawnPointObjects: []
 --- !u!65 &8405102135723584483
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3368,8 +3370,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ac33bb4cd62c3945bed1b67ea3db6e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyList:
-  - {fileID: 0}
+  enemyList: []
   doorList:
   - {fileID: 0}
   - {fileID: 0}
@@ -6760,8 +6761,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   openingDirection: 0
+  spawned: 0
   bossSpawned: 0
   waitTime: 4
+  spawnPointObjects: []
 --- !u!65 &8080713975252672234
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7607,8 +7610,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   openingDirection: 2
+  spawned: 0
   bossSpawned: 0
   waitTime: 4
+  spawnPointObjects: []
 --- !u!65 &541477587058751936
 BoxCollider:
   m_ObjectHideFlags: 0
