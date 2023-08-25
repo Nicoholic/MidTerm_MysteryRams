@@ -1230,6 +1230,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7149164656867685042}
     m_Modifications:
+    - target: {fileID: 1395903766947701128, guid: d8b8a8238e3382245b6beda81fb80441, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 2207717524890993392, guid: d8b8a8238e3382245b6beda81fb80441, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -1391,7 +1395,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 3
 --- !u!4 &2311578017989958113 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2344794799673537939, guid: 9303ce63c0c2c1a4aa3c2c4b51a9ee8a, type: 3}
@@ -1405,6 +1409,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7149164656867685042}
     m_Modifications:
+    - target: {fileID: 1395903766947701128, guid: d8b8a8238e3382245b6beda81fb80441, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 2207717524890993392, guid: d8b8a8238e3382245b6beda81fb80441, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -1571,7 +1579,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 3
 --- !u!1001 &227868810751176484
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1580,6 +1588,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7149164656867685042}
     m_Modifications:
+    - target: {fileID: 1395903766947701128, guid: d8b8a8238e3382245b6beda81fb80441, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 2207717524890993392, guid: d8b8a8238e3382245b6beda81fb80441, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -1661,6 +1673,10 @@ PrefabInstance:
     - target: {fileID: 6462619571025264184, guid: c580f8a3427e2b14ba6725d9444275bd, type: 3}
       propertyPath: m_Mass
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6462619571025264184, guid: c580f8a3427e2b14ba6725d9444275bd, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8640601759578970963, guid: c580f8a3427e2b14ba6725d9444275bd, type: 3}
       propertyPath: m_RootOrder
@@ -1767,6 +1783,10 @@ PrefabInstance:
     - target: {fileID: 631181881028890479, guid: e7dc5db250ebbd741aa62140ad2d9043, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1529541110194451629, guid: e7dc5db250ebbd741aa62140ad2d9043, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4966283246977662889, guid: e7dc5db250ebbd741aa62140ad2d9043, type: 3}
       propertyPath: m_Name
@@ -1890,7 +1910,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 3
 --- !u!1001 &484025784764219084
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1990,7 +2010,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 3
 --- !u!4 &4640068633023089449 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5103509893668025829, guid: adc910c9e92f003468cccf14a54ffa58, type: 3}
@@ -2004,6 +2024,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7149164656867685042}
     m_Modifications:
+    - target: {fileID: 1395903766947701128, guid: d8b8a8238e3382245b6beda81fb80441, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 2207717524890993392, guid: d8b8a8238e3382245b6beda81fb80441, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -2165,7 +2189,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 3
 --- !u!4 &3166094797110634652 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2344794799673537939, guid: 9303ce63c0c2c1a4aa3c2c4b51a9ee8a, type: 3}
@@ -2275,7 +2299,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 3
 --- !u!1001 &1192419135440273319
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2284,6 +2308,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7149164656867685042}
     m_Modifications:
+    - target: {fileID: 1395903766947701128, guid: d8b8a8238e3382245b6beda81fb80441, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 2207717524890993392, guid: d8b8a8238e3382245b6beda81fb80441, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -2445,7 +2473,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 3
 --- !u!4 &3578863637873866075 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2344794799673537939, guid: 9303ce63c0c2c1a4aa3c2c4b51a9ee8a, type: 3}
@@ -2502,6 +2530,10 @@ PrefabInstance:
     - target: {fileID: 631181881028890479, guid: e7dc5db250ebbd741aa62140ad2d9043, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -57.987
+      objectReference: {fileID: 0}
+    - target: {fileID: 1529541110194451629, guid: e7dc5db250ebbd741aa62140ad2d9043, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4966283246977662889, guid: e7dc5db250ebbd741aa62140ad2d9043, type: 3}
       propertyPath: m_Name
@@ -2714,7 +2746,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 3
 --- !u!4 &2428296216785923911 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3638072100860151042, guid: 1ae76920876edf240894170a199c43a8, type: 3}
@@ -2819,7 +2851,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 3
 --- !u!4 &7809138741252203761 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8663059272319849886, guid: 2570adfb5fea3cf4eba96e009e17b638, type: 3}
@@ -2929,7 +2961,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 3
 --- !u!1001 &1885698050609729294
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3029,7 +3061,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 3
 --- !u!4 &4224721768755247773 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2344794799673537939, guid: 9303ce63c0c2c1a4aa3c2c4b51a9ee8a, type: 3}
@@ -3134,7 +3166,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 3
 --- !u!4 &3384728563232282936 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3638072100860151042, guid: 1ae76920876edf240894170a199c43a8, type: 3}
@@ -3148,6 +3180,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7149164656867685042}
     m_Modifications:
+    - target: {fileID: 1395903766947701128, guid: d8b8a8238e3382245b6beda81fb80441, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 2207717524890993392, guid: d8b8a8238e3382245b6beda81fb80441, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -3314,7 +3350,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 3
 --- !u!1001 &2182842771140783291
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3414,7 +3450,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 3
 --- !u!4 &3185738886708423097 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3638072100860151042, guid: 1ae76920876edf240894170a199c43a8, type: 3}
@@ -3524,7 +3560,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 3
 --- !u!1001 &2393465385314893564
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3544,6 +3580,10 @@ PrefabInstance:
     - target: {fileID: 6462619571025264184, guid: c580f8a3427e2b14ba6725d9444275bd, type: 3}
       propertyPath: m_Mass
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6462619571025264184, guid: c580f8a3427e2b14ba6725d9444275bd, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8640601759578970963, guid: c580f8a3427e2b14ba6725d9444275bd, type: 3}
       propertyPath: m_RootOrder
@@ -3607,6 +3647,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7149164656867685042}
     m_Modifications:
+    - target: {fileID: 1395903766947701128, guid: d8b8a8238e3382245b6beda81fb80441, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 2207717524890993392, guid: d8b8a8238e3382245b6beda81fb80441, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -3721,6 +3765,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1529541110194451629, guid: e7dc5db250ebbd741aa62140ad2d9043, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4966283246977662889, guid: e7dc5db250ebbd741aa62140ad2d9043, type: 3}
       propertyPath: m_Name
       value: Chair (20)
@@ -3790,6 +3838,10 @@ PrefabInstance:
     - target: {fileID: 631181881028890479, guid: e7dc5db250ebbd741aa62140ad2d9043, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1529541110194451629, guid: e7dc5db250ebbd741aa62140ad2d9043, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4966283246977662889, guid: e7dc5db250ebbd741aa62140ad2d9043, type: 3}
       propertyPath: m_Name
@@ -3861,6 +3913,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -57.987
       objectReference: {fileID: 0}
+    - target: {fileID: 1529541110194451629, guid: e7dc5db250ebbd741aa62140ad2d9043, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4966283246977662889, guid: e7dc5db250ebbd741aa62140ad2d9043, type: 3}
       propertyPath: m_Name
       value: Chair (6)
@@ -3930,6 +3986,10 @@ PrefabInstance:
     - target: {fileID: 631181881028890479, guid: e7dc5db250ebbd741aa62140ad2d9043, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -43.107
+      objectReference: {fileID: 0}
+    - target: {fileID: 1529541110194451629, guid: e7dc5db250ebbd741aa62140ad2d9043, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4966283246977662889, guid: e7dc5db250ebbd741aa62140ad2d9043, type: 3}
       propertyPath: m_Name
@@ -4048,7 +4108,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 3
 --- !u!4 &7799415891729667587 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5103509893668025829, guid: adc910c9e92f003468cccf14a54ffa58, type: 3}
@@ -4158,7 +4218,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 3
 --- !u!1001 &3205790006751554076
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4210,6 +4270,10 @@ PrefabInstance:
     - target: {fileID: 631181881028890479, guid: e7dc5db250ebbd741aa62140ad2d9043, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1529541110194451629, guid: e7dc5db250ebbd741aa62140ad2d9043, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4966283246977662889, guid: e7dc5db250ebbd741aa62140ad2d9043, type: 3}
       propertyPath: m_Name
@@ -4333,7 +4397,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 3
 --- !u!1001 &3362998659271465199
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4342,6 +4406,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7149164656867685042}
     m_Modifications:
+    - target: {fileID: 1395903766947701128, guid: d8b8a8238e3382245b6beda81fb80441, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 2207717524890993392, guid: d8b8a8238e3382245b6beda81fb80441, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -4412,6 +4480,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7149164656867685042}
     m_Modifications:
+    - target: {fileID: 1395903766947701128, guid: d8b8a8238e3382245b6beda81fb80441, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 2207717524890993392, guid: d8b8a8238e3382245b6beda81fb80441, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -4494,6 +4566,10 @@ PrefabInstance:
       propertyPath: m_Mass
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6462619571025264184, guid: c580f8a3427e2b14ba6725d9444275bd, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8640601759578970963, guid: c580f8a3427e2b14ba6725d9444275bd, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -4568,6 +4644,10 @@ PrefabInstance:
       propertyPath: m_Mass
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6462619571025264184, guid: c580f8a3427e2b14ba6725d9444275bd, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8640601759578970963, guid: c580f8a3427e2b14ba6725d9444275bd, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -4630,6 +4710,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7149164656867685042}
     m_Modifications:
+    - target: {fileID: 1395903766947701128, guid: d8b8a8238e3382245b6beda81fb80441, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 2207717524890993392, guid: d8b8a8238e3382245b6beda81fb80441, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -4743,6 +4827,10 @@ PrefabInstance:
     - target: {fileID: 631181881028890479, guid: e7dc5db250ebbd741aa62140ad2d9043, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1529541110194451629, guid: e7dc5db250ebbd741aa62140ad2d9043, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4966283246977662889, guid: e7dc5db250ebbd741aa62140ad2d9043, type: 3}
       propertyPath: m_Name
@@ -4866,7 +4954,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 3
 --- !u!1001 &4257792310401027275
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4886,6 +4974,10 @@ PrefabInstance:
     - target: {fileID: 6462619571025264184, guid: c580f8a3427e2b14ba6725d9444275bd, type: 3}
       propertyPath: m_Mass
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6462619571025264184, guid: c580f8a3427e2b14ba6725d9444275bd, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8640601759578970963, guid: c580f8a3427e2b14ba6725d9444275bd, type: 3}
       propertyPath: m_RootOrder
@@ -5045,7 +5137,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 3
 --- !u!1001 &4404303466125627136
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5145,7 +5237,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 3
 --- !u!4 &8920634290672679653 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5103509893668025829, guid: adc910c9e92f003468cccf14a54ffa58, type: 3}
@@ -5202,6 +5294,10 @@ PrefabInstance:
     - target: {fileID: 631181881028890479, guid: e7dc5db250ebbd741aa62140ad2d9043, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -57.987
+      objectReference: {fileID: 0}
+    - target: {fileID: 1529541110194451629, guid: e7dc5db250ebbd741aa62140ad2d9043, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4966283246977662889, guid: e7dc5db250ebbd741aa62140ad2d9043, type: 3}
       propertyPath: m_Name
@@ -5272,6 +5368,10 @@ PrefabInstance:
     - target: {fileID: 631181881028890479, guid: e7dc5db250ebbd741aa62140ad2d9043, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1529541110194451629, guid: e7dc5db250ebbd741aa62140ad2d9043, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4966283246977662889, guid: e7dc5db250ebbd741aa62140ad2d9043, type: 3}
       propertyPath: m_Name
@@ -5395,7 +5495,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 3
 --- !u!1001 &4735645909171498667
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5404,6 +5504,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7149164656867685042}
     m_Modifications:
+    - target: {fileID: 1395903766947701128, guid: d8b8a8238e3382245b6beda81fb80441, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 2207717524890993392, guid: d8b8a8238e3382245b6beda81fb80441, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -5518,6 +5622,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -43.107
       objectReference: {fileID: 0}
+    - target: {fileID: 1529541110194451629, guid: e7dc5db250ebbd741aa62140ad2d9043, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4966283246977662889, guid: e7dc5db250ebbd741aa62140ad2d9043, type: 3}
       propertyPath: m_Name
       value: Chair (2)
@@ -5544,6 +5652,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7149164656867685042}
     m_Modifications:
+    - target: {fileID: 1395903766947701128, guid: d8b8a8238e3382245b6beda81fb80441, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 2207717524890993392, guid: d8b8a8238e3382245b6beda81fb80441, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -5705,7 +5817,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 3
 --- !u!4 &7263822746905699625 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2344794799673537939, guid: 9303ce63c0c2c1a4aa3c2c4b51a9ee8a, type: 3}
@@ -5762,6 +5874,10 @@ PrefabInstance:
     - target: {fileID: 631181881028890479, guid: e7dc5db250ebbd741aa62140ad2d9043, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1529541110194451629, guid: e7dc5db250ebbd741aa62140ad2d9043, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4966283246977662889, guid: e7dc5db250ebbd741aa62140ad2d9043, type: 3}
       propertyPath: m_Name
@@ -5880,7 +5996,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 3
 --- !u!4 &8823199410744405729 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4553830765889161676, guid: 785813da7743a6c4cbab34f1f2345958, type: 3}
@@ -5937,6 +6053,10 @@ PrefabInstance:
     - target: {fileID: 631181881028890479, guid: e7dc5db250ebbd741aa62140ad2d9043, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1529541110194451629, guid: e7dc5db250ebbd741aa62140ad2d9043, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4966283246977662889, guid: e7dc5db250ebbd741aa62140ad2d9043, type: 3}
       propertyPath: m_Name
@@ -6060,7 +6180,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 3
 --- !u!1001 &5739742332817388423
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6165,7 +6285,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 3
 --- !u!1001 &5789405553200471657
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6270,7 +6390,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 3
 --- !u!1001 &5807814320202584053
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6279,6 +6399,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7149164656867685042}
     m_Modifications:
+    - target: {fileID: 1395903766947701128, guid: d8b8a8238e3382245b6beda81fb80441, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 2207717524890993392, guid: d8b8a8238e3382245b6beda81fb80441, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -6361,6 +6485,10 @@ PrefabInstance:
       propertyPath: m_Mass
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6462619571025264184, guid: c580f8a3427e2b14ba6725d9444275bd, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8640601759578970963, guid: c580f8a3427e2b14ba6725d9444275bd, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -6423,6 +6551,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7149164656867685042}
     m_Modifications:
+    - target: {fileID: 1395903766947701128, guid: d8b8a8238e3382245b6beda81fb80441, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 2207717524890993392, guid: d8b8a8238e3382245b6beda81fb80441, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -6537,6 +6669,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1529541110194451629, guid: e7dc5db250ebbd741aa62140ad2d9043, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4966283246977662889, guid: e7dc5db250ebbd741aa62140ad2d9043, type: 3}
       propertyPath: m_Name
       value: Chair (14)
@@ -6574,6 +6710,10 @@ PrefabInstance:
     - target: {fileID: 6462619571025264184, guid: c580f8a3427e2b14ba6725d9444275bd, type: 3}
       propertyPath: m_Mass
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6462619571025264184, guid: c580f8a3427e2b14ba6725d9444275bd, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8640601759578970963, guid: c580f8a3427e2b14ba6725d9444275bd, type: 3}
       propertyPath: m_RootOrder
@@ -6637,6 +6777,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7149164656867685042}
     m_Modifications:
+    - target: {fileID: 1395903766947701128, guid: d8b8a8238e3382245b6beda81fb80441, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 2207717524890993392, guid: d8b8a8238e3382245b6beda81fb80441, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -6798,7 +6942,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 3
 --- !u!4 &7207410093156594599 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4553830765889161676, guid: 785813da7743a6c4cbab34f1f2345958, type: 3}
@@ -6908,7 +7052,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 3
 --- !u!1001 &6835615730916900477
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7008,7 +7152,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 3
 --- !u!4 &9103637660532394990 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2344794799673537939, guid: 9303ce63c0c2c1a4aa3c2c4b51a9ee8a, type: 3}
@@ -7022,6 +7166,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7149164656867685042}
     m_Modifications:
+    - target: {fileID: 1395903766947701128, guid: d8b8a8238e3382245b6beda81fb80441, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 2207717524890993392, guid: d8b8a8238e3382245b6beda81fb80441, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -7135,6 +7283,10 @@ PrefabInstance:
     - target: {fileID: 631181881028890479, guid: e7dc5db250ebbd741aa62140ad2d9043, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1529541110194451629, guid: e7dc5db250ebbd741aa62140ad2d9043, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4966283246977662889, guid: e7dc5db250ebbd741aa62140ad2d9043, type: 3}
       propertyPath: m_Name
@@ -7253,7 +7405,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 3
 --- !u!4 &6491024511899027387 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4553830765889161676, guid: 785813da7743a6c4cbab34f1f2345958, type: 3}
@@ -7278,6 +7430,10 @@ PrefabInstance:
     - target: {fileID: 6462619571025264184, guid: c580f8a3427e2b14ba6725d9444275bd, type: 3}
       propertyPath: m_Mass
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6462619571025264184, guid: c580f8a3427e2b14ba6725d9444275bd, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8640601759578970963, guid: c580f8a3427e2b14ba6725d9444275bd, type: 3}
       propertyPath: m_RootOrder
@@ -7437,7 +7593,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 3
 --- !u!1001 &7408361755898009480
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7489,6 +7645,10 @@ PrefabInstance:
     - target: {fileID: 631181881028890479, guid: e7dc5db250ebbd741aa62140ad2d9043, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1529541110194451629, guid: e7dc5db250ebbd741aa62140ad2d9043, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4966283246977662889, guid: e7dc5db250ebbd741aa62140ad2d9043, type: 3}
       propertyPath: m_Name
@@ -7612,7 +7772,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 3
 --- !u!1001 &7521262246931681542
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7665,6 +7825,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1529541110194451629, guid: e7dc5db250ebbd741aa62140ad2d9043, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4966283246977662889, guid: e7dc5db250ebbd741aa62140ad2d9043, type: 3}
       propertyPath: m_Name
       value: Chair (4)
@@ -7691,6 +7855,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7149164656867685042}
     m_Modifications:
+    - target: {fileID: 1395903766947701128, guid: d8b8a8238e3382245b6beda81fb80441, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 2207717524890993392, guid: d8b8a8238e3382245b6beda81fb80441, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -7857,7 +8025,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 3
 --- !u!1001 &7580169894803012513
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7962,7 +8130,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 3
 --- !u!1001 &7633655447433243829
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8062,7 +8230,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 3
 --- !u!4 &7315955431266892278 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 898274178908247363, guid: 4d11732a071e4ab4c88fb8756bc09418, type: 3}
@@ -8076,6 +8244,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7149164656867685042}
     m_Modifications:
+    - target: {fileID: 1395903766947701128, guid: d8b8a8238e3382245b6beda81fb80441, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 2207717524890993392, guid: d8b8a8238e3382245b6beda81fb80441, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -8242,7 +8414,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 3
 --- !u!1001 &8008759459253706824
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8342,7 +8514,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 3
 --- !u!4 &5770976717209102724 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4553830765889161676, guid: 785813da7743a6c4cbab34f1f2345958, type: 3}
@@ -8400,6 +8572,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1529541110194451629, guid: e7dc5db250ebbd741aa62140ad2d9043, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4966283246977662889, guid: e7dc5db250ebbd741aa62140ad2d9043, type: 3}
       propertyPath: m_Name
       value: Chair (10)
@@ -8426,6 +8602,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7149164656867685042}
     m_Modifications:
+    - target: {fileID: 1395903766947701128, guid: d8b8a8238e3382245b6beda81fb80441, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 2207717524890993392, guid: d8b8a8238e3382245b6beda81fb80441, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -8507,6 +8687,10 @@ PrefabInstance:
     - target: {fileID: 6462619571025264184, guid: c580f8a3427e2b14ba6725d9444275bd, type: 3}
       propertyPath: m_Mass
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6462619571025264184, guid: c580f8a3427e2b14ba6725d9444275bd, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8640601759578970963, guid: c580f8a3427e2b14ba6725d9444275bd, type: 3}
       propertyPath: m_RootOrder
@@ -8613,6 +8797,10 @@ PrefabInstance:
     - target: {fileID: 631181881028890479, guid: e7dc5db250ebbd741aa62140ad2d9043, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -57.987
+      objectReference: {fileID: 0}
+    - target: {fileID: 1529541110194451629, guid: e7dc5db250ebbd741aa62140ad2d9043, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4966283246977662889, guid: e7dc5db250ebbd741aa62140ad2d9043, type: 3}
       propertyPath: m_Name
@@ -8736,7 +8924,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 3
 --- !u!1001 &8384237572874260886
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8836,7 +9024,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 3
 --- !u!4 &8659723059841467605 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 898274178908247363, guid: 4d11732a071e4ab4c88fb8756bc09418, type: 3}
@@ -8941,7 +9129,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 3
 --- !u!4 &5328216514763549288 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4553830765889161676, guid: 785813da7743a6c4cbab34f1f2345958, type: 3}
@@ -8999,6 +9187,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -23.263
       objectReference: {fileID: 0}
+    - target: {fileID: 1529541110194451629, guid: e7dc5db250ebbd741aa62140ad2d9043, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4966283246977662889, guid: e7dc5db250ebbd741aa62140ad2d9043, type: 3}
       propertyPath: m_Name
       value: Chair (8)
@@ -9025,6 +9217,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7149164656867685042}
     m_Modifications:
+    - target: {fileID: 1395903766947701128, guid: d8b8a8238e3382245b6beda81fb80441, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 2207717524890993392, guid: d8b8a8238e3382245b6beda81fb80441, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -9191,7 +9387,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 3
 --- !u!1001 &8718850544788088728
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9291,7 +9487,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 3
 --- !u!4 &5174038473509776980 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4553830765889161676, guid: 785813da7743a6c4cbab34f1f2345958, type: 3}
@@ -9316,6 +9512,10 @@ PrefabInstance:
     - target: {fileID: 6462619571025264184, guid: c580f8a3427e2b14ba6725d9444275bd, type: 3}
       propertyPath: m_Mass
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6462619571025264184, guid: c580f8a3427e2b14ba6725d9444275bd, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8640601759578970963, guid: c580f8a3427e2b14ba6725d9444275bd, type: 3}
       propertyPath: m_RootOrder
@@ -9379,6 +9579,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7149164656867685042}
     m_Modifications:
+    - target: {fileID: 1395903766947701128, guid: d8b8a8238e3382245b6beda81fb80441, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 2207717524890993392, guid: d8b8a8238e3382245b6beda81fb80441, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -9460,6 +9664,10 @@ PrefabInstance:
     - target: {fileID: 6462619571025264184, guid: c580f8a3427e2b14ba6725d9444275bd, type: 3}
       propertyPath: m_Mass
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6462619571025264184, guid: c580f8a3427e2b14ba6725d9444275bd, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8640601759578970963, guid: c580f8a3427e2b14ba6725d9444275bd, type: 3}
       propertyPath: m_RootOrder
@@ -9619,7 +9827,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 3
 --- !u!1001 &9150017643099895547
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9724,7 +9932,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 3
 --- !u!1001 &9193966667659095758
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9776,6 +9984,10 @@ PrefabInstance:
     - target: {fileID: 631181881028890479, guid: e7dc5db250ebbd741aa62140ad2d9043, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1529541110194451629, guid: e7dc5db250ebbd741aa62140ad2d9043, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4966283246977662889, guid: e7dc5db250ebbd741aa62140ad2d9043, type: 3}
       propertyPath: m_Name

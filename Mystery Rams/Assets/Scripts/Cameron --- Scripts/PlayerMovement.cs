@@ -483,6 +483,10 @@ public class PlayerMovement : MonoBehaviour, IDamage {
             gunList[selectedGun].gameObject.SetActive(false);
             selectedGun = 2;
             gunList[selectedGun].gameObject.SetActive(true);
+        } else if (Input.GetKeyDown(KeyCode.Alpha3) && gunList.Count >= 4) {
+            gunList[selectedGun].gameObject.SetActive(false);
+            selectedGun = 3;
+            gunList[selectedGun].gameObject.SetActive(true);
         }
     }
 
