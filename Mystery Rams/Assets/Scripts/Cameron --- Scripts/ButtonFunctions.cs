@@ -5,6 +5,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class ButtonFunctions : MonoBehaviour {
+
+    [SerializeField] private PlayerSettingsManager settingsManager;
     public void Resume() {
         GameManager.instance.UnpauseGame();
     }
@@ -16,7 +18,6 @@ public class ButtonFunctions : MonoBehaviour {
 
     public void MainMenu() {
         SceneManager.LoadScene(0);
-
     }
 
     public void PlayGame()

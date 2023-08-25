@@ -36,8 +36,8 @@ public class PlayerCamera : MonoBehaviour {
 
         PlayerPrefs.SetFloat("currentSensitivity", sensitivity);
         if (!GameManager.instance.isPaused) {
-            mouseX = Input.GetAxis("Mouse X") * (sensitivity / 10f);
-            mouseY = Input.GetAxis("Mouse Y") * (sensitivity / 10f);
+            mouseX = Input.GetAxis("Mouse X") * (sensitivity / 20f);
+            mouseY = Input.GetAxis("Mouse Y") * (sensitivity / 20f);
 
 
             yRotation += mouseX;
