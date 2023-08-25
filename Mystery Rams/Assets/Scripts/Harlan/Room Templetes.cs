@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class RoomTempletes : MonoBehaviour
 {
+
+    // our arrys for rooms 
     [SerializeField] RoomGrouping group;
 
     public GameObject[] northRooms;
@@ -12,6 +14,7 @@ public class RoomTempletes : MonoBehaviour
     public GameObject[] southRooms;
     public GameObject[] westRooms;
 
+    //closed room to fill space && deny 
     public GameObject closedRooms;
 
     public List<GameObject> rooms;

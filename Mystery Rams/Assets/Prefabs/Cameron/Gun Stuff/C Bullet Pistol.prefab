@@ -54,12 +54,13 @@ MonoBehaviour:
   targetTag: Enemy
   bounciness: 0
   useGravity: 0
-  explosionDamage: 100
+  explosionDamage: 10
   explosionRange: 0.1
   explosionForce: 0.5
   maxCollisions: 0
   maxLifetime: 5
   explodeOnTouch: 1
+  ExplosionSound: {fileID: 0}
 --- !u!54 &7366489392516069456
 Rigidbody:
   m_ObjectHideFlags: 0
