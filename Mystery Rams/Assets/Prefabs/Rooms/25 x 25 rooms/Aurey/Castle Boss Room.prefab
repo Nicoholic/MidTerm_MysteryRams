@@ -5594,7 +5594,6 @@ MonoBehaviour:
   spawned: 0
   bossSpawned: 0
   waitTime: 2
-  spawnPointObjects: []
 --- !u!65 &3439038243132863083
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -25265,7 +25264,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4377075176943480560, guid: 74b8e2c717850a547a93cb313514e642, type: 3}
       propertyPath: HP
-      value: 5000
+      value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 4377075176943480560, guid: 74b8e2c717850a547a93cb313514e642, type: 3}
       propertyPath: materials.Array.size
