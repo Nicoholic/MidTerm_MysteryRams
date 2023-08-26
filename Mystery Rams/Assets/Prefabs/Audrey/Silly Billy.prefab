@@ -36363,7 +36363,7 @@ Transform:
   - {fileID: 2225919479304294591}
   - {fileID: 4931354033921419380}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4377075176943480560
 MonoBehaviour:
@@ -36382,6 +36382,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c349f954826fd4e42919ac901d56dc6d, type: 2}
   - {fileID: 11400000, guid: a0292db129ce84f4bb9ea273748955f0, type: 2}
   - {fileID: 11400000, guid: d012b878502dd084d84089c93ec4c06d, type: 2}
+  materials:
+  - {fileID: 2100000, guid: 713b9a14edf158246b6ecd3316745a3b, type: 2}
+  - {fileID: 2100000, guid: 5f2fd6bb7d3bc3946b3fb88be2d46358, type: 2}
+  - {fileID: 2100000, guid: fa6e44796538e10499166bfe31f992cf, type: 2}
   attackPoint: {fileID: 5913728130572053444}
   animator: {fileID: 6255955485241987626}
   model: {fileID: 2681058860402036472}
@@ -36394,14 +36398,14 @@ MonoBehaviour:
   attackRange: 0
   shootForce: 0
   upwardForce: 0
-  AttackSound: {fileID: 918830090040802296}
-  HurtSound: {fileID: 6146487933316803332}
-  DeathSound: {fileID: 8330135158848067794, guid: e7692a01170dff545a5009d9f8090a8e, type: 3}
   currentPhase: 0
   playerInAttackRange: 0
   canSeePlayer: 0
   attacking: 0
   bulletsShot: 0
+  AttackSound: {fileID: 918830090040802296}
+  HurtSound: {fileID: 6146487933316803332}
+  DeathSound: {fileID: 8330135158848067794, guid: e7692a01170dff545a5009d9f8090a8e, type: 3}
   spawner: {fileID: 0}
   playerMovement: {fileID: 0}
 --- !u!195 &6033840293143917040
