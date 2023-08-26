@@ -146,7 +146,7 @@ public class AggroEnemy : MonoBehaviour, IDamage {
     public void TakeDamage(int damage) {
 
         HP -= damage;
-        if (HurtSound != null)
+        if (HurtSound != null && !HurtSound.isPlaying)
             HurtSound.Play();
         StartCoroutine(FlashDamage());
         StartCoroutine(GameManager.instance.Hitmark());
