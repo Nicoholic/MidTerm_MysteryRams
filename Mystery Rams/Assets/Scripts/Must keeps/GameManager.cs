@@ -110,9 +110,9 @@ public class GameManager : MonoBehaviour {
     }
 
     public void GameWin() {
+        PauseGame();    
         activeMenu = winMenu;
         activeMenu.SetActive(true);
-        PauseGame();
     }
 
     public void LevelUnlocked()
