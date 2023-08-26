@@ -426,7 +426,9 @@ public class PlayerMovement : MonoBehaviour, IDamage {
     }
 
     public void TakeDamage(int damage) {
-        DamagedSound.Play();
+
+        if(!DamagedSound.isPlaying)
+            DamagedSound.Play();
         HP -= damage;
 
         StatsManager.Instance.PlayerTookDamage(damage);
