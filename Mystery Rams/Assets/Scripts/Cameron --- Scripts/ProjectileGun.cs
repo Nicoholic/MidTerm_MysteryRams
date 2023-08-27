@@ -62,7 +62,7 @@ public class ProjectileGun : MonoBehaviour {
     }
 
     private void FixedUpdate() {
-        GameManager.instance.currentAmmoTxt.SetText(bulletsLeft / bulletsPerTap + "/" + magazineSize / bulletsPerTap);
+        GameManager.instance.currentAmmoTxt.SetText((int)(bulletsLeft / bulletsPerTap) + "/" + magazineSize / bulletsPerTap);
     }
 
     private void MyInput() {
